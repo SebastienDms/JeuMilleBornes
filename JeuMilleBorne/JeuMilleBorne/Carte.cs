@@ -41,7 +41,7 @@ namespace JeuMilleBorne
         #endregion
 
         #region Constructeur
-
+        public Carte() { }
         public Carte(string nom, string type, Image imagecarte)
         {
             Nom = nom;
@@ -101,7 +101,7 @@ namespace JeuMilleBorne
             Increvable=17,
             AsVolant=18,
         }
-        public string RetournerTexteNomsCates(NomsCartes nomcarte)
+        public string RetournerTexteNomsCartes(NomsCartes nomcarte)
         {
             switch (nomcarte)
             {

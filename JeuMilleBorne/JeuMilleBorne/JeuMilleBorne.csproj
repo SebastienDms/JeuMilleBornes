@@ -53,6 +53,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GestionCartes.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ressource.Designer.cs">
@@ -60,6 +61,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Ressource.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -68,10 +72,12 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Ressource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Ressource.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -105,10 +111,10 @@
     <None Include="images\cartes\mb-accident.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\cartes\mb-as_vol.jpg" />
+    <None Include="images\cartes\mb-4.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\cartes\mb-citerne.jpg" />
+    <None Include="images\cartes\mb-2.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="images\cartes\mb-creve.jpg" />
@@ -117,7 +123,7 @@
     <None Include="images\cartes\mb-essence.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\cartes\mb-increvable.jpg" />
+    <None Include="images\cartes\mb-3.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="images\cartes\mb-lim.jpg" />
@@ -129,7 +135,7 @@
     <None Include="images\cartes\mb-panne.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\cartes\mb-prioritaire.jpg" />
+    <None Include="images\cartes\mb-1.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="images\cartes\mb-reparations.jpg" />
