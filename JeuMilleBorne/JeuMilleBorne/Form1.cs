@@ -13,7 +13,12 @@ namespace JeuMilleBorne
     public partial class FormPrincipal : Form
     {
         List<Carte> PaquetJeu = new List<Carte>();
-        GestionCartes Gestion=new GestionCartes();
+        List<Carte> PaquetMelange = new List<Carte>();
+        List<Carte> MainJoueur1 = new List<Carte>();
+        List<Carte> MainJoueur2 = new List<Carte>();
+        List<Carte> Defausse = new List<Carte>();
+
+        GestionCartes Gestion =new GestionCartes();
         public int i = 0;
         public FormPrincipal()
         {
@@ -27,10 +32,22 @@ namespace JeuMilleBorne
 
         private void btnCarteSuivante_Click(object sender, EventArgs e)
         {
-            lblInfoCarte.Text = PaquetJeu[i].Type + " : " + PaquetJeu[i].Nom;
-            pbCarte.Image = PaquetJeu[i].ImageCarte;
+            /*lblInfoCarte.Text = PaquetJeu[i].Type + " : " + PaquetJeu[i].Nom;
+            pbCarte.Image = PaquetJeu[i].ImageCarte;*/
+            lblInfoCarte.Text = "Carte : " + i.ToString() + " " + PaquetMelange[i].Type + " : " + PaquetMelange[i].Nom;
+            pbCarte.Image = PaquetMelange[i].ImageCarte;
+
 
             i++;
+            if (i==106)
+            {
+                btnCarteSuivante.Enabled = false;
+            }
+        }
+
+        private void msMelangerPaquet_Click(object sender, EventArgs e)
+        {
+            Gestion.MelangerPaquet(ref PaquetJeu, ref PaquetMelange);
         }
     }
 }

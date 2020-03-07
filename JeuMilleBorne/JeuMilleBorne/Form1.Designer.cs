@@ -32,6 +32,7 @@
             this.pbCarte = new System.Windows.Forms.PictureBox();
             this.msMenu = new System.Windows.Forms.MenuStrip();
             this.msCreerPaquetDeJeu = new System.Windows.Forms.ToolStripMenuItem();
+            this.msMelangerPaquet = new System.Windows.Forms.ToolStripMenuItem();
             this.btnCarteSuivante = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbCarte)).BeginInit();
             this.msMenu.SuspendLayout();
@@ -57,7 +58,8 @@
             // msMenu
             // 
             this.msMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.msCreerPaquetDeJeu});
+            this.msCreerPaquetDeJeu,
+            this.msMelangerPaquet});
             this.msMenu.Location = new System.Drawing.Point(0, 0);
             this.msMenu.Name = "msMenu";
             this.msMenu.Size = new System.Drawing.Size(800, 24);
@@ -70,6 +72,13 @@
             this.msCreerPaquetDeJeu.Size = new System.Drawing.Size(122, 20);
             this.msCreerPaquetDeJeu.Text = "Créer Paquet de jeu";
             this.msCreerPaquetDeJeu.Click += new System.EventHandler(this.msCreerPaquetDeJeu_Click);
+            // 
+            // msMelangerPaquet
+            // 
+            this.msMelangerPaquet.Name = "msMelangerPaquet";
+            this.msMelangerPaquet.Size = new System.Drawing.Size(121, 20);
+            this.msMelangerPaquet.Text = "Mélanger le paquet";
+            this.msMelangerPaquet.Click += new System.EventHandler(this.msMelangerPaquet_Click);
             // 
             // btnCarteSuivante
             // 
@@ -108,6 +117,7 @@
         private System.Windows.Forms.MenuStrip msMenu;
         private System.Windows.Forms.ToolStripMenuItem msCreerPaquetDeJeu;
         private System.Windows.Forms.Button btnCarteSuivante;
+        private System.Windows.Forms.ToolStripMenuItem msMelangerPaquet;
     }
 }
 
