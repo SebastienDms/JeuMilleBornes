@@ -140,5 +140,19 @@ namespace JeuMilleBorne
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
         }
+
+        public void DistribuerCartes(ref List<Carte> paquetmelange, ref List<Carte> mjoueur1, ref List<Carte> mjoueur2)
+        {
+            for (int i = 0; i < 12; i++)
+            {
+                MessageBox.Show("Carte " + i.ToString() + " et carte " + (i + 1).ToString());
+                mjoueur1.Add(paquetmelange[i]);
+                mjoueur2.Add(paquetmelange[i+1]);
+                i++;
+            }
+            paquetmelange.RemoveRange(0,12);
+
+            MessageBox.Show("Distribution des cartes terminée");
+        }
     }
 }
