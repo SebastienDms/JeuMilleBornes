@@ -33,8 +33,8 @@
             this.msMenu = new System.Windows.Forms.MenuStrip();
             this.msCreerPaquetDeJeu = new System.Windows.Forms.ToolStripMenuItem();
             this.msMelangerPaquet = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnCarteSuivante = new System.Windows.Forms.Button();
             this.msDistribuerCartes = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnCarteSuivante = new System.Windows.Forms.Button();
             this.btnCarteSuivJ1 = new System.Windows.Forms.Button();
             this.btnCarteSuivJ2 = new System.Windows.Forms.Button();
             this.lblPaqMel = new System.Windows.Forms.Label();
@@ -58,7 +58,7 @@
             this.pbCarte.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbCarte.Location = new System.Drawing.Point(0, 24);
             this.pbCarte.Name = "pbCarte";
-            this.pbCarte.Size = new System.Drawing.Size(1600, 937);
+            this.pbCarte.Size = new System.Drawing.Size(1635, 920);
             this.pbCarte.TabIndex = 1;
             this.pbCarte.TabStop = false;
             this.pbCarte.Paint += new System.Windows.Forms.PaintEventHandler(this.pbCarte_Paint);
@@ -71,7 +71,7 @@
             this.msDistribuerCartes});
             this.msMenu.Location = new System.Drawing.Point(0, 0);
             this.msMenu.Name = "msMenu";
-            this.msMenu.Size = new System.Drawing.Size(1600, 24);
+            this.msMenu.Size = new System.Drawing.Size(1635, 24);
             this.msMenu.TabIndex = 2;
             this.msMenu.Text = "Menu";
             // 
@@ -89,6 +89,14 @@
             this.msMelangerPaquet.Text = "Mélanger le paquet";
             this.msMelangerPaquet.Click += new System.EventHandler(this.msMelangerPaquet_Click);
             // 
+            // msDistribuerCartes
+            // 
+            this.msDistribuerCartes.AutoSize = false;
+            this.msDistribuerCartes.Name = "msDistribuerCartes";
+            this.msDistribuerCartes.Size = new System.Drawing.Size(136, 20);
+            this.msDistribuerCartes.Text = "Distribution des cartes";
+            this.msDistribuerCartes.Click += new System.EventHandler(this.msDistribuerCartes_Click);
+            // 
             // btnCarteSuivante
             // 
             this.btnCarteSuivante.Location = new System.Drawing.Point(427, 0);
@@ -98,14 +106,6 @@
             this.btnCarteSuivante.Text = "Carte suivante";
             this.btnCarteSuivante.UseVisualStyleBackColor = true;
             this.btnCarteSuivante.Click += new System.EventHandler(this.btnCarteSuivante_Click);
-            // 
-            // msDistribuerCartes
-            // 
-            this.msDistribuerCartes.AutoSize = false;
-            this.msDistribuerCartes.Name = "msDistribuerCartes";
-            this.msDistribuerCartes.Size = new System.Drawing.Size(136, 20);
-            this.msDistribuerCartes.Text = "Distribution des cartes";
-            this.msDistribuerCartes.Click += new System.EventHandler(this.msDistribuerCartes_Click);
             // 
             // btnCarteSuivJ1
             // 
@@ -158,7 +158,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1600, 961);
+            this.ClientSize = new System.Drawing.Size(1635, 944);
             this.Controls.Add(this.lblMainJ2);
             this.Controls.Add(this.lblMainJ1);
             this.Controls.Add(this.lblPaqMel);

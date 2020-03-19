@@ -22,11 +22,13 @@ namespace JeuMilleBorne
         Point LocMainJ2 =new Point(700,300);
         private int pl = 0, m1 = 0, m2 = 0;
 
-        GestionCartes Gestion =new GestionCartes();
+        private GestionCartes Gestion = new GestionCartes();
+        private GestionSurfaceJeu GestionSurface = new GestionSurfaceJeu();
         public int i = 0;
         public FormPrincipal()
         {
             InitializeComponent();
+            GestionSurface.CreerPlateau();
         }
 
         private void msCreerPaquetDeJeu_Click(object sender, EventArgs e)
@@ -104,16 +106,31 @@ namespace JeuMilleBorne
         {
             if (PaquetMelange.Count > 0 && MainJoueur1.Count > 0 && MainJoueur2.Count > 0)
             {
-                e.Graphics.DrawImage(PaquetMelange[pl].ImageCarte, LocPaqMel);
-                e.Graphics.DrawImage(MainJoueur1[m1].ImageCarte, LocMainJ1);
-                e.Graphics.DrawImage(MainJoueur2[m2].ImageCarte, LocMainJ2);
+                int carte = 0;
+                for (int j = 2; j < 8; j++)
+                {
+                    e.Graphics.DrawImage(MainJoueur2[carte].ImageCarte, GestionSurface.Plateau.Zones[j]);
+                    carte++;
+                }
+
+                e.Graphics.DrawImage(PaquetMelange[pl].ImageCarte, GestionSurface.Plateau.Zones[8]);
+
+                carte = 0;
+                for (int j = 34; j < 40; j++)
+                {
+                    e.Graphics.DrawImage(MainJoueur1[carte].ImageCarte, GestionSurface.Plateau.Zones[j]);
+                    carte++;
+                }
+
+                //e.Graphics.DrawImage(PaquetMelange[pl].ImageCarte, LocPaqMel);
+                //e.Graphics.DrawImage(MainJoueur1[m1].ImageCarte, LocMainJ1);
+                //e.Graphics.DrawImage(MainJoueur2[m2].ImageCarte, LocMainJ2);
             }
             else
             {
                 e.Graphics.DrawString("Créer le paquet puis mélanger et distribuer les cartes"
                     , new Font(FontFamily.GenericSansSerif, 15), new SolidBrush(Color.Chocolate), 350, 350  );
             }
-
         }
     }
 }

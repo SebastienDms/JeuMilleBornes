@@ -145,7 +145,7 @@ namespace JeuMilleBorne
         {
             for (int i = 0; i < 12; i++)
             {
-                MessageBox.Show("Carte " + i.ToString() + " et carte " + (i + 1).ToString());
+                /** MessageBox.Show("Carte " + i.ToString() + " et carte " + (i + 1).ToString()); **/
                 mjoueur1.Add(paquetmelange[i]);
                 mjoueur2.Add(paquetmelange[i+1]);
                 i++;
