@@ -154,5 +154,35 @@ namespace JeuMilleBorne
 
             MessageBox.Show("Distribution des cartes terminée");
         }
+
+        public void Piocher(ref List<Carte> paquetmel, ref Carte ctmp)
+        {
+            ctmp = paquetmel[0];
+            paquetmel.RemoveAt(0);
+        }
+
+        public void DefausserCarte(ref Carte cTmp, ref List<Carte> defausse)
+        {
+            defausse.Add(cTmp);
+            cTmp = null;
+        }
+
+        public void CarteJouee(ref List<Carte> mainJoueur,ref Carte cTmp, int i)
+        {
+            cTmp = mainJoueur[i];
+            mainJoueur.RemoveAt(i);
+        }
+
+        public void PlacerCarte(ref Carte cTmp, ref List<Carte> PileCartes)
+        {
+            PileCartes.Add(cTmp);
+            cTmp = null;
+        }
+
+        public void PlacerCartePiochee(ref List<Carte> mainJoueur, ref Carte cartePiochee, int i)
+        {
+            mainJoueur.Add(cartePiochee);
+            cartePiochee = null;
+        }
     }
 }

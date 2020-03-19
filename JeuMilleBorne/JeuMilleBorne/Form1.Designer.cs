@@ -93,6 +93,8 @@
             this.lblJECBornes200 = new System.Windows.Forms.Label();
             this.lblPioche = new System.Windows.Forms.Label();
             this.lblDefausse = new System.Windows.Forms.Label();
+            this.pbCartePiochee = new System.Windows.Forms.PictureBox();
+            this.lblCartePiochee = new System.Windows.Forms.Label();
             this.msMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbJOpCarte6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbJOpCarte5)).BeginInit();
@@ -130,6 +132,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbJECBataille)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPioche)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDefausse)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbCartePiochee)).BeginInit();
             this.SuspendLayout();
             // 
             // lblInfoCarte
@@ -301,6 +304,7 @@
             this.pbJECCarte1.Size = new System.Drawing.Size(127, 180);
             this.pbJECCarte1.TabIndex = 19;
             this.pbJECCarte1.TabStop = false;
+            this.pbJECCarte1.Click += new System.EventHandler(this.pbJECCarte1_Click);
             // 
             // pbJECCarte2
             // 
@@ -311,6 +315,7 @@
             this.pbJECCarte2.Size = new System.Drawing.Size(127, 180);
             this.pbJECCarte2.TabIndex = 18;
             this.pbJECCarte2.TabStop = false;
+            this.pbJECCarte2.Click += new System.EventHandler(this.pbJECCarte2_Click);
             // 
             // pbJECCarte3
             // 
@@ -321,6 +326,7 @@
             this.pbJECCarte3.Size = new System.Drawing.Size(127, 180);
             this.pbJECCarte3.TabIndex = 17;
             this.pbJECCarte3.TabStop = false;
+            this.pbJECCarte3.Click += new System.EventHandler(this.pbJECCarte3_Click);
             // 
             // pbJECCarte4
             // 
@@ -331,6 +337,7 @@
             this.pbJECCarte4.Size = new System.Drawing.Size(127, 180);
             this.pbJECCarte4.TabIndex = 16;
             this.pbJECCarte4.TabStop = false;
+            this.pbJECCarte4.Click += new System.EventHandler(this.pbJECCarte4_Click);
             // 
             // pbJECCarte5
             // 
@@ -341,6 +348,7 @@
             this.pbJECCarte5.Size = new System.Drawing.Size(127, 180);
             this.pbJECCarte5.TabIndex = 15;
             this.pbJECCarte5.TabStop = false;
+            this.pbJECCarte5.Click += new System.EventHandler(this.pbJECCarte5_Click);
             // 
             // pbJECCarte6
             // 
@@ -351,6 +359,7 @@
             this.pbJECCarte6.Size = new System.Drawing.Size(127, 180);
             this.pbJECCarte6.TabIndex = 14;
             this.pbJECCarte6.TabStop = false;
+            this.pbJECCarte6.Click += new System.EventHandler(this.pbJECCarte6_Click);
             // 
             // pbJECVit25
             // 
@@ -361,6 +370,7 @@
             this.pbJECVit25.Size = new System.Drawing.Size(127, 180);
             this.pbJECVit25.TabIndex = 24;
             this.pbJECVit25.TabStop = false;
+            this.pbJECVit25.Click += new System.EventHandler(this.pbJECVit25_Click);
             // 
             // pbJECVit50
             // 
@@ -371,6 +381,7 @@
             this.pbJECVit50.Size = new System.Drawing.Size(127, 180);
             this.pbJECVit50.TabIndex = 23;
             this.pbJECVit50.TabStop = false;
+            this.pbJECVit50.Click += new System.EventHandler(this.pbJECVit50_Click);
             // 
             // pbJECVit75
             // 
@@ -381,6 +392,7 @@
             this.pbJECVit75.Size = new System.Drawing.Size(127, 180);
             this.pbJECVit75.TabIndex = 22;
             this.pbJECVit75.TabStop = false;
+            this.pbJECVit75.Click += new System.EventHandler(this.pbJECVit75_Click);
             // 
             // pbJECVit100
             // 
@@ -391,6 +403,7 @@
             this.pbJECVit100.Size = new System.Drawing.Size(127, 180);
             this.pbJECVit100.TabIndex = 21;
             this.pbJECVit100.TabStop = false;
+            this.pbJECVit100.Click += new System.EventHandler(this.pbJECVit100_Click);
             // 
             // pbJECVit200
             // 
@@ -401,6 +414,7 @@
             this.pbJECVit200.Size = new System.Drawing.Size(127, 180);
             this.pbJECVit200.TabIndex = 20;
             this.pbJECVit200.TabStop = false;
+            this.pbJECVit200.Click += new System.EventHandler(this.pbJECVit200_Click);
             // 
             // pbJOpVit25
             // 
@@ -521,6 +535,7 @@
             this.pbJECBotte1.Size = new System.Drawing.Size(127, 180);
             this.pbJECBotte1.TabIndex = 39;
             this.pbJECBotte1.TabStop = false;
+            this.pbJECBotte1.Click += new System.EventHandler(this.pbJECBotte1_Click);
             // 
             // pbJECBotte2
             // 
@@ -531,6 +546,7 @@
             this.pbJECBotte2.Size = new System.Drawing.Size(127, 180);
             this.pbJECBotte2.TabIndex = 38;
             this.pbJECBotte2.TabStop = false;
+            this.pbJECBotte2.Click += new System.EventHandler(this.pbJECBotte2_Click);
             // 
             // pbJECBotte3
             // 
@@ -541,6 +557,7 @@
             this.pbJECBotte3.Size = new System.Drawing.Size(127, 180);
             this.pbJECBotte3.TabIndex = 37;
             this.pbJECBotte3.TabStop = false;
+            this.pbJECBotte3.Click += new System.EventHandler(this.pbJECBotte3_Click);
             // 
             // pbJECBotte4
             // 
@@ -551,6 +568,7 @@
             this.pbJECBotte4.Size = new System.Drawing.Size(127, 180);
             this.pbJECBotte4.TabIndex = 36;
             this.pbJECBotte4.TabStop = false;
+            this.pbJECBotte4.Click += new System.EventHandler(this.pbJECBotte4_Click);
             // 
             // pbJECVitesse
             // 
@@ -561,6 +579,7 @@
             this.pbJECVitesse.Size = new System.Drawing.Size(127, 180);
             this.pbJECVitesse.TabIndex = 41;
             this.pbJECVitesse.TabStop = false;
+            this.pbJECVitesse.Click += new System.EventHandler(this.pbJECVitesse_Click);
             // 
             // pbJECBataille
             // 
@@ -571,6 +590,7 @@
             this.pbJECBataille.Size = new System.Drawing.Size(127, 180);
             this.pbJECBataille.TabIndex = 40;
             this.pbJECBataille.TabStop = false;
+            this.pbJECBataille.Click += new System.EventHandler(this.pbJECBataille_Click);
             // 
             // pbPioche
             // 
@@ -581,6 +601,7 @@
             this.pbPioche.Size = new System.Drawing.Size(127, 180);
             this.pbPioche.TabIndex = 43;
             this.pbPioche.TabStop = false;
+            this.pbPioche.Click += new System.EventHandler(this.pbPioche_Click);
             // 
             // pbDefausse
             // 
@@ -591,6 +612,7 @@
             this.pbDefausse.Size = new System.Drawing.Size(127, 180);
             this.pbDefausse.TabIndex = 42;
             this.pbDefausse.TabStop = false;
+            this.pbDefausse.Click += new System.EventHandler(this.pbDefausse_Click);
             // 
             // lblJECVitesse
             // 
@@ -739,7 +761,7 @@
             // lblPioche
             // 
             this.lblPioche.AutoSize = true;
-            this.lblPioche.Location = new System.Drawing.Point(175, 299);
+            this.lblPioche.Location = new System.Drawing.Point(9, 283);
             this.lblPioche.Name = "lblPioche";
             this.lblPioche.Size = new System.Drawing.Size(40, 13);
             this.lblPioche.TabIndex = 60;
@@ -748,17 +770,39 @@
             // lblDefausse
             // 
             this.lblDefausse.AutoSize = true;
-            this.lblDefausse.Location = new System.Drawing.Point(175, 485);
+            this.lblDefausse.Location = new System.Drawing.Point(9, 668);
             this.lblDefausse.Name = "lblDefausse";
             this.lblDefausse.Size = new System.Drawing.Size(52, 13);
             this.lblDefausse.TabIndex = 61;
             this.lblDefausse.Text = "Défausse";
             // 
+            // pbCartePiochee
+            // 
+            this.pbCartePiochee.BackColor = System.Drawing.SystemColors.Control;
+            this.pbCartePiochee.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbCartePiochee.Location = new System.Drawing.Point(225, 388);
+            this.pbCartePiochee.Name = "pbCartePiochee";
+            this.pbCartePiochee.Size = new System.Drawing.Size(127, 180);
+            this.pbCartePiochee.TabIndex = 62;
+            this.pbCartePiochee.TabStop = false;
+            // 
+            // lblCartePiochee
+            // 
+            this.lblCartePiochee.AutoSize = true;
+            this.lblCartePiochee.Location = new System.Drawing.Point(222, 372);
+            this.lblCartePiochee.Name = "lblCartePiochee";
+            this.lblCartePiochee.Size = new System.Drawing.Size(73, 13);
+            this.lblCartePiochee.TabIndex = 63;
+            this.lblCartePiochee.Text = "Carte piochée";
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(1635, 947);
+            this.Controls.Add(this.lblCartePiochee);
+            this.Controls.Add(this.pbCartePiochee);
             this.Controls.Add(this.lblDefausse);
             this.Controls.Add(this.lblPioche);
             this.Controls.Add(this.lblJECBornes200);
@@ -862,6 +906,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbJECBataille)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPioche)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDefausse)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbCartePiochee)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -934,6 +979,8 @@
         private System.Windows.Forms.Label lblJECBornes200;
         private System.Windows.Forms.Label lblPioche;
         private System.Windows.Forms.Label lblDefausse;
+        private System.Windows.Forms.PictureBox pbCartePiochee;
+        private System.Windows.Forms.Label lblCartePiochee;
     }
 }
 
