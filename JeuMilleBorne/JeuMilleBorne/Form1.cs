@@ -56,7 +56,8 @@ namespace JeuMilleBorne
             //    btnCarteSuivante.Enabled = false;
             //}
             pl++;
-            pbCarte.Invalidate();
+            pbJOpCarte6.Invalidate();
+            Afficher();
             if (pl == PaquetMelange.Count)
             {
                 //btnCarteSuivante.Enabled = false;
@@ -72,7 +73,7 @@ namespace JeuMilleBorne
         private void btnCarteSuivJ1_Click(object sender, EventArgs e)
         {
             m1++;
-            pbCarte.Invalidate();
+            pbJOpCarte6.Invalidate();
             if (m1 == MainJoueur1.Count)
             {
                 //btnCarteSuivante.Enabled = false;
@@ -84,7 +85,7 @@ namespace JeuMilleBorne
         private void btnCarteSuivJ2_Click(object sender, EventArgs e)
         {
             m2++;
-            pbCarte.Invalidate();
+            pbJOpCarte6.Invalidate();
             if (m2 == MainJoueur2.Count)
             {
                 //btnCarteSuivante.Enabled = false;
@@ -93,34 +94,62 @@ namespace JeuMilleBorne
 
         }
 
+
         private void msDistribuerCartes_Click(object sender, EventArgs e)
         {
             Gestion.DistribuerCartes(ref PaquetMelange, ref MainJoueur1, ref MainJoueur2);
-            pbCarte.Invalidate();
+            //pbJOpCarte6.Invalidate();
             lblPaqMel.Text = PaquetMelange.Count.ToString();
             lblMainJ1.Text = MainJoueur1.Count.ToString();
             lblMainJ2.Text = MainJoueur2.Count.ToString();
+            Afficher();
         }
 
-        private void pbCarte_Paint(object sender, PaintEventArgs e)
+        private void Afficher()
+        {
+            pbPioche.BackgroundImage = PaquetMelange[pl].ImageCarte;
+
+            pbJECCarte1.BackgroundImage = MainJoueur1[0].ImageCarte;
+            pbJECCarte2.BackgroundImage = MainJoueur1[1].ImageCarte;
+            pbJECCarte3.BackgroundImage = MainJoueur1[2].ImageCarte;
+            pbJECCarte4.BackgroundImage = MainJoueur1[3].ImageCarte;
+            pbJECCarte5.BackgroundImage = MainJoueur1[4].ImageCarte;
+            pbJECCarte6.BackgroundImage = MainJoueur1[5].ImageCarte;
+
+            pbJOpCarte1.BackgroundImage = MainJoueur2[0].ImageCarte;
+            pbJOpCarte2.BackgroundImage = MainJoueur2[1].ImageCarte;
+            pbJOpCarte3.BackgroundImage = MainJoueur2[2].ImageCarte;
+            pbJOpCarte4.BackgroundImage = MainJoueur2[3].ImageCarte;
+            pbJOpCarte5.BackgroundImage = MainJoueur2[4].ImageCarte;
+            pbJOpCarte6.BackgroundImage = MainJoueur2[5].ImageCarte;
+
+        }
+
+        /*private void pbCarte_Paint(object sender, PaintEventArgs e)
         {
             if (PaquetMelange.Count > 0 && MainJoueur1.Count > 0 && MainJoueur2.Count > 0)
             {
-                int carte = 0;
-                for (int j = 2; j < 8; j++)
+                for (int k = 0; k < 2; k++)
                 {
-                    e.Graphics.DrawImage(MainJoueur2[carte].ImageCarte, GestionSurface.Plateau.Zones[j]);
-                    carte++;
+                    int carte = 0, lg = 0;
+                    for (int j = 2; j < 8; j++)
+                    {
+                        e.Graphics.DrawImage(MainJoueur2[carte].ImageCarte, GestionSurface.Plateau.Zones[lg, j]);
+                        lg = lg + 4;
+                        e.Graphics.DrawImage(MainJoueur1[carte].ImageCarte, GestionSurface.Plateau.Zones[lg, j]);
+                        carte++;
+                        lg = 0;
+                    }
                 }
 
-                e.Graphics.DrawImage(PaquetMelange[pl].ImageCarte, GestionSurface.Plateau.Zones[8]);
+                e.Graphics.DrawImage(PaquetMelange[pl].ImageCarte, GestionSurface.Plateau.Zones[1,0]);
 
-                carte = 0;
-                for (int j = 34; j < 40; j++)
-                {
-                    e.Graphics.DrawImage(MainJoueur1[carte].ImageCarte, GestionSurface.Plateau.Zones[j]);
-                    carte++;
-                }
+                //carte = 0;
+                //for (int j = 34; j < 40; j++)
+                //{
+                //    e.Graphics.DrawImage(MainJoueur1[carte].ImageCarte, GestionSurface.Plateau.Zones[7,j]);
+                //    carte++;
+                //}
 
                 //e.Graphics.DrawImage(PaquetMelange[pl].ImageCarte, LocPaqMel);
                 //e.Graphics.DrawImage(MainJoueur1[m1].ImageCarte, LocMainJ1);
@@ -131,6 +160,6 @@ namespace JeuMilleBorne
                 e.Graphics.DrawString("Créer le paquet puis mélanger et distribuer les cartes"
                     , new Font(FontFamily.GenericSansSerif, 15), new SolidBrush(Color.Chocolate), 350, 350  );
             }
-        }
+        }*/
     }
 }
