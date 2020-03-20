@@ -244,6 +244,7 @@
             this.pbJOpCarte6.Size = new System.Drawing.Size(127, 180);
             this.pbJOpCarte6.TabIndex = 1;
             this.pbJOpCarte6.TabStop = false;
+            this.pbJOpCarte6.Click += new System.EventHandler(this.pbJOpCarte6_Click);
             // 
             // pbJOpCarte5
             // 
@@ -254,6 +255,7 @@
             this.pbJOpCarte5.Size = new System.Drawing.Size(127, 180);
             this.pbJOpCarte5.TabIndex = 9;
             this.pbJOpCarte5.TabStop = false;
+            this.pbJOpCarte5.Click += new System.EventHandler(this.pbJOpCarte5_Click);
             // 
             // pbJOpCarte4
             // 
@@ -264,6 +266,7 @@
             this.pbJOpCarte4.Size = new System.Drawing.Size(127, 180);
             this.pbJOpCarte4.TabIndex = 10;
             this.pbJOpCarte4.TabStop = false;
+            this.pbJOpCarte4.Click += new System.EventHandler(this.pbJOpCarte4_Click);
             // 
             // pbJOpCarte3
             // 
@@ -274,6 +277,7 @@
             this.pbJOpCarte3.Size = new System.Drawing.Size(127, 180);
             this.pbJOpCarte3.TabIndex = 11;
             this.pbJOpCarte3.TabStop = false;
+            this.pbJOpCarte3.Click += new System.EventHandler(this.pbJOpCarte3_Click);
             // 
             // pbJOpCarte2
             // 
@@ -284,6 +288,7 @@
             this.pbJOpCarte2.Size = new System.Drawing.Size(127, 180);
             this.pbJOpCarte2.TabIndex = 12;
             this.pbJOpCarte2.TabStop = false;
+            this.pbJOpCarte2.Click += new System.EventHandler(this.pbJOpCarte2_Click);
             // 
             // pbJOpCarte1
             // 
@@ -294,6 +299,7 @@
             this.pbJOpCarte1.Size = new System.Drawing.Size(127, 180);
             this.pbJOpCarte1.TabIndex = 13;
             this.pbJOpCarte1.TabStop = false;
+            this.pbJOpCarte1.Click += new System.EventHandler(this.pbJOpCarte1_Click);
             // 
             // pbJECCarte1
             // 
@@ -425,6 +431,7 @@
             this.pbJOpVit25.Size = new System.Drawing.Size(127, 180);
             this.pbJOpVit25.TabIndex = 29;
             this.pbJOpVit25.TabStop = false;
+            this.pbJOpVit25.Click += new System.EventHandler(this.pbJOpVit25_Click);
             // 
             // pbJOpVit50
             // 
@@ -435,6 +442,7 @@
             this.pbJOpVit50.Size = new System.Drawing.Size(127, 180);
             this.pbJOpVit50.TabIndex = 28;
             this.pbJOpVit50.TabStop = false;
+            this.pbJOpVit50.Click += new System.EventHandler(this.pbJOpVit50_Click);
             // 
             // pbJOpVit75
             // 
@@ -445,6 +453,7 @@
             this.pbJOpVit75.Size = new System.Drawing.Size(127, 180);
             this.pbJOpVit75.TabIndex = 27;
             this.pbJOpVit75.TabStop = false;
+            this.pbJOpVit75.Click += new System.EventHandler(this.pbJOpVit75_Click);
             // 
             // pbJOpVit100
             // 
@@ -455,6 +464,7 @@
             this.pbJOpVit100.Size = new System.Drawing.Size(127, 180);
             this.pbJOpVit100.TabIndex = 26;
             this.pbJOpVit100.TabStop = false;
+            this.pbJOpVit100.Click += new System.EventHandler(this.pbJOpVit100_Click);
             // 
             // pbJOpVit200
             // 
@@ -465,6 +475,7 @@
             this.pbJOpVit200.Size = new System.Drawing.Size(127, 180);
             this.pbJOpVit200.TabIndex = 25;
             this.pbJOpVit200.TabStop = false;
+            this.pbJOpVit200.Click += new System.EventHandler(this.pbJOpVit200_Click);
             // 
             // pbJOpVitesse
             // 
@@ -475,6 +486,7 @@
             this.pbJOpVitesse.Size = new System.Drawing.Size(127, 180);
             this.pbJOpVitesse.TabIndex = 31;
             this.pbJOpVitesse.TabStop = false;
+            this.pbJOpVitesse.Click += new System.EventHandler(this.pbJOpVitesse_Click);
             // 
             // pbJOpBataille
             // 
@@ -485,6 +497,7 @@
             this.pbJOpBataille.Size = new System.Drawing.Size(127, 180);
             this.pbJOpBataille.TabIndex = 30;
             this.pbJOpBataille.TabStop = false;
+            this.pbJOpBataille.Click += new System.EventHandler(this.pbJOpBataille_Click);
             // 
             // pbJOpBotte1
             // 
@@ -495,6 +508,7 @@
             this.pbJOpBotte1.Size = new System.Drawing.Size(127, 180);
             this.pbJOpBotte1.TabIndex = 35;
             this.pbJOpBotte1.TabStop = false;
+            this.pbJOpBotte1.Click += new System.EventHandler(this.pbJOpBotte1_Click);
             // 
             // pbJOpBotte2
             // 
@@ -505,6 +519,7 @@
             this.pbJOpBotte2.Size = new System.Drawing.Size(127, 180);
             this.pbJOpBotte2.TabIndex = 34;
             this.pbJOpBotte2.TabStop = false;
+            this.pbJOpBotte2.Click += new System.EventHandler(this.pbJOpBotte2_Click);
             // 
             // pbJOpBotte3
             // 
@@ -515,6 +530,7 @@
             this.pbJOpBotte3.Size = new System.Drawing.Size(127, 180);
             this.pbJOpBotte3.TabIndex = 33;
             this.pbJOpBotte3.TabStop = false;
+            this.pbJOpBotte3.Click += new System.EventHandler(this.pbJOpBotte3_Click);
             // 
             // pbJOpBotte4
             // 
@@ -525,6 +541,7 @@
             this.pbJOpBotte4.Size = new System.Drawing.Size(127, 180);
             this.pbJOpBotte4.TabIndex = 32;
             this.pbJOpBotte4.TabStop = false;
+            this.pbJOpBotte4.Click += new System.EventHandler(this.pbJOpBotte4_Click);
             // 
             // pbJECBotte1
             // 
