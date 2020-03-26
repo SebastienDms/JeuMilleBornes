@@ -42,7 +42,17 @@ namespace JeuMilleBorne
         private int pl = 0, m1 = 0, m2 = 0;
         private GestionCartes Gestion = new GestionCartes();
         private GestionSurfaceJeu GestionSurface = new GestionSurfaceJeu();
-        public int i = 0;
+        public int tour = 0;
+        #endregion
+
+        #region Accesseurs
+
+        public int Tour
+        {
+            get => tour;
+            set => tour = value;
+        }
+
         #endregion
         public FormPrincipal()
         {
@@ -68,6 +78,11 @@ namespace JeuMilleBorne
             lblMainJ1.Text = MainJoueur1.Count.ToString();
             lblMainJ2.Text = MainJoueur2.Count.ToString();
             Afficher();
+            Tour = Gestion.TourAlea();
+            if (Tour == 0)
+                MessageBox.Show("C'est au joueur 1 de commencer la partie");
+            if (Tour == 1)
+                MessageBox.Show("C'est au joueur 2 de commencer la partie");
         }
         #endregion
         private void btnCarteSuivante_Click(object sender, EventArgs e)
@@ -123,7 +138,7 @@ namespace JeuMilleBorne
 
         }
 
-        #region PiocheDefausse
+        #region PiocheEtDefausse
         private void pbPioche_Click(object sender, EventArgs e)
         {
             Gestion.Piocher(ref PaquetMelange, ref Carte_piochee);
@@ -140,42 +155,42 @@ namespace JeuMilleBorne
         private void pbJECCarte1_Click(object sender, EventArgs e)
         {
             Gestion.CarteJouee(ref MainJoueur1, ref Ctmp, 0);
-            Gestion.PlacerCartePiochee(ref MainJoueur1, ref Carte_piochee, 0);
+            Gestion.PlacerCartePiochee(ref MainJoueur1, ref Carte_piochee);
             Afficher();
         }
 
         private void pbJECCarte2_Click(object sender, EventArgs e)
         {
             Gestion.CarteJouee(ref MainJoueur1, ref Ctmp, 1);
-            Gestion.PlacerCartePiochee(ref MainJoueur1, ref Carte_piochee, 1);
+            Gestion.PlacerCartePiochee(ref MainJoueur1, ref Carte_piochee);
             Afficher();
         }
 
         private void pbJECCarte3_Click(object sender, EventArgs e)
         {
             Gestion.CarteJouee(ref MainJoueur1, ref Ctmp, 2);
-            Gestion.PlacerCartePiochee(ref MainJoueur1, ref Carte_piochee, 2);
+            Gestion.PlacerCartePiochee(ref MainJoueur1, ref Carte_piochee);
             Afficher();
         }
 
         private void pbJECCarte4_Click(object sender, EventArgs e)
         {
             Gestion.CarteJouee(ref MainJoueur1, ref Ctmp, 3);
-            Gestion.PlacerCartePiochee(ref MainJoueur1, ref Carte_piochee, 3);
+            Gestion.PlacerCartePiochee(ref MainJoueur1, ref Carte_piochee);
             Afficher();
         }
 
         private void pbJECCarte5_Click(object sender, EventArgs e)
         {
             Gestion.CarteJouee(ref MainJoueur1, ref Ctmp, 4);
-            Gestion.PlacerCartePiochee(ref MainJoueur1, ref Carte_piochee, 4);
+            Gestion.PlacerCartePiochee(ref MainJoueur1, ref Carte_piochee);
             Afficher();
         }
 
         private void pbJECCarte6_Click(object sender, EventArgs e)
         {
             Gestion.CarteJouee(ref MainJoueur1, ref Ctmp, 5);
-            Gestion.PlacerCartePiochee(ref MainJoueur1, ref Carte_piochee, 5);
+            Gestion.PlacerCartePiochee(ref MainJoueur1, ref Carte_piochee);
             Afficher();
         }
 
@@ -235,50 +250,60 @@ namespace JeuMilleBorne
 
         private void pbJECVitesse_Click(object sender, EventArgs e)
         {
-
+            Gestion.LimVitesse(ref Ctmp, ref J1Vitesse);
+            Afficher();
         }
         private void pbJECBataille_Click(object sender, EventArgs e)
         {
-
+            Gestion.Bataille(ref Ctmp, ref J1Bataille);
+            Afficher();
         }
 
         #endregion
 
+        #region CartePiochee
+
+        private void pbCartePiochee_Click(object sender, EventArgs e)
+        {
+            Gestion.JouerCartePiochee(ref Carte_piochee, ref Ctmp);
+        }
+
+        #endregion
         #region ZoneJoueur2
         private void pbJOpCarte1_Click(object sender, EventArgs e)
         {
             Gestion.CarteJouee(ref MainJoueur2, ref Ctmp, 0);
-            Gestion.PlacerCartePiochee(ref MainJoueur2, ref Carte_piochee, 0);
+            Gestion.PlacerCartePiochee(ref MainJoueur2, ref Carte_piochee);
             Afficher();
         }
         private void pbJOpCarte2_Click(object sender, EventArgs e)
         {
             Gestion.CarteJouee(ref MainJoueur2, ref Ctmp, 1);
-            Gestion.PlacerCartePiochee(ref MainJoueur2, ref Carte_piochee, 1);
+            Gestion.PlacerCartePiochee(ref MainJoueur2, ref Carte_piochee);
             Afficher();
         }
         private void pbJOpCarte3_Click(object sender, EventArgs e)
         {
             Gestion.CarteJouee(ref MainJoueur2, ref Ctmp, 2);
-            Gestion.PlacerCartePiochee(ref MainJoueur2, ref Carte_piochee, 2);
+            Gestion.PlacerCartePiochee(ref MainJoueur2, ref Carte_piochee);
             Afficher();
         }
         private void pbJOpCarte4_Click(object sender, EventArgs e)
         {
             Gestion.CarteJouee(ref MainJoueur2, ref Ctmp, 3);
-            Gestion.PlacerCartePiochee(ref MainJoueur2, ref Carte_piochee, 3);
+            Gestion.PlacerCartePiochee(ref MainJoueur2, ref Carte_piochee);
             Afficher();
         }
         private void pbJOpCarte5_Click(object sender, EventArgs e)
         {
             Gestion.CarteJouee(ref MainJoueur2, ref Ctmp, 4);
-            Gestion.PlacerCartePiochee(ref MainJoueur2, ref Carte_piochee, 4);
+            Gestion.PlacerCartePiochee(ref MainJoueur2, ref Carte_piochee);
             Afficher();
         }
         private void pbJOpCarte6_Click(object sender, EventArgs e)
         {
             Gestion.CarteJouee(ref MainJoueur2, ref Ctmp, 5);
-            Gestion.PlacerCartePiochee(ref MainJoueur2, ref Carte_piochee, 5);
+            Gestion.PlacerCartePiochee(ref MainJoueur2, ref Carte_piochee);
             Afficher();
         }
         private void pbJOpVit25_Click(object sender, EventArgs e)
@@ -337,12 +362,14 @@ namespace JeuMilleBorne
 
         private void pbJOpVitesse_Click(object sender, EventArgs e)
         {
-
+            Gestion.LimVitesse(ref Ctmp, ref J2Vitesse);
+            Afficher();
         }
 
         private void pbJOpBataille_Click(object sender, EventArgs e)
         {
-
+            Gestion.Bataille(ref Ctmp, ref J2Bataille);
+            Afficher();
         }
 
         #endregion

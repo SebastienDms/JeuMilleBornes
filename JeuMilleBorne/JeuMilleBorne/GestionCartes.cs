@@ -10,6 +10,16 @@ namespace JeuMilleBorne
 {
     class GestionCartes
     {
+        #region Donnees
+
+        Random alea=new Random();
+
+        #endregion
+
+        public int TourAlea()
+        {
+            return alea.Next(1);
+        }
         public void CreerPaquet(ref List<Carte> paquet)
         {
             int index = 1;
@@ -173,16 +183,34 @@ namespace JeuMilleBorne
             mainJoueur.RemoveAt(i);
         }
 
+        public void JouerCartePiochee(ref Carte cartePiochee, ref Carte cTmp)
+        {
+            cTmp = cartePiochee;
+            cartePiochee = null;
+        }
+
         public void PlacerCarte(ref Carte cTmp, ref List<Carte> PileCartes)
         {
             PileCartes.Add(cTmp);
             cTmp = null;
         }
 
-        public void PlacerCartePiochee(ref List<Carte> mainJoueur, ref Carte cartePiochee, int i)
+        public void PlacerCartePiochee(ref List<Carte> mainJoueur, ref Carte cartePiochee)
         {
             mainJoueur.Add(cartePiochee);
             cartePiochee = null;
+        }
+
+        public void LimVitesse(ref Carte cTmp, ref List<Carte> PileVitesse)
+        {
+            PileVitesse.Add(cTmp);
+            cTmp = null;
+        }
+
+        public void Bataille(ref Carte cTmp, ref List<Carte> PileBataille)
+        {
+            PileBataille.Add(cTmp);
+            cTmp = null;
         }
     }
 }

@@ -95,6 +95,8 @@
             this.lblDefausse = new System.Windows.Forms.Label();
             this.pbCartePiochee = new System.Windows.Forms.PictureBox();
             this.lblCartePiochee = new System.Windows.Forms.Label();
+            this.lblJ1 = new System.Windows.Forms.Label();
+            this.lblJ2 = new System.Windows.Forms.Label();
             this.msMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbJOpCarte6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbJOpCarte5)).BeginInit();
@@ -802,6 +804,7 @@
             this.pbCartePiochee.Size = new System.Drawing.Size(127, 180);
             this.pbCartePiochee.TabIndex = 62;
             this.pbCartePiochee.TabStop = false;
+            this.pbCartePiochee.Click += new System.EventHandler(this.pbCartePiochee_Click);
             // 
             // lblCartePiochee
             // 
@@ -812,12 +815,32 @@
             this.lblCartePiochee.TabIndex = 63;
             this.lblCartePiochee.Text = "Carte piochée";
             // 
+            // lblJ1
+            // 
+            this.lblJ1.AutoSize = true;
+            this.lblJ1.Location = new System.Drawing.Point(1513, 566);
+            this.lblJ1.Name = "lblJ1";
+            this.lblJ1.Size = new System.Drawing.Size(48, 13);
+            this.lblJ1.TabIndex = 64;
+            this.lblJ1.Text = "Joueur 1";
+            // 
+            // lblJ2
+            // 
+            this.lblJ2.AutoSize = true;
+            this.lblJ2.Location = new System.Drawing.Point(1513, 213);
+            this.lblJ2.Name = "lblJ2";
+            this.lblJ2.Size = new System.Drawing.Size(48, 13);
+            this.lblJ2.TabIndex = 65;
+            this.lblJ2.Text = "Joueur 2";
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(1635, 947);
+            this.Controls.Add(this.lblJ2);
+            this.Controls.Add(this.lblJ1);
             this.Controls.Add(this.lblCartePiochee);
             this.Controls.Add(this.pbCartePiochee);
             this.Controls.Add(this.lblDefausse);
@@ -998,6 +1021,8 @@
         private System.Windows.Forms.Label lblDefausse;
         private System.Windows.Forms.PictureBox pbCartePiochee;
         private System.Windows.Forms.Label lblCartePiochee;
+        private System.Windows.Forms.Label lblJ1;
+        private System.Windows.Forms.Label lblJ2;
     }
 }
 
