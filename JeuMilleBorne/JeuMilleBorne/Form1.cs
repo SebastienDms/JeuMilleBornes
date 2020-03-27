@@ -42,7 +42,7 @@ namespace JeuMilleBorne
         private int pl = 0, m1 = 0, m2 = 0;
         private GestionCartes Gestion = new GestionCartes();
         private GestionSurfaceJeu GestionSurface = new GestionSurfaceJeu();
-        public int tour = 0;
+        public int tour;
         #endregion
 
         #region Accesseurs
@@ -154,73 +154,136 @@ namespace JeuMilleBorne
         #region ZoneJoueur1
         private void pbJECCarte1_Click(object sender, EventArgs e)
         {
-            Gestion.CarteJouee(ref MainJoueur1, ref Ctmp, 0);
-            Gestion.PlacerCartePiochee(ref MainJoueur1, ref Carte_piochee);
+            if (Tour == 0)
+            {
+                Gestion.CarteJouee(ref MainJoueur1, ref Ctmp, 0);
+                Gestion.PlacerCartePiochee(ref MainJoueur1, ref Carte_piochee);
+                Tour = 1;
+            }
+            else
+            {
+                MessageBox.Show("Ce n'est pas ta zone de jeu !");
+            }
             Afficher();
         }
 
         private void pbJECCarte2_Click(object sender, EventArgs e)
         {
-            Gestion.CarteJouee(ref MainJoueur1, ref Ctmp, 1);
-            Gestion.PlacerCartePiochee(ref MainJoueur1, ref Carte_piochee);
+            if (tour == 0)
+            {
+                Gestion.CarteJouee(ref MainJoueur1, ref Ctmp, 1);
+                Gestion.PlacerCartePiochee(ref MainJoueur1, ref Carte_piochee);
+                Tour = 1;
+            }
+            else
+            {
+                MessageBox.Show("Ce n'est pas ta zone de jeu !");
+            }
             Afficher();
         }
 
         private void pbJECCarte3_Click(object sender, EventArgs e)
         {
-            Gestion.CarteJouee(ref MainJoueur1, ref Ctmp, 2);
-            Gestion.PlacerCartePiochee(ref MainJoueur1, ref Carte_piochee);
+            if (tour == 0)
+            {
+                Gestion.CarteJouee(ref MainJoueur1, ref Ctmp, 2);
+                Gestion.PlacerCartePiochee(ref MainJoueur1, ref Carte_piochee);
+                Tour = 1;
+            }
+            else
+            {
+                MessageBox.Show("Ce n'est pas ta zone de jeu !");
+            }
             Afficher();
         }
 
         private void pbJECCarte4_Click(object sender, EventArgs e)
         {
-            Gestion.CarteJouee(ref MainJoueur1, ref Ctmp, 3);
-            Gestion.PlacerCartePiochee(ref MainJoueur1, ref Carte_piochee);
+            if (tour == 0)
+            {
+                Gestion.CarteJouee(ref MainJoueur1, ref Ctmp, 3);
+                Gestion.PlacerCartePiochee(ref MainJoueur1, ref Carte_piochee);
+                Tour = 1;
+            }
+            else
+            {
+                MessageBox.Show("Ce n'est pas ta zone de jeu !");
+            }
             Afficher();
         }
 
         private void pbJECCarte5_Click(object sender, EventArgs e)
         {
-            Gestion.CarteJouee(ref MainJoueur1, ref Ctmp, 4);
-            Gestion.PlacerCartePiochee(ref MainJoueur1, ref Carte_piochee);
+            if (tour == 0)
+            {
+                Gestion.CarteJouee(ref MainJoueur1, ref Ctmp, 4);
+                Gestion.PlacerCartePiochee(ref MainJoueur1, ref Carte_piochee);
+                Tour = 1;
+            }
+            else
+            {
+                MessageBox.Show("Ce n'est pas ta zone de jeu !");
+            }
             Afficher();
         }
 
         private void pbJECCarte6_Click(object sender, EventArgs e)
         {
-            Gestion.CarteJouee(ref MainJoueur1, ref Ctmp, 5);
-            Gestion.PlacerCartePiochee(ref MainJoueur1, ref Carte_piochee);
+            if (tour == 0)
+            {
+                Gestion.CarteJouee(ref MainJoueur1, ref Ctmp, 5);
+                Gestion.PlacerCartePiochee(ref MainJoueur1, ref Carte_piochee);
+                Tour = 1;
+            }
+            else
+            {
+                MessageBox.Show("Ce n'est pas ta zone de jeu !");
+            }
             Afficher();
         }
 
         private void pbJECVit25_Click(object sender, EventArgs e)
         {
-            Gestion.PlacerCarte(ref Ctmp, ref J1Bornes25);
+            if (Gestion.Check25(ref Ctmp))
+                Gestion.PlacerCarte(ref Ctmp, ref J1Bornes25);
+            else
+                MessageBox.Show("Cette carte ne se place pas ici !");
             Afficher();
         }
 
         private void pbJECVit50_Click(object sender, EventArgs e)
         {
-            Gestion.PlacerCarte(ref Ctmp, ref J1Bornes50);
+            if (Gestion.Check50(ref Ctmp))
+                Gestion.PlacerCarte(ref Ctmp, ref J1Bornes50);
+            else
+                MessageBox.Show("Cette carte ne se place pas ici !");
             Afficher();
         }
 
         private void pbJECVit75_Click(object sender, EventArgs e)
         {
-            Gestion.PlacerCarte(ref Ctmp, ref J1Bornes75);
+            if (Gestion.Check75(ref Ctmp))
+                Gestion.PlacerCarte(ref Ctmp, ref J1Bornes75);
+            else
+                MessageBox.Show("Cette carte ne se place pas ici !");
             Afficher();
         }
 
         private void pbJECVit100_Click(object sender, EventArgs e)
         {
-            Gestion.PlacerCarte(ref Ctmp, ref J1Bornes100);
+            if (Gestion.Check100(ref Ctmp))
+                Gestion.PlacerCarte(ref Ctmp, ref J1Bornes100);
+            else
+                MessageBox.Show("Cette carte ne se place pas ici !");
             Afficher();
         }
 
         private void pbJECVit200_Click(object sender, EventArgs e)
         {
-            Gestion.PlacerCarte(ref Ctmp, ref J1Bornes200);
+            if (Gestion.Check200(ref Ctmp))
+                Gestion.PlacerCarte(ref Ctmp, ref J1Bornes200);
+            else
+                MessageBox.Show("Cette carte ne se place pas ici !");
             Afficher();
         }
 
@@ -272,38 +335,92 @@ namespace JeuMilleBorne
         #region ZoneJoueur2
         private void pbJOpCarte1_Click(object sender, EventArgs e)
         {
-            Gestion.CarteJouee(ref MainJoueur2, ref Ctmp, 0);
-            Gestion.PlacerCartePiochee(ref MainJoueur2, ref Carte_piochee);
+            if (Tour == 1)
+            {
+                Gestion.CarteJouee(ref MainJoueur2, ref Ctmp, 0);
+                Gestion.PlacerCartePiochee(ref MainJoueur2, ref Carte_piochee);
+                Tour = 0;
+            }
+            else
+            {
+                MessageBox.Show("Ce n'est pas ta zone de jeu !");
+            }
+
             Afficher();
         }
         private void pbJOpCarte2_Click(object sender, EventArgs e)
         {
-            Gestion.CarteJouee(ref MainJoueur2, ref Ctmp, 1);
-            Gestion.PlacerCartePiochee(ref MainJoueur2, ref Carte_piochee);
+            if (Tour == 1)
+            {
+                Gestion.CarteJouee(ref MainJoueur2, ref Ctmp, 1);
+                Gestion.PlacerCartePiochee(ref MainJoueur2, ref Carte_piochee);
+                Tour = 0;
+            }
+            else
+            {
+                MessageBox.Show("Ce n'est pas ta zone de jeu !");
+            }
+
             Afficher();
         }
         private void pbJOpCarte3_Click(object sender, EventArgs e)
         {
-            Gestion.CarteJouee(ref MainJoueur2, ref Ctmp, 2);
-            Gestion.PlacerCartePiochee(ref MainJoueur2, ref Carte_piochee);
+            if (Tour == 1)
+            {
+                Gestion.CarteJouee(ref MainJoueur2, ref Ctmp, 2);
+                Gestion.PlacerCartePiochee(ref MainJoueur2, ref Carte_piochee);
+                Tour = 0;
+            }
+            else
+            {
+                MessageBox.Show("Ce n'est pas ta zone de jeu !");
+            }
+
             Afficher();
         }
         private void pbJOpCarte4_Click(object sender, EventArgs e)
         {
-            Gestion.CarteJouee(ref MainJoueur2, ref Ctmp, 3);
-            Gestion.PlacerCartePiochee(ref MainJoueur2, ref Carte_piochee);
+            if (Tour == 1)
+            {
+                Gestion.CarteJouee(ref MainJoueur2, ref Ctmp, 3);
+                Gestion.PlacerCartePiochee(ref MainJoueur2, ref Carte_piochee);
+                Tour = 0;
+            }
+            else
+            {
+                MessageBox.Show("Ce n'est pas ta zone de jeu !");
+            }
+
             Afficher();
         }
         private void pbJOpCarte5_Click(object sender, EventArgs e)
         {
-            Gestion.CarteJouee(ref MainJoueur2, ref Ctmp, 4);
-            Gestion.PlacerCartePiochee(ref MainJoueur2, ref Carte_piochee);
+            if (Tour == 1)
+            {
+                Gestion.CarteJouee(ref MainJoueur2, ref Ctmp, 4);
+                Gestion.PlacerCartePiochee(ref MainJoueur2, ref Carte_piochee);
+                Tour = 0;
+            }
+            else
+            {
+                MessageBox.Show("Ce n'est pas ta zone de jeu !");
+            }
+
             Afficher();
         }
         private void pbJOpCarte6_Click(object sender, EventArgs e)
         {
-            Gestion.CarteJouee(ref MainJoueur2, ref Ctmp, 5);
-            Gestion.PlacerCartePiochee(ref MainJoueur2, ref Carte_piochee);
+            if (Tour == 1)
+            {
+                Gestion.CarteJouee(ref MainJoueur2, ref Ctmp, 5);
+                Gestion.PlacerCartePiochee(ref MainJoueur2, ref Carte_piochee);
+                Tour = 0;
+            }
+            else
+            {
+                MessageBox.Show("Ce n'est pas ta zone de jeu !");
+            }
+
             Afficher();
         }
         private void pbJOpVit25_Click(object sender, EventArgs e)
@@ -376,6 +493,9 @@ namespace JeuMilleBorne
 
         private void Afficher()
         {
+            // Affiche le nombre de carte dans la pioche
+            lblPaqMel.Text = PaquetMelange.Count.ToString();
+            // Affiche la pioche
             pbPioche.Image = PaquetMelange[pl].ImageCarte;
             // Afficher la pile de cartes défaussées
             if (Defausse.Count !=0 )

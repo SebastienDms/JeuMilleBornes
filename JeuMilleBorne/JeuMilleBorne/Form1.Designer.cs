@@ -906,6 +906,8 @@
             this.Controls.Add(this.lblInfoCarte);
             this.Controls.Add(this.msMenu);
             this.MainMenuStrip = this.msMenu;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormPrincipal";
             this.Text = "Plateau de jeu";
             this.msMenu.ResumeLayout(false);

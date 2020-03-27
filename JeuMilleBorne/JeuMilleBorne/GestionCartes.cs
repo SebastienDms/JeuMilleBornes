@@ -12,13 +12,13 @@ namespace JeuMilleBorne
     {
         #region Donnees
 
-        Random alea=new Random();
+        private Random alea = new Random();
 
         #endregion
 
         public int TourAlea()
         {
-            return alea.Next(1);
+            return alea.Next(0, 2);
         }
         public void CreerPaquet(ref List<Carte> paquet)
         {
@@ -130,6 +130,16 @@ namespace JeuMilleBorne
             carte.Nom = carte.RetournerTexteNomsCartes(nomcarte);
             carte.Type = carte.RetournerTexteTypesCartes(typecarte);
             carte.ImageCarte = (Image) Resource1.ResourceManager.GetObject(string.Format("mb_{0}", index));
+            if (index == 25)
+                carte.Valeur = index;
+            if (index == 50)
+                carte.Valeur = index;
+            if (index == 75)
+                carte.Valeur = index;
+            if (index == 100)
+                carte.Valeur = index;
+            if (index == 200)
+                carte.Valeur = index;
             return carte;
         }
 
@@ -211,6 +221,76 @@ namespace JeuMilleBorne
         {
             PileBataille.Add(cTmp);
             cTmp = null;
+        }
+
+        public bool Check25(ref Carte cTmp)
+        {
+            if (cTmp.Valeur == 25)
+            {
+                MessageBox.Show("Je passe par ici... la valeur est"+ cTmp.Valeur.ToString());
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("Non je passe par là..." + cTmp.Valeur.ToString());
+                return false;
+            }
+        }
+
+        public bool Check50(ref Carte cTmp)
+        {
+            if (cTmp.Valeur == 50)
+            {
+                MessageBox.Show("Je passe par ici...");
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("Non je passe par là...");
+                return false;
+            }
+        }
+
+        public bool Check75(ref Carte cTmp)
+        {
+            if (cTmp.Valeur == 75)
+            {
+                MessageBox.Show("Je passe par ici...");
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("Non je passe par là...");
+                return false;
+            }
+        }
+
+        public bool Check100(ref Carte cTmp)
+        {
+            if (cTmp.Valeur == 100)
+            {
+                MessageBox.Show("Je passe par ici...");
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("Non je passe par là...");
+                return false;
+            }
+        }
+
+        public bool Check200(ref Carte cTmp)
+        {
+            if (cTmp.Valeur == 200)
+            {
+                MessageBox.Show("Je passe par ici...");
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("Non je passe par là...");
+                return false;
+            }
         }
     }
 }
