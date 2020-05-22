@@ -12,17 +12,6 @@ namespace JeuMilleBorne
 {
     public partial class FormPrincipal : Form
     {
-        #region Donnees
-        private GestionCartes Gestion = new GestionCartes();
-        public int tour;
-        #endregion
-        #region Accesseurs
-        public int Tour
-        {
-            get => tour;
-            set => tour = value;
-        }
-        #endregion
         public FormPrincipal()
         {
             InitializeComponent();
@@ -42,46 +31,46 @@ namespace JeuMilleBorne
         #region CreationPaquetDeJeu
         private void msCreerPaquetDeJeu_Click(object sender, EventArgs e)
         {
-            Gestion.CreerPaquet(PaquetsDeCartes.PaquetJeu);
+            GestionCartes.CreerPaquet(PaquetsDeCartes.PaquetJeu);
         }
         private void msMelangerPaquet_Click(object sender, EventArgs e)
         {
-            Gestion.MelangerPaquet(PaquetsDeCartes.PaquetJeu, PaquetsDeCartes.PaquetMelange);
+            GestionCartes.MelangerPaquet(PaquetsDeCartes.PaquetJeu, PaquetsDeCartes.PaquetMelange);
         }
         private void msDistribuerCartes_Click(object sender, EventArgs e)
         {
-            Gestion.DistribuerCartes(PaquetsDeCartes.PaquetMelange, PaquetsDeCartes.MainJoueur1, PaquetsDeCartes.MainJoueur2);
+            GestionCartes.DistribuerCartes(PaquetsDeCartes.PaquetMelange, PaquetsDeCartes.MainJoueur1, PaquetsDeCartes.MainJoueur2);
             lblPaqMel.Text = PaquetsDeCartes.PaquetMelange.Count.ToString();
             lblMainJ1.Text = PaquetsDeCartes.MainJoueur1.Count.ToString();
             lblMainJ2.Text = PaquetsDeCartes.MainJoueur2.Count.ToString();
             Afficher();
-            Tour = GestionJoueurs.TourAlea(); //Gestion.TourAlea();
-            if (Tour == 0)
+            GestionJoueurs.Tour = GestionJoueurs.TourAlea(); //Gestion.TourAlea();
+            if (GestionJoueurs.Tour == 0)
                 MessageBox.Show("C'est au joueur 1 de commencer la partie");
-            if (Tour == 1)
+            if (GestionJoueurs.Tour == 1)
                 MessageBox.Show("C'est au joueur 2 de commencer la partie");
         }
         #endregion
         #region PiocheEtDefausse
         private void pbPioche_Click(object sender, EventArgs e)
         {
-            Gestion.Piocher(ref PaquetsDeCartes.PaquetMelange, ref PaquetsDeCartes.Carte_piochee);
+            GestionCartes.Piocher(ref PaquetsDeCartes.PaquetMelange, ref PaquetsDeCartes.Carte_piochee);
             Afficher();
         }
         private void pbDefausse_Click(object sender, EventArgs e)
         {
-            Gestion.DefausserCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.Defausse);
+            GestionCartes.DefausserCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.Defausse);
             Afficher();
         }
         #endregion
         #region ZoneJoueur1
         private void pbJECCarte1_Click(object sender, EventArgs e)
         {
-            if (Tour == 0)
+            if (GestionJoueurs.Tour == 0)
             {
-                Gestion.CarteJouee(ref PaquetsDeCartes.MainJoueur1, ref PaquetsDeCartes.Ctmp, 0);
-                Gestion.PlacerCartePiochee(ref PaquetsDeCartes.MainJoueur1, ref PaquetsDeCartes.Carte_piochee);
-                Tour = 1;
+                GestionCartes.CarteJouee(ref PaquetsDeCartes.MainJoueur1, ref PaquetsDeCartes.Ctmp, 0);
+                GestionCartes.PlacerCartePiochee(ref PaquetsDeCartes.MainJoueur1, ref PaquetsDeCartes.Carte_piochee);
+                GestionJoueurs.Tour = 1;
             }
             else
             {
@@ -91,11 +80,11 @@ namespace JeuMilleBorne
         }
         private void pbJECCarte2_Click(object sender, EventArgs e)
         {
-            if (tour == 0)
+            if (GestionJoueurs.Tour == 0)
             {
-                Gestion.CarteJouee(ref PaquetsDeCartes.MainJoueur1, ref PaquetsDeCartes.Ctmp, 1);
-                Gestion.PlacerCartePiochee(ref PaquetsDeCartes.MainJoueur1, ref PaquetsDeCartes.Carte_piochee);
-                Tour = 1;
+                GestionCartes.CarteJouee(ref PaquetsDeCartes.MainJoueur1, ref PaquetsDeCartes.Ctmp, 1);
+                GestionCartes.PlacerCartePiochee(ref PaquetsDeCartes.MainJoueur1, ref PaquetsDeCartes.Carte_piochee);
+                GestionJoueurs.Tour = 1;
             }
             else
             {
@@ -105,11 +94,11 @@ namespace JeuMilleBorne
         }
         private void pbJECCarte3_Click(object sender, EventArgs e)
         {
-            if (tour == 0)
+            if (GestionJoueurs.Tour == 0)
             {
-                Gestion.CarteJouee(ref PaquetsDeCartes.MainJoueur1, ref PaquetsDeCartes.Ctmp, 2);
-                Gestion.PlacerCartePiochee(ref PaquetsDeCartes.MainJoueur1, ref PaquetsDeCartes.Carte_piochee);
-                Tour = 1;
+                GestionCartes.CarteJouee(ref PaquetsDeCartes.MainJoueur1, ref PaquetsDeCartes.Ctmp, 2);
+                GestionCartes.PlacerCartePiochee(ref PaquetsDeCartes.MainJoueur1, ref PaquetsDeCartes.Carte_piochee);
+                GestionJoueurs.Tour = 1;
             }
             else
             {
@@ -119,11 +108,11 @@ namespace JeuMilleBorne
         }
         private void pbJECCarte4_Click(object sender, EventArgs e)
         {
-            if (tour == 0)
+            if (GestionJoueurs.Tour == 0)
             {
-                Gestion.CarteJouee(ref PaquetsDeCartes.MainJoueur1, ref PaquetsDeCartes.Ctmp, 3);
-                Gestion.PlacerCartePiochee(ref PaquetsDeCartes.MainJoueur1, ref PaquetsDeCartes.Carte_piochee);
-                Tour = 1;
+                GestionCartes.CarteJouee(ref PaquetsDeCartes.MainJoueur1, ref PaquetsDeCartes.Ctmp, 3);
+                GestionCartes.PlacerCartePiochee(ref PaquetsDeCartes.MainJoueur1, ref PaquetsDeCartes.Carte_piochee);
+                GestionJoueurs.Tour = 1;
             }
             else
             {
@@ -133,11 +122,11 @@ namespace JeuMilleBorne
         }
         private void pbJECCarte5_Click(object sender, EventArgs e)
         {
-            if (tour == 0)
+            if (GestionJoueurs.Tour == 0)
             {
-                Gestion.CarteJouee(ref PaquetsDeCartes.MainJoueur1, ref PaquetsDeCartes.Ctmp, 4);
-                Gestion.PlacerCartePiochee(ref PaquetsDeCartes.MainJoueur1, ref PaquetsDeCartes.Carte_piochee);
-                Tour = 1;
+                GestionCartes.CarteJouee(ref PaquetsDeCartes.MainJoueur1, ref PaquetsDeCartes.Ctmp, 4);
+                GestionCartes.PlacerCartePiochee(ref PaquetsDeCartes.MainJoueur1, ref PaquetsDeCartes.Carte_piochee);
+                GestionJoueurs.Tour = 1;
             }
             else
             {
@@ -147,11 +136,11 @@ namespace JeuMilleBorne
         }
         private void pbJECCarte6_Click(object sender, EventArgs e)
         {
-            if (tour == 0)
+            if (GestionJoueurs.Tour == 0)
             {
-                Gestion.CarteJouee(ref PaquetsDeCartes.MainJoueur1, ref PaquetsDeCartes.Ctmp, 5);
-                Gestion.PlacerCartePiochee(ref PaquetsDeCartes.MainJoueur1, ref PaquetsDeCartes.Carte_piochee);
-                Tour = 1;
+                GestionCartes.CarteJouee(ref PaquetsDeCartes.MainJoueur1, ref PaquetsDeCartes.Ctmp, 5);
+                GestionCartes.PlacerCartePiochee(ref PaquetsDeCartes.MainJoueur1, ref PaquetsDeCartes.Carte_piochee);
+                GestionJoueurs.Tour = 1;
             }
             else
             {
@@ -161,89 +150,89 @@ namespace JeuMilleBorne
         }
         private void pbJECVit25_Click(object sender, EventArgs e)
         {
-            if (Gestion.Check25(PaquetsDeCartes.Ctmp))
-                Gestion.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J1Bornes25);
+            if (GestionCartes.Check25(PaquetsDeCartes.Ctmp))
+                GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J1Bornes25);
             else
                 MessageBox.Show("Cette carte ne se place pas ici !");
             Afficher();
         }
         private void pbJECVit50_Click(object sender, EventArgs e)
         {
-            if (Gestion.Check50(PaquetsDeCartes.Ctmp))
-                Gestion.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J1Bornes50);
+            if (GestionCartes.Check50(PaquetsDeCartes.Ctmp))
+                GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J1Bornes50);
             else
                 MessageBox.Show("Cette carte ne se place pas ici !");
             Afficher();
         }
         private void pbJECVit75_Click(object sender, EventArgs e)
         {
-            if (Gestion.Check75(PaquetsDeCartes.Ctmp))
-                Gestion.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J1Bornes75);
+            if (GestionCartes.Check75(PaquetsDeCartes.Ctmp))
+                GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J1Bornes75);
             else
                 MessageBox.Show("Cette carte ne se place pas ici !");
             Afficher();
         }
         private void pbJECVit100_Click(object sender, EventArgs e)
         {
-            if (Gestion.Check100(PaquetsDeCartes.Ctmp))
-                Gestion.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J1Bornes100);
+            if (GestionCartes.Check100(PaquetsDeCartes.Ctmp))
+                GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J1Bornes100);
             else
                 MessageBox.Show("Cette carte ne se place pas ici !");
             Afficher();
         }
         private void pbJECVit200_Click(object sender, EventArgs e)
         {
-            if (Gestion.Check200(PaquetsDeCartes.Ctmp))
-                Gestion.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J1Bornes200);
+            if (GestionCartes.Check200(PaquetsDeCartes.Ctmp))
+                GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J1Bornes200);
             else
                 MessageBox.Show("Cette carte ne se place pas ici !");
             Afficher();
         }
         private void pbJECBotte1_Click(object sender, EventArgs e)
         {
-            Gestion.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J1Bottes);
+            GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J1Bottes);
             Afficher();
         }
         private void pbJECBotte2_Click(object sender, EventArgs e)
         {
-            Gestion.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J1Bottes);
+            GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J1Bottes);
             Afficher();
         }
         private void pbJECBotte3_Click(object sender, EventArgs e)
         {
-            Gestion.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J1Bottes);
+            GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J1Bottes);
             Afficher();
         }
         private void pbJECBotte4_Click(object sender, EventArgs e)
         {
-            Gestion.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J1Bottes);
+            GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J1Bottes);
             Afficher();
         }
         private void pbJECVitesse_Click(object sender, EventArgs e)
         {
-            Gestion.LimVitesse(PaquetsDeCartes.Ctmp, PaquetsDeCartes.J1Vitesse);
+            GestionCartes.LimVitesse(PaquetsDeCartes.Ctmp, PaquetsDeCartes.J1Vitesse);
             Afficher();
         }
         private void pbJECBataille_Click(object sender, EventArgs e)
         {
-            Gestion.Bataille(PaquetsDeCartes.Ctmp, PaquetsDeCartes.J1Bataille);
+            GestionCartes.Bataille(PaquetsDeCartes.Ctmp, PaquetsDeCartes.J1Bataille);
             Afficher();
         }
         #endregion
         #region CartePiochee
         private void pbCartePiochee_Click(object sender, EventArgs e)
         {
-            Gestion.JouerCartePiochee(ref PaquetsDeCartes.Carte_piochee, ref PaquetsDeCartes.Ctmp);
+            GestionCartes.JouerCartePiochee(ref PaquetsDeCartes.Carte_piochee, ref PaquetsDeCartes.Ctmp);
         }
         #endregion
         #region ZoneJoueur2
         private void pbJOpCarte1_Click(object sender, EventArgs e)
         {
-            if (Tour == 1)
+            if (GestionJoueurs.Tour == 1)
             {
-                Gestion.CarteJouee(ref PaquetsDeCartes.MainJoueur2, ref PaquetsDeCartes.Ctmp, 0);
-                Gestion.PlacerCartePiochee(ref PaquetsDeCartes.MainJoueur2, ref PaquetsDeCartes.Carte_piochee);
-                Tour = 0;
+                GestionCartes.CarteJouee(ref PaquetsDeCartes.MainJoueur2, ref PaquetsDeCartes.Ctmp, 0);
+                GestionCartes.PlacerCartePiochee(ref PaquetsDeCartes.MainJoueur2, ref PaquetsDeCartes.Carte_piochee);
+                GestionJoueurs.Tour = 0;
             }
             else
             {
@@ -253,11 +242,11 @@ namespace JeuMilleBorne
         }
         private void pbJOpCarte2_Click(object sender, EventArgs e)
         {
-            if (Tour == 1)
+            if (GestionJoueurs.Tour == 1)
             {
-                Gestion.CarteJouee(ref PaquetsDeCartes.MainJoueur2, ref PaquetsDeCartes.Ctmp, 1);
-                Gestion.PlacerCartePiochee(ref PaquetsDeCartes.MainJoueur2, ref PaquetsDeCartes.Carte_piochee);
-                Tour = 0;
+                GestionCartes.CarteJouee(ref PaquetsDeCartes.MainJoueur2, ref PaquetsDeCartes.Ctmp, 1);
+                GestionCartes.PlacerCartePiochee(ref PaquetsDeCartes.MainJoueur2, ref PaquetsDeCartes.Carte_piochee);
+                GestionJoueurs.Tour = 0;
             }
             else
             {
@@ -267,11 +256,11 @@ namespace JeuMilleBorne
         }
         private void pbJOpCarte3_Click(object sender, EventArgs e)
         {
-            if (Tour == 1)
+            if (GestionJoueurs.Tour == 1)
             {
-                Gestion.CarteJouee(ref PaquetsDeCartes.MainJoueur2, ref PaquetsDeCartes.Ctmp, 2);
-                Gestion.PlacerCartePiochee(ref PaquetsDeCartes.MainJoueur2, ref PaquetsDeCartes.Carte_piochee);
-                Tour = 0;
+                GestionCartes.CarteJouee(ref PaquetsDeCartes.MainJoueur2, ref PaquetsDeCartes.Ctmp, 2);
+                GestionCartes.PlacerCartePiochee(ref PaquetsDeCartes.MainJoueur2, ref PaquetsDeCartes.Carte_piochee);
+                GestionJoueurs.Tour = 0;
             }
             else
             {
@@ -281,11 +270,11 @@ namespace JeuMilleBorne
         }
         private void pbJOpCarte4_Click(object sender, EventArgs e)
         {
-            if (Tour == 1)
+            if (GestionJoueurs.Tour == 1)
             {
-                Gestion.CarteJouee(ref PaquetsDeCartes.MainJoueur2, ref PaquetsDeCartes.Ctmp, 3);
-                Gestion.PlacerCartePiochee(ref PaquetsDeCartes.MainJoueur2, ref PaquetsDeCartes.Carte_piochee);
-                Tour = 0;
+                GestionCartes.CarteJouee(ref PaquetsDeCartes.MainJoueur2, ref PaquetsDeCartes.Ctmp, 3);
+                GestionCartes.PlacerCartePiochee(ref PaquetsDeCartes.MainJoueur2, ref PaquetsDeCartes.Carte_piochee);
+                GestionJoueurs.Tour = 0;
             }
             else
             {
@@ -295,11 +284,11 @@ namespace JeuMilleBorne
         }
         private void pbJOpCarte5_Click(object sender, EventArgs e)
         {
-            if (Tour == 1)
+            if (GestionJoueurs.Tour == 1)
             {
-                Gestion.CarteJouee(ref PaquetsDeCartes.MainJoueur2, ref PaquetsDeCartes.Ctmp, 4);
-                Gestion.PlacerCartePiochee(ref PaquetsDeCartes.MainJoueur2, ref PaquetsDeCartes.Carte_piochee);
-                Tour = 0;
+                GestionCartes.CarteJouee(ref PaquetsDeCartes.MainJoueur2, ref PaquetsDeCartes.Ctmp, 4);
+                GestionCartes.PlacerCartePiochee(ref PaquetsDeCartes.MainJoueur2, ref PaquetsDeCartes.Carte_piochee);
+                GestionJoueurs.Tour = 0;
             }
             else
             {
@@ -309,11 +298,11 @@ namespace JeuMilleBorne
         }
         private void pbJOpCarte6_Click(object sender, EventArgs e)
         {
-            if (Tour == 1)
+            if (GestionJoueurs.Tour == 1)
             {
-                Gestion.CarteJouee(ref PaquetsDeCartes.MainJoueur2, ref PaquetsDeCartes.Ctmp, 5);
-                Gestion.PlacerCartePiochee(ref PaquetsDeCartes.MainJoueur2, ref PaquetsDeCartes.Carte_piochee);
-                Tour = 0;
+                GestionCartes.CarteJouee(ref PaquetsDeCartes.MainJoueur2, ref PaquetsDeCartes.Ctmp, 5);
+                GestionCartes.PlacerCartePiochee(ref PaquetsDeCartes.MainJoueur2, ref PaquetsDeCartes.Carte_piochee);
+                GestionJoueurs.Tour = 0;
             }
             else
             {
@@ -323,57 +312,57 @@ namespace JeuMilleBorne
         }
         private void pbJOpVit25_Click(object sender, EventArgs e)
         {
-            Gestion.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bornes25);
+            GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bornes25);
             Afficher();
         }
         private void pbJOpVit50_Click(object sender, EventArgs e)
         {
-            Gestion.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bornes50);
+            GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bornes50);
             Afficher();
         }
         private void pbJOpVit75_Click(object sender, EventArgs e)
         {
-            Gestion.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bornes75);
+            GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bornes75);
             Afficher();
         }
         private void pbJOpVit100_Click(object sender, EventArgs e)
         {
-            Gestion.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bornes100);
+            GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bornes100);
             Afficher();
         }
         private void pbJOpVit200_Click(object sender, EventArgs e)
         {
-            Gestion.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bornes200);
+            GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bornes200);
             Afficher();
         }
         private void pbJOpBotte1_Click(object sender, EventArgs e)
         {
-            Gestion.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bottes);
+            GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bottes);
             Afficher();
         }
         private void pbJOpBotte2_Click(object sender, EventArgs e)
         {
-            Gestion.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bottes);
+            GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bottes);
             Afficher();
         }
         private void pbJOpBotte3_Click(object sender, EventArgs e)
         {
-            Gestion.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bottes);
+            GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bottes);
             Afficher();
         }
         private void pbJOpBotte4_Click(object sender, EventArgs e)
         {
-            Gestion.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bottes);
+            GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bottes);
             Afficher();
         }
         private void pbJOpVitesse_Click(object sender, EventArgs e)
         {
-            Gestion.LimVitesse(PaquetsDeCartes.Ctmp, PaquetsDeCartes.J2Vitesse);
+            GestionCartes.LimVitesse(PaquetsDeCartes.Ctmp, PaquetsDeCartes.J2Vitesse);
             Afficher();
         }
         private void pbJOpBataille_Click(object sender, EventArgs e)
         {
-            Gestion.Bataille(PaquetsDeCartes.Ctmp, PaquetsDeCartes.J2Bataille);
+            GestionCartes.Bataille(PaquetsDeCartes.Ctmp, PaquetsDeCartes.J2Bataille);
             Afficher();
         }
 

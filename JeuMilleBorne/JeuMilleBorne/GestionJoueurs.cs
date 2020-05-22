@@ -11,8 +11,10 @@ namespace JeuMilleBorne
         public static Joueur Joueur1 = new Joueur();
         public static Joueur Joueur2 = new Joueur();
         private static Random alea = new Random();
+        private static int tour;
 
         public static Random Alea { get => alea; set => alea = value; }
+        public static int Tour { get => tour; set => tour = value; }
 
         public static int TourAlea()
         {
