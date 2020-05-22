@@ -10,7 +10,7 @@ namespace JeuMilleBorne
 {
     class GestionCartes
     {
-        public void CreerPaquet(ref List<Carte> paquet)
+        public void CreerPaquet(List<Carte> paquet)
         {
             int index = 1;
             for (Carte.NomsCartes nomCarte = Carte.NomsCartes.Prioritaire;
@@ -133,7 +133,7 @@ namespace JeuMilleBorne
             return carte;
         }
 
-        public void MelangerPaquet(ref List<Carte> paquet, ref List<Carte> paquetmelange)
+        public void MelangerPaquet(List<Carte> paquet, List<Carte> paquetmelange)
         {
             Random ran = new Random();
 
@@ -151,7 +151,7 @@ namespace JeuMilleBorne
                 MessageBoxIcon.Information);
         }
 
-        public void DistribuerCartes(ref List<Carte> paquetmelange, ref List<Carte> mjoueur1, ref List<Carte> mjoueur2)
+        public void DistribuerCartes(List<Carte> paquetmelange, List<Carte> mjoueur1, List<Carte> mjoueur2)
         {
             for (int i = 0; i < 12; i++)
             {
@@ -177,7 +177,7 @@ namespace JeuMilleBorne
             cTmp = null;
         }
 
-        public void CarteJouee(ref List<Carte> mainJoueur,ref Carte cTmp, int i)
+        public void CarteJouee(ref List<Carte> mainJoueur, ref Carte cTmp, int i)
         {
             cTmp = mainJoueur[i];
             mainJoueur.RemoveAt(i);
@@ -201,19 +201,19 @@ namespace JeuMilleBorne
             cartePiochee = null;
         }
 
-        public void LimVitesse(ref Carte cTmp, ref List<Carte> PileVitesse)
+        public void LimVitesse(Carte cTmp, List<Carte> PileVitesse)
         {
             PileVitesse.Add(cTmp);
             cTmp = null;
         }
 
-        public void Bataille(ref Carte cTmp, ref List<Carte> PileBataille)
+        public void Bataille(Carte cTmp, List<Carte> PileBataille)
         {
             PileBataille.Add(cTmp);
             cTmp = null;
         }
 
-        public bool Check25(ref Carte cTmp)
+        public bool Check25(Carte cTmp)
         {
             if (cTmp.Valeur == 25)
             {
@@ -227,7 +227,7 @@ namespace JeuMilleBorne
             }
         }
 
-        public bool Check50(ref Carte cTmp)
+        public bool Check50(Carte cTmp)
         {
             if (cTmp.Valeur == 50)
             {
@@ -241,7 +241,7 @@ namespace JeuMilleBorne
             }
         }
 
-        public bool Check75(ref Carte cTmp)
+        public bool Check75(Carte cTmp)
         {
             if (cTmp.Valeur == 75)
             {
@@ -255,7 +255,7 @@ namespace JeuMilleBorne
             }
         }
 
-        public bool Check100(ref Carte cTmp)
+        public bool Check100(Carte cTmp)
         {
             if (cTmp.Valeur == 100)
             {
@@ -269,7 +269,7 @@ namespace JeuMilleBorne
             }
         }
 
-        public bool Check200(ref Carte cTmp)
+        public bool Check200(Carte cTmp)
         {
             if (cTmp.Valeur == 200)
             {

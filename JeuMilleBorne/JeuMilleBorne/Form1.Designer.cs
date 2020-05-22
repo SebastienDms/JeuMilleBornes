@@ -192,7 +192,7 @@
             this.btnCarteSuivante.TabIndex = 3;
             this.btnCarteSuivante.Text = "Carte suivante";
             this.btnCarteSuivante.UseVisualStyleBackColor = true;
-            this.btnCarteSuivante.Click += new System.EventHandler(this.btnCarteSuivante_Click);
+            //this.btnCarteSuivante.Click += new System.EventHandler(this.btnCarteSuivante_Click);
             // 
             // btnCarteSuivJ1
             // 
@@ -202,7 +202,7 @@
             this.btnCarteSuivJ1.TabIndex = 4;
             this.btnCarteSuivJ1.Text = "Carte suivante Joueur 1";
             this.btnCarteSuivJ1.UseVisualStyleBackColor = true;
-            this.btnCarteSuivJ1.Click += new System.EventHandler(this.btnCarteSuivJ1_Click);
+            //this.btnCarteSuivJ1.Click += new System.EventHandler(this.btnCarteSuivJ1_Click);
             // 
             // btnCarteSuivJ2
             // 
@@ -212,7 +212,7 @@
             this.btnCarteSuivJ2.TabIndex = 5;
             this.btnCarteSuivJ2.Text = " Carte suivante Joueur 2";
             this.btnCarteSuivJ2.UseVisualStyleBackColor = true;
-            this.btnCarteSuivJ2.Click += new System.EventHandler(this.btnCarteSuivJ2_Click);
+            //this.btnCarteSuivJ2.Click += new System.EventHandler(this.btnCarteSuivJ2_Click);
             // 
             // lblPaqMel
             // 

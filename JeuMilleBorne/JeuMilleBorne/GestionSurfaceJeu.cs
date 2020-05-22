@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace JeuMilleBorne
 {
-    class GestionSurfaceJeu
+    static class GestionSurfaceJeu
     {
-        private SurfaceJeu plateau = new SurfaceJeu();
+        private static SurfaceJeu plateau = new SurfaceJeu();
 
-        public SurfaceJeu Plateau
+        public static SurfaceJeu Plateau
         {
             get { return plateau; }
             set { plateau = value; }
         }
 
-        public void CreerPlateau()
+        public static void CreerPlateau()
         {
             Plateau.CreerSurfaceJeu();
         }
