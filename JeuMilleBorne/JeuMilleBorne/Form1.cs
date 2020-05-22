@@ -60,6 +60,13 @@ namespace JeuMilleBorne
             GestionSurface.CreerPlateau();
             Carte_piochee = null;
         }
+        private void FormPrincipal_Load(object sender, EventArgs e)
+        {
+            lblJ1.Text = GestionJoueurs.Joueur1.Pseudo;
+            lblJ2.Text = GestionJoueurs.Joueur2.Pseudo;
+            lblScoreEnCoursJ1.Text = GestionJoueurs.Joueur1.Points.ToString();
+            lblScoreEnCoursJ2.Text = GestionJoueurs.Joueur2.Points.ToString();
+        }
 
         #region CreationPaquetDeJeu
         private void msCreerPaquetDeJeu_Click(object sender, EventArgs e)
@@ -78,7 +85,7 @@ namespace JeuMilleBorne
             lblMainJ1.Text = MainJoueur1.Count.ToString();
             lblMainJ2.Text = MainJoueur2.Count.ToString();
             Afficher();
-            Tour = Gestion.TourAlea();
+            Tour = GestionJoueurs.TourAlea(); //Gestion.TourAlea();
             if (Tour == 0)
                 MessageBox.Show("C'est au joueur 1 de commencer la partie");
             if (Tour == 1)
@@ -687,42 +694,5 @@ namespace JeuMilleBorne
 
             // Fin affichage plateau Joueur2
         }
-
-        /*private void pbCarte_Paint(object sender, PaintEventArgs e)
-        {
-            if (PaquetMelange.Count > 0 && MainJoueur1.Count > 0 && MainJoueur2.Count > 0)
-            {
-                for (int k = 0; k < 2; k++)
-                {
-                    int carte = 0, lg = 0;
-                    for (int j = 2; j < 8; j++)
-                    {
-                        e.Graphics.DrawImage(MainJoueur2[carte].ImageCarte, GestionSurface.Plateau.Zones[lg, j]);
-                        lg = lg + 4;
-                        e.Graphics.DrawImage(MainJoueur1[carte].ImageCarte, GestionSurface.Plateau.Zones[lg, j]);
-                        carte++;
-                        lg = 0;
-                    }
-                }
-
-                e.Graphics.DrawImage(PaquetMelange[pl].ImageCarte, GestionSurface.Plateau.Zones[1,0]);
-
-                //carte = 0;
-                //for (int j = 34; j < 40; j++)
-                //{
-                //    e.Graphics.DrawImage(MainJoueur1[carte].ImageCarte, GestionSurface.Plateau.Zones[7,j]);
-                //    carte++;
-                //}
-
-                //e.Graphics.DrawImage(PaquetMelange[pl].ImageCarte, LocPaqMel);
-                //e.Graphics.DrawImage(MainJoueur1[m1].ImageCarte, LocMainJ1);
-                //e.Graphics.DrawImage(MainJoueur2[m2].ImageCarte, LocMainJ2);
-            }
-            else
-            {
-                e.Graphics.DrawString("Créer le paquet puis mélanger et distribuer les cartes"
-                    , new Font(FontFamily.GenericSansSerif, 15), new SolidBrush(Color.Chocolate), 350, 350  );
-            }
-        }*/
     }
 }

@@ -10,16 +10,6 @@ namespace JeuMilleBorne
 {
     class GestionCartes
     {
-        #region Donnees
-
-        private Random alea = new Random();
-
-        #endregion
-
-        public int TourAlea()
-        {
-            return alea.Next(0, 2);
-        }
         public void CreerPaquet(ref List<Carte> paquet)
         {
             int index = 1;

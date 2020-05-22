@@ -97,6 +97,10 @@
             this.lblCartePiochee = new System.Windows.Forms.Label();
             this.lblJ1 = new System.Windows.Forms.Label();
             this.lblJ2 = new System.Windows.Forms.Label();
+            this.lblScoreJ2 = new System.Windows.Forms.Label();
+            this.lblScoreJ1 = new System.Windows.Forms.Label();
+            this.lblScoreEnCoursJ2 = new System.Windows.Forms.Label();
+            this.lblScoreEnCoursJ1 = new System.Windows.Forms.Label();
             this.msMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbJOpCarte6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbJOpCarte5)).BeginInit();
@@ -833,12 +837,50 @@
             this.lblJ2.TabIndex = 65;
             this.lblJ2.Text = "Joueur 2";
             // 
+            // lblScoreJ2
+            // 
+            this.lblScoreJ2.AutoSize = true;
+            this.lblScoreJ2.Location = new System.Drawing.Point(1513, 244);
+            this.lblScoreJ2.Name = "lblScoreJ2";
+            this.lblScoreJ2.Size = new System.Drawing.Size(41, 13);
+            this.lblScoreJ2.TabIndex = 66;
+            this.lblScoreJ2.Text = "Score :";
+            // 
+            // lblScoreJ1
+            // 
+            this.lblScoreJ1.AutoSize = true;
+            this.lblScoreJ1.Location = new System.Drawing.Point(1513, 594);
+            this.lblScoreJ1.Name = "lblScoreJ1";
+            this.lblScoreJ1.Size = new System.Drawing.Size(41, 13);
+            this.lblScoreJ1.TabIndex = 67;
+            this.lblScoreJ1.Text = "Score :";
+            // 
+            // lblScoreEnCoursJ2
+            // 
+            this.lblScoreEnCoursJ2.AutoSize = true;
+            this.lblScoreEnCoursJ2.Location = new System.Drawing.Point(1513, 274);
+            this.lblScoreEnCoursJ2.Name = "lblScoreEnCoursJ2";
+            this.lblScoreEnCoursJ2.Size = new System.Drawing.Size(0, 13);
+            this.lblScoreEnCoursJ2.TabIndex = 68;
+            // 
+            // lblScoreEnCoursJ1
+            // 
+            this.lblScoreEnCoursJ1.AutoSize = true;
+            this.lblScoreEnCoursJ1.Location = new System.Drawing.Point(1513, 630);
+            this.lblScoreEnCoursJ1.Name = "lblScoreEnCoursJ1";
+            this.lblScoreEnCoursJ1.Size = new System.Drawing.Size(0, 13);
+            this.lblScoreEnCoursJ1.TabIndex = 69;
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(1635, 947);
+            this.Controls.Add(this.lblScoreEnCoursJ1);
+            this.Controls.Add(this.lblScoreEnCoursJ2);
+            this.Controls.Add(this.lblScoreJ1);
+            this.Controls.Add(this.lblScoreJ2);
             this.Controls.Add(this.lblJ2);
             this.Controls.Add(this.lblJ1);
             this.Controls.Add(this.lblCartePiochee);
@@ -909,7 +951,9 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormPrincipal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Plateau de jeu";
+            this.Load += new System.EventHandler(this.FormPrincipal_Load);
             this.msMenu.ResumeLayout(false);
             this.msMenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbJOpCarte6)).EndInit();
@@ -1025,6 +1069,10 @@
         private System.Windows.Forms.Label lblCartePiochee;
         private System.Windows.Forms.Label lblJ1;
         private System.Windows.Forms.Label lblJ2;
+        private System.Windows.Forms.Label lblScoreJ2;
+        private System.Windows.Forms.Label lblScoreJ1;
+        private System.Windows.Forms.Label lblScoreEnCoursJ2;
+        private System.Windows.Forms.Label lblScoreEnCoursJ1;
     }
 }
 

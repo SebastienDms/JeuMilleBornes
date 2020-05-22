@@ -16,6 +16,7 @@ namespace JeuMilleBorne
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new FicAccueil());
             Application.Run(new FormPrincipal());
         }
     }
