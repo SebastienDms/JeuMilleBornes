@@ -63,6 +63,16 @@ namespace JeuMilleBorne {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap dos {
+            get {
+                object obj = ResourceManager.GetObject("dos", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap mb_1 {
             get {
                 object obj = ResourceManager.GetObject("mb_1", resourceCulture);

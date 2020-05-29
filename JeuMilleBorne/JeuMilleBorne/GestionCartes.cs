@@ -189,6 +189,12 @@ namespace JeuMilleBorne
             cartePiochee = null;
         }
 
+        public static void Reverse(ref Carte cTmp, ref Carte cartePiochee)
+        {
+            cartePiochee = cTmp;
+            cTmp = null;
+        }
+
         public static void PlacerCarte(ref Carte cTmp, ref List<Carte> PileCartes)
         {
             PileCartes.Add(cTmp);
@@ -201,28 +207,217 @@ namespace JeuMilleBorne
             cartePiochee = null;
         }
 
-        public static void LimVitesse(Carte cTmp, List<Carte> PileVitesse)
+        public static void LimVitesse(Carte cTmp, List<Carte> PileVitesse, string pile_du_joueur)
         {
-            PileVitesse.Add(cTmp);
-            cTmp = null;
+            if (pile_du_joueur == "J1")
+            {
+                if (GestionJoueurs.Tour == 0 && PileVitesse.Count != 0 && PileVitesse[PileVitesse.Count - 1].Nom == Carte.NomsCartes.Lim.ToString() && cTmp.Nom == Carte.NomsCartes.LimFin.ToString())
+                {
+                    PileVitesse.Add(cTmp);
+                    cTmp = null;
+                }
+                else
+                {
+                    if (GestionJoueurs.Tour == 1 && (PileVitesse.Count == 0 || (PileVitesse[PileVitesse.Count - 1].Nom == Carte.NomsCartes.LimFin.ToString() && cTmp.Nom == Carte.NomsCartes.Lim.ToString())))
+                    {
+                        PileVitesse.Add(cTmp);
+                        cTmp = null;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ce n'est pas le moment de jouer cette carte ici.");
+                    }
+                }
+            }
+            else
+            {
+                if (GestionJoueurs.Tour == 1 && PileVitesse.Count != 0 && PileVitesse[PileVitesse.Count - 1].Nom == Carte.NomsCartes.Lim.ToString() && cTmp.Nom == Carte.NomsCartes.LimFin.ToString())
+                {
+                    PileVitesse.Add(cTmp);
+                    cTmp = null;
+                }
+                else
+                {
+                    if (GestionJoueurs.Tour == 0 && (PileVitesse.Count == 0 || (PileVitesse[PileVitesse.Count - 1].Nom == Carte.NomsCartes.LimFin.ToString() && cTmp.Nom == Carte.NomsCartes.Lim.ToString())))
+                    {
+                        PileVitesse.Add(cTmp);
+                        cTmp = null;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ce n'est pas le moment de jouer cette carte ici.");
+                    }
+                }
+
+            }
         }
 
-        public static void Bataille(Carte cTmp, List<Carte> PileBataille)
+        public static void Bataille(Carte cTmp, List<Carte> PileBataille, string pile_du_joueur)
         {
-            PileBataille.Add(cTmp);
-            cTmp = null;
+            if (pile_du_joueur == "J1")
+            {
+                if (GestionJoueurs.Tour == 0)
+                {
+                    if (PaquetsDeCartes.J1Bataille.Count == 0)
+                    {
+                        if (PaquetsDeCartes.Ctmp.Type == Carte.TypesCartes.Roule.ToString())
+                        {
+                            PileBataille.Add(cTmp);
+                            cTmp = null;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Vous ne pas ecnore jouer ici.");
+                        }
+                    }
+                    else
+                    {
+                        if (PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count - 1].Nom == Carte.NomsCartes.Accident.ToString() && PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Reparations.ToString())
+                        {
+                            PileBataille.Add(cTmp);
+                            cTmp = null;
+                        }
+                        else
+                        {
+                            if (PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count - 1].Nom == Carte.NomsCartes.Creve.ToString() && PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Roue.ToString())
+                            {
+                                PileBataille.Add(cTmp);
+                                cTmp = null;
+
+                            }
+                            else
+                            {
+                                if (PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count - 1].Nom == Carte.NomsCartes.Panne.ToString() && PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Essence.ToString())
+                                {
+                                    PileBataille.Add(cTmp);
+                                    cTmp = null;
+                                }
+                                else
+                                {
+                                    if (PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count - 1].Nom == Carte.NomsCartes.Stop.ToString() && PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Roule.ToString())
+                                    {
+                                        PileBataille.Add(cTmp);
+                                        cTmp = null;
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Impossible de jouer cette carte.");
+                                    }
+
+                                }
+
+                            }
+
+                        }
+
+                    }
+                }
+                else
+                {
+                    if (PaquetsDeCartes.J1Bataille.Count == 0)
+                    {
+                        MessageBox.Show("Vous ne pouvez pas encore attaquer.");
+                    }
+                    else
+                    {
+                        if (PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count - 1].Type == Carte.TypesCartes.Roule.ToString() || PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count - 1].Type == Carte.TypesCartes.Defense.ToString())
+                        {
+                            PileBataille.Add(cTmp);
+                            cTmp = null;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (GestionJoueurs.Tour == 1)
+                {
+                    if (PaquetsDeCartes.J2Bataille.Count == 0)
+                    {
+                        if (PaquetsDeCartes.Ctmp.Type == Carte.TypesCartes.Roule.ToString())
+                        {
+                            PileBataille.Add(cTmp);
+                            cTmp = null;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Vous ne pas ecnore jouer ici.");
+                        }
+                    }
+                    else
+                    {
+                        if (PaquetsDeCartes.J2Bataille[PaquetsDeCartes.J2Bataille.Count - 1].Nom ==
+                                Carte.NomsCartes.Accident.ToString() &&
+                                PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Reparations.ToString())
+                        {
+                            PileBataille.Add(cTmp);
+                            cTmp = null;
+                        }
+                        else
+                        {
+                            if (PaquetsDeCartes.J2Bataille[PaquetsDeCartes.J2Bataille.Count - 1].Nom ==
+                                Carte.NomsCartes.Creve.ToString() &&
+                                PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Roue.ToString())
+                            {
+                                PileBataille.Add(cTmp);
+                                cTmp = null;
+                            }
+                            else
+                            {
+                                if (PaquetsDeCartes.J2Bataille[PaquetsDeCartes.J2Bataille.Count - 1].Nom ==
+                                    Carte.NomsCartes.Panne.ToString() &&
+                                    PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Essence.ToString())
+                                {
+                                    PileBataille.Add(cTmp);
+                                    cTmp = null;
+                                }
+                                else
+                                {
+                                    if (PaquetsDeCartes.J2Bataille[PaquetsDeCartes.J2Bataille.Count - 1].Nom ==
+                                        Carte.NomsCartes.Stop.ToString() &&
+                                        PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Roule.ToString())
+                                    {
+                                        PileBataille.Add(cTmp);
+                                        cTmp = null;
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Impossible de jouer cette carte.");
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (PaquetsDeCartes.J2Bataille.Count == 0)
+                    {
+                        MessageBox.Show("Vous ne pouvez pas encore attaquer.");
+                    }
+                    else
+                    {
+                        if (PaquetsDeCartes.J2Bataille[PaquetsDeCartes.J2Bataille.Count - 1].Type == Carte.TypesCartes.Roule.ToString() || PaquetsDeCartes.J2Bataille[PaquetsDeCartes.J2Bataille.Count - 1].Type == Carte.TypesCartes.Defense.ToString())
+                        {
+                            PileBataille.Add(cTmp);
+                            cTmp = null;
+                        }
+                    }
+                }
+                cTmp = null;
+            }
         }
 
         public static bool Check25(Carte cTmp)
         {
             if (cTmp.Valeur == 25)
             {
-                MessageBox.Show("Je passe par ici... la valeur est"+ cTmp.Valeur.ToString());
+                //MessageBox.Show("Je passe par ici... la valeur est"+ cTmp.Valeur.ToString());
                 return true;
             }
             else
             {
-                MessageBox.Show("Non je passe par là..." + cTmp.Valeur.ToString());
+                //MessageBox.Show("Non je passe par là..." + cTmp.Valeur.ToString());
                 return false;
             }
         }
@@ -231,12 +426,12 @@ namespace JeuMilleBorne
         {
             if (cTmp.Valeur == 50)
             {
-                MessageBox.Show("Je passe par ici...");
+                //MessageBox.Show("Je passe par ici...");
                 return true;
             }
             else
             {
-                MessageBox.Show("Non je passe par là...");
+                //MessageBox.Show("Non je passe par là...");
                 return false;
             }
         }
@@ -245,12 +440,12 @@ namespace JeuMilleBorne
         {
             if (cTmp.Valeur == 75)
             {
-                MessageBox.Show("Je passe par ici...");
+                //MessageBox.Show("Je passe par ici...");
                 return true;
             }
             else
             {
-                MessageBox.Show("Non je passe par là...");
+                //MessageBox.Show("Non je passe par là...");
                 return false;
             }
         }
@@ -259,12 +454,12 @@ namespace JeuMilleBorne
         {
             if (cTmp.Valeur == 100)
             {
-                MessageBox.Show("Je passe par ici...");
+                //MessageBox.Show("Je passe par ici...");
                 return true;
             }
             else
             {
-                MessageBox.Show("Non je passe par là...");
+                //MessageBox.Show("Non je passe par là...");
                 return false;
             }
         }
@@ -273,13 +468,26 @@ namespace JeuMilleBorne
         {
             if (cTmp.Valeur == 200)
             {
-                MessageBox.Show("Je passe par ici...");
+                //MessageBox.Show("Je passe par ici...");
                 return true;
             }
             else
             {
-                MessageBox.Show("Non je passe par là...");
+                //MessageBox.Show("Non je passe par là...");
                 return false;
+            }
+        }
+
+        public static bool AuthorisationAvancer(List<Carte> PileBataille, Carte cTmp)
+        {
+            if (PileBataille.Count == 0 )
+            {
+                MessageBox.Show("Vous devez placer une carte feu vert pour pouvoir avancer.");
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
     }

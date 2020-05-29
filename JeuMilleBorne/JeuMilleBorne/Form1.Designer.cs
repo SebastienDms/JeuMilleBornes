@@ -101,6 +101,7 @@
             this.lblScoreJ1 = new System.Windows.Forms.Label();
             this.lblScoreEnCoursJ2 = new System.Windows.Forms.Label();
             this.lblScoreEnCoursJ1 = new System.Windows.Forms.Label();
+            this.lblAQui = new System.Windows.Forms.Label();
             this.msMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbJOpCarte6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbJOpCarte5)).BeginInit();
@@ -192,7 +193,6 @@
             this.btnCarteSuivante.TabIndex = 3;
             this.btnCarteSuivante.Text = "Carte suivante";
             this.btnCarteSuivante.UseVisualStyleBackColor = true;
-            //this.btnCarteSuivante.Click += new System.EventHandler(this.btnCarteSuivante_Click);
             // 
             // btnCarteSuivJ1
             // 
@@ -202,7 +202,6 @@
             this.btnCarteSuivJ1.TabIndex = 4;
             this.btnCarteSuivJ1.Text = "Carte suivante Joueur 1";
             this.btnCarteSuivJ1.UseVisualStyleBackColor = true;
-            //this.btnCarteSuivJ1.Click += new System.EventHandler(this.btnCarteSuivJ1_Click);
             // 
             // btnCarteSuivJ2
             // 
@@ -212,7 +211,6 @@
             this.btnCarteSuivJ2.TabIndex = 5;
             this.btnCarteSuivJ2.Text = " Carte suivante Joueur 2";
             this.btnCarteSuivJ2.UseVisualStyleBackColor = true;
-            //this.btnCarteSuivJ2.Click += new System.EventHandler(this.btnCarteSuivJ2_Click);
             // 
             // lblPaqMel
             // 
@@ -871,12 +869,23 @@
             this.lblScoreEnCoursJ1.Size = new System.Drawing.Size(0, 13);
             this.lblScoreEnCoursJ1.TabIndex = 69;
             // 
+            // lblAQui
+            // 
+            this.lblAQui.AutoSize = true;
+            this.lblAQui.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAQui.Location = new System.Drawing.Point(679, 466);
+            this.lblAQui.Name = "lblAQui";
+            this.lblAQui.Size = new System.Drawing.Size(160, 17);
+            this.lblAQui.TabIndex = 70;
+            this.lblAQui.Text = "C\'est au tour du joueur :";
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(1635, 947);
+            this.Controls.Add(this.lblAQui);
             this.Controls.Add(this.lblScoreEnCoursJ1);
             this.Controls.Add(this.lblScoreEnCoursJ2);
             this.Controls.Add(this.lblScoreJ1);
@@ -1073,6 +1082,7 @@
         private System.Windows.Forms.Label lblScoreJ1;
         private System.Windows.Forms.Label lblScoreEnCoursJ2;
         private System.Windows.Forms.Label lblScoreEnCoursJ1;
+        private System.Windows.Forms.Label lblAQui;
     }
 }
 
