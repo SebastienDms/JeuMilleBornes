@@ -61,6 +61,7 @@
     </Compile>
     <Compile Include="GestionCartes.cs" />
     <Compile Include="GestionJoueurs.cs" />
+    <Compile Include="GestionSauvegarde.cs" />
     <Compile Include="GestionSurfaceJeu.cs" />
     <Compile Include="Joueur.cs" />
     <Compile Include="PaquetsDeCartes.cs" />

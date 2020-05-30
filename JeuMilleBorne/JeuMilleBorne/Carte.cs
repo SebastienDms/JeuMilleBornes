@@ -4,9 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Xml;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace JeuMilleBorne
 {
+    [Serializable]
+    [XmlRoot()]
     class Carte
     {
         #region Donnees

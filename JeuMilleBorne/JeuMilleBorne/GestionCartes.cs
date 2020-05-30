@@ -220,8 +220,15 @@ namespace JeuMilleBorne
                 {
                     if (GestionJoueurs.Tour == 1 && (PileVitesse.Count == 0 || (PileVitesse[PileVitesse.Count - 1].Nom == Carte.NomsCartes.LimFin.ToString() && cTmp.Nom == Carte.NomsCartes.Lim.ToString())))
                     {
-                        PileVitesse.Add(cTmp);
-                        cTmp = null;
+                        if (CheckBotteJ1())
+                        {
+                            PileVitesse.Add(cTmp);
+                            cTmp = null;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Le joueur est protégé par une botte");
+                        }
                     }
                     else
                     {
@@ -240,8 +247,15 @@ namespace JeuMilleBorne
                 {
                     if (GestionJoueurs.Tour == 0 && (PileVitesse.Count == 0 || (PileVitesse[PileVitesse.Count - 1].Nom == Carte.NomsCartes.LimFin.ToString() && cTmp.Nom == Carte.NomsCartes.Lim.ToString())))
                     {
-                        PileVitesse.Add(cTmp);
-                        cTmp = null;
+                        if (CheckBotteJ2())
+                        {
+                            PileVitesse.Add(cTmp);
+                            cTmp = null;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Le joueur est protégé par une botte");
+                        }
                     }
                     else
                     {
@@ -274,30 +288,57 @@ namespace JeuMilleBorne
                     {
                         if (PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count - 1].Nom == Carte.NomsCartes.Accident.ToString() && PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Reparations.ToString())
                         {
-                            PileBataille.Add(cTmp);
-                            cTmp = null;
+                            if (CheckBotteJ1())
+                            {
+                                PileBataille.Add(cTmp);
+                                cTmp = null;
+                            }
+                            else
+                            {
+                                MessageBox.Show("Le joueur est protégé par une botte");
+                            }
                         }
                         else
                         {
                             if (PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count - 1].Nom == Carte.NomsCartes.Creve.ToString() && PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Roue.ToString())
                             {
-                                PileBataille.Add(cTmp);
-                                cTmp = null;
-
-                            }
-                            else
-                            {
-                                if (PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count - 1].Nom == Carte.NomsCartes.Panne.ToString() && PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Essence.ToString())
+                                if (CheckBotteJ1())
                                 {
                                     PileBataille.Add(cTmp);
                                     cTmp = null;
                                 }
                                 else
                                 {
-                                    if (PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count - 1].Nom == Carte.NomsCartes.Stop.ToString() && PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Roule.ToString())
+                                    MessageBox.Show("Le joueur est protégé par une botte");
+                                }
+                            }
+                            else
+                            {
+                                if (PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count - 1].Nom == Carte.NomsCartes.Panne.ToString() && PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Essence.ToString())
+                                {
+                                    if (CheckBotteJ1())
                                     {
                                         PileBataille.Add(cTmp);
                                         cTmp = null;
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Le joueur est protégé par une botte");
+                                    }
+                                }
+                                else
+                                {
+                                    if (PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count - 1].Nom == Carte.NomsCartes.Stop.ToString() && PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Roule.ToString())
+                                    {
+                                        if (CheckBotteJ1())
+                                        {
+                                            PileBataille.Add(cTmp);
+                                            cTmp = null;
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Le joueur est protégé par une botte");
+                                        }
                                     }
                                     else
                                     {
@@ -341,7 +382,7 @@ namespace JeuMilleBorne
                         }
                         else
                         {
-                            MessageBox.Show("Vous ne pas ecnore jouer ici.");
+                            MessageBox.Show("Vous ne pas encore jouer ici.");
                         }
                     }
                     else
@@ -350,8 +391,15 @@ namespace JeuMilleBorne
                                 Carte.NomsCartes.Accident.ToString() &&
                                 PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Reparations.ToString())
                         {
-                            PileBataille.Add(cTmp);
-                            cTmp = null;
+                            if (CheckBotteJ2())
+                            {
+                                PileBataille.Add(cTmp);
+                                cTmp = null;
+                            }
+                            else
+                            {
+                                MessageBox.Show("Le joueur est protégé par une botte");
+                            }
                         }
                         else
                         {
@@ -359,8 +407,15 @@ namespace JeuMilleBorne
                                 Carte.NomsCartes.Creve.ToString() &&
                                 PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Roue.ToString())
                             {
-                                PileBataille.Add(cTmp);
-                                cTmp = null;
+                                if (CheckBotteJ2())
+                                {
+                                    PileBataille.Add(cTmp);
+                                    cTmp = null;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Le joueur est protégé par une botte");
+                                }
                             }
                             else
                             {
@@ -368,8 +423,15 @@ namespace JeuMilleBorne
                                     Carte.NomsCartes.Panne.ToString() &&
                                     PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Essence.ToString())
                                 {
-                                    PileBataille.Add(cTmp);
-                                    cTmp = null;
+                                    if (CheckBotteJ2())
+                                    {
+                                        PileBataille.Add(cTmp);
+                                        cTmp = null;
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Le joueur est protégé par une botte");
+                                    }
                                 }
                                 else
                                 {
@@ -377,8 +439,15 @@ namespace JeuMilleBorne
                                         Carte.NomsCartes.Stop.ToString() &&
                                         PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Roule.ToString())
                                     {
-                                        PileBataille.Add(cTmp);
-                                        cTmp = null;
+                                        if (CheckBotteJ2())
+                                        {
+                                            PileBataille.Add(cTmp);
+                                            cTmp = null;
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Le joueur est protégé par une botte");
+                                        }
                                     }
                                     else
                                     {
@@ -399,12 +468,18 @@ namespace JeuMilleBorne
                     {
                         if (PaquetsDeCartes.J2Bataille[PaquetsDeCartes.J2Bataille.Count - 1].Type == Carte.TypesCartes.Roule.ToString() || PaquetsDeCartes.J2Bataille[PaquetsDeCartes.J2Bataille.Count - 1].Type == Carte.TypesCartes.Defense.ToString())
                         {
-                            PileBataille.Add(cTmp);
-                            cTmp = null;
+                            if (CheckBotteJ2())
+                            {
+                                PileBataille.Add(cTmp);
+                                cTmp = null;
+                            }
+                            else
+                            {
+                                MessageBox.Show("Le joueur est protégé par une botte");
+                            }
                         }
                     }
                 }
-                cTmp = null;
             }
         }
 
@@ -478,17 +553,151 @@ namespace JeuMilleBorne
             }
         }
 
-        public static bool AuthorisationAvancer(List<Carte> PileBataille, Carte cTmp)
+        public static bool CheckBotte(Carte cTmp)
         {
-            if (PileBataille.Count == 0 )
+            bool placer = false;
+            if (cTmp.Type == Carte.TypesCartes.Botte.ToString())
             {
-                MessageBox.Show("Vous devez placer une carte feu vert pour pouvoir avancer.");
-                return false;
+                placer = true;
             }
             else
             {
-                return true;
+                placer = false;
             }
+
+            return placer;
         }
+
+        public static bool AuthorisationAvancer(List<Carte> PileBataille, List<Carte> ListeBotte, Carte cTmp)
+        {
+            bool placer = false;
+
+            if (PileBataille.Count == 0 )
+            {
+                foreach (Carte c in ListeBotte)
+                {
+                    if (c.Nom == Carte.NomsCartes.Prioritaire.ToString())
+                    {
+                        placer = true;
+                    }
+                    else
+                    {
+                        placer = false;
+                    }
+                }
+            }
+            else
+            {
+                placer = true;
+            }
+
+            return placer;
+        }
+
+        public static bool CheckBotteJ1()
+        {
+            bool placer = false;
+
+            if (PaquetsDeCartes.J1Bataille.Count == 0)
+            {
+                placer = true;
+            }
+            else
+            {
+                foreach (Carte c in PaquetsDeCartes.J1Bottes)
+                {
+                    if (c.Nom == Carte.NomsCartes.Citerne.ToString() && PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Panne.ToString())
+                    {
+                        placer = false;
+                    }
+                    else
+                    {
+                        if (c.Nom == Carte.NomsCartes.AsVolant.ToString() && PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Accident.ToString())
+                        {
+                            placer = false;
+                        }
+                        else
+                        {
+                            if (c.Nom == Carte.NomsCartes.Increvable.ToString() && PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Creve.ToString())
+                            {
+                                placer = false;
+                            }
+                            else
+                            {
+                                if (c.Nom == Carte.NomsCartes.Prioritaire.ToString() && PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Stop.ToString())
+                                {
+                                    placer = false;
+                                }
+                                else
+                                {
+                                    if (c.Nom == Carte.NomsCartes.Prioritaire.ToString() && PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Lim.ToString())
+                                    {
+                                        placer = false;
+                                    }
+                                    else
+                                    {
+                                        placer = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return placer;
+        }
+        public static bool CheckBotteJ2()
+        {
+            bool placer = false;
+
+            if (PaquetsDeCartes.J2Bataille.Count == 0)
+            {
+                placer = true;
+            }
+            else
+            {
+                foreach (Carte c in PaquetsDeCartes.J2Bottes)
+                {
+                    if (c.Nom == Carte.NomsCartes.Citerne.ToString() && PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Panne.ToString())
+                    {
+                        placer = false;
+                    }
+                    else
+                    {
+                        if (c.Nom == Carte.NomsCartes.AsVolant.ToString() && PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Accident.ToString())
+                        {
+                            placer = false;
+                        }
+                        else
+                        {
+                            if (c.Nom == Carte.NomsCartes.Increvable.ToString() && PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Creve.ToString())
+                            {
+                                placer = false;
+                            }
+                            else
+                            {
+                                if (c.Nom == Carte.NomsCartes.Prioritaire.ToString() && PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Stop.ToString())
+                                {
+                                    placer = false;
+                                }
+                                else
+                                {
+                                    if (c.Nom == Carte.NomsCartes.Prioritaire.ToString() && PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Lim.ToString())
+                                    {
+                                        placer = false;
+                                    }
+                                    else
+                                    {
+                                        placer = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return placer;
+        }
+
     }
 }

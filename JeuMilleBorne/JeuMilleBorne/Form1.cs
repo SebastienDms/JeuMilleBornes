@@ -201,7 +201,7 @@ namespace JeuMilleBorne
         }
         private void pbJECVit25_Click(object sender, EventArgs e)
         {
-            if (GestionCartes.AuthorisationAvancer(PaquetsDeCartes.J1Bataille, PaquetsDeCartes.Ctmp))
+            if (GestionCartes.AuthorisationAvancer(PaquetsDeCartes.J1Bataille, PaquetsDeCartes.J1Bottes, PaquetsDeCartes.Ctmp))
             {
                 if (GestionCartes.Check25(PaquetsDeCartes.Ctmp))
                 {
@@ -213,12 +213,16 @@ namespace JeuMilleBorne
                     MessageBox.Show("Cette carte ne se place pas ici !");
                     GestionCartes.Reverse(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.Carte_piochee);
                 }
-                Afficher();
             }
+            else
+            {
+                MessageBox.Show("Vous devez placer une carte feu vert pour pouvoir avancer.");
+            }
+            Afficher();
         }
         private void pbJECVit50_Click(object sender, EventArgs e)
         {
-            if (GestionCartes.AuthorisationAvancer(PaquetsDeCartes.J1Bataille, PaquetsDeCartes.Ctmp))
+            if (GestionCartes.AuthorisationAvancer(PaquetsDeCartes.J1Bataille, PaquetsDeCartes.J1Bottes, PaquetsDeCartes.Ctmp))
             {
                 if (GestionCartes.Check50(PaquetsDeCartes.Ctmp))
                 {
@@ -230,12 +234,16 @@ namespace JeuMilleBorne
                     MessageBox.Show("Cette carte ne se place pas ici !");
                     GestionCartes.Reverse(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.Carte_piochee);
                 }
-                Afficher();
             }
+            else
+            {
+                MessageBox.Show("Vous devez placer une carte feu vert pour pouvoir avancer.");
+            }
+            Afficher();
         }
         private void pbJECVit75_Click(object sender, EventArgs e)
         {
-            if (GestionCartes.AuthorisationAvancer(PaquetsDeCartes.J1Bataille, PaquetsDeCartes.Ctmp))
+            if (GestionCartes.AuthorisationAvancer(PaquetsDeCartes.J1Bataille, PaquetsDeCartes.J1Bottes, PaquetsDeCartes.Ctmp))
             {
                 if (GestionCartes.Check75(PaquetsDeCartes.Ctmp))
                 {
@@ -247,12 +255,16 @@ namespace JeuMilleBorne
                     MessageBox.Show("Cette carte ne se place pas ici !");
                     GestionCartes.Reverse(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.Carte_piochee);
                 }
-                Afficher();
             }
+            else
+            {
+                MessageBox.Show("Vous devez placer une carte feu vert pour pouvoir avancer.");
+            }
+            Afficher();
         }
         private void pbJECVit100_Click(object sender, EventArgs e)
         {
-            if (GestionCartes.AuthorisationAvancer(PaquetsDeCartes.J1Bataille, PaquetsDeCartes.Ctmp))
+            if (GestionCartes.AuthorisationAvancer(PaquetsDeCartes.J1Bataille, PaquetsDeCartes.J1Bottes, PaquetsDeCartes.Ctmp))
             {
                 if (GestionCartes.Check100(PaquetsDeCartes.Ctmp))
                 {
@@ -264,12 +276,16 @@ namespace JeuMilleBorne
                     MessageBox.Show("Cette carte ne se place pas ici !");
                     GestionCartes.Reverse(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.Carte_piochee);
                 }
-                Afficher();
             }
+            else
+            {
+                MessageBox.Show("Vous devez placer une carte feu vert pour pouvoir avancer.");
+            }
+            Afficher();
         }
         private void pbJECVit200_Click(object sender, EventArgs e)
         {
-            if (GestionCartes.AuthorisationAvancer(PaquetsDeCartes.J1Bataille, PaquetsDeCartes.Ctmp))
+            if (GestionCartes.AuthorisationAvancer(PaquetsDeCartes.J1Bataille, PaquetsDeCartes.J1Bottes, PaquetsDeCartes.Ctmp))
             {
                 if (GestionCartes.Check200(PaquetsDeCartes.Ctmp))
                 {
@@ -281,6 +297,10 @@ namespace JeuMilleBorne
                     MessageBox.Show("Cette carte ne se place pas ici !");
                     GestionCartes.Reverse(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.Carte_piochee);
                 }
+            }
+            else
+            {
+                MessageBox.Show("Vous devez placer une carte feu vert pour pouvoir avancer.");
             }
             Afficher();
         }
@@ -338,7 +358,16 @@ namespace JeuMilleBorne
         #region CartePiochee
         private void pbCartePiochee_Click(object sender, EventArgs e)
         {
-            GestionCartes.JouerCartePiochee(ref PaquetsDeCartes.Carte_piochee, ref PaquetsDeCartes.Ctmp);
+            if (PaquetsDeCartes.Carte_piochee == null)
+            {
+                MessageBox.Show("Il n'y a pas de carte...");
+            }
+            else
+            {
+                GestionCartes.JouerCartePiochee(ref PaquetsDeCartes.Carte_piochee, ref PaquetsDeCartes.Ctmp);
+
+            }
+            Afficher();
         }
         #endregion
         #region ZoneJoueur2
@@ -470,7 +499,7 @@ namespace JeuMilleBorne
         }
         private void pbJOpVit25_Click(object sender, EventArgs e)
         {
-            if (GestionCartes.AuthorisationAvancer(PaquetsDeCartes.J2Bataille, PaquetsDeCartes.Ctmp))
+            if (GestionCartes.AuthorisationAvancer(PaquetsDeCartes.J2Bataille, PaquetsDeCartes.J2Bottes, PaquetsDeCartes.Ctmp))
             {
                 if (GestionCartes.Check25(PaquetsDeCartes.Ctmp))
                 {
@@ -483,11 +512,15 @@ namespace JeuMilleBorne
                     GestionCartes.Reverse(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.Carte_piochee);
                 }
             }
+            else
+            {
+                MessageBox.Show("Vous devez placer une carte feu vert pour pouvoir avancer.");
+            }
             Afficher();
         }
         private void pbJOpVit50_Click(object sender, EventArgs e)
         {
-            if (GestionCartes.AuthorisationAvancer(PaquetsDeCartes.J2Bataille, PaquetsDeCartes.Ctmp))
+            if (GestionCartes.AuthorisationAvancer(PaquetsDeCartes.J2Bataille, PaquetsDeCartes.J2Bottes, PaquetsDeCartes.Ctmp))
             {
                 if (GestionCartes.Check50(PaquetsDeCartes.Ctmp))
                 {
@@ -500,11 +533,15 @@ namespace JeuMilleBorne
                     GestionCartes.Reverse(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.Carte_piochee);
                 }
             }
+            else
+            {
+                MessageBox.Show("Vous devez placer une carte feu vert pour pouvoir avancer.");
+            }
             Afficher();
         }
         private void pbJOpVit75_Click(object sender, EventArgs e)
         {
-            if (GestionCartes.AuthorisationAvancer(PaquetsDeCartes.J2Bataille, PaquetsDeCartes.Ctmp))
+            if (GestionCartes.AuthorisationAvancer(PaquetsDeCartes.J2Bataille, PaquetsDeCartes.J2Bottes, PaquetsDeCartes.Ctmp))
             {
                 if (GestionCartes.Check75(PaquetsDeCartes.Ctmp))
                 {
@@ -517,11 +554,15 @@ namespace JeuMilleBorne
                     GestionCartes.Reverse(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.Carte_piochee);
                 }
             }
+            else
+            {
+                MessageBox.Show("Vous devez placer une carte feu vert pour pouvoir avancer.");
+            }
             Afficher();
         }
         private void pbJOpVit100_Click(object sender, EventArgs e)
         {
-            if (GestionCartes.AuthorisationAvancer(PaquetsDeCartes.J2Bataille, PaquetsDeCartes.Ctmp))
+            if (GestionCartes.AuthorisationAvancer(PaquetsDeCartes.J2Bataille, PaquetsDeCartes.J2Bottes, PaquetsDeCartes.Ctmp))
             {
                 if (GestionCartes.Check100(PaquetsDeCartes.Ctmp))
                 {
@@ -534,11 +575,15 @@ namespace JeuMilleBorne
                     GestionCartes.Reverse(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.Carte_piochee);
                 }
             }
+            else
+            {
+                MessageBox.Show("Vous devez placer une carte feu vert pour pouvoir avancer.");
+            }
             Afficher();
         }
         private void pbJOpVit200_Click(object sender, EventArgs e)
         {
-            if (GestionCartes.AuthorisationAvancer(PaquetsDeCartes.J2Bataille, PaquetsDeCartes.Ctmp))
+            if (GestionCartes.AuthorisationAvancer(PaquetsDeCartes.J2Bataille, PaquetsDeCartes.J2Bottes, PaquetsDeCartes.Ctmp))
             {
                 if (GestionCartes.Check200(PaquetsDeCartes.Ctmp))
                 {
@@ -551,26 +596,62 @@ namespace JeuMilleBorne
                     GestionCartes.Reverse(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.Carte_piochee);
                 }
             }
+            else
+            {
+                MessageBox.Show("Vous devez placer une carte feu vert pour pouvoir avancer.");
+            }
             Afficher();
         }
         private void pbJOpBotte1_Click(object sender, EventArgs e)
         {
-            GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bottes);
+            if (GestionCartes.CheckBotte(PaquetsDeCartes.Ctmp))
+            {
+                GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bottes);
+
+            }
+            else
+            {
+                MessageBox.Show("Cette carte ne se place ici.");
+            }
             Afficher();
         }
         private void pbJOpBotte2_Click(object sender, EventArgs e)
         {
-            GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bottes);
+            if (GestionCartes.CheckBotte(PaquetsDeCartes.Ctmp))
+            {
+                GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bottes);
+
+            }
+            else
+            {
+                MessageBox.Show("Cette carte ne se place ici.");
+            }
             Afficher();
         }
         private void pbJOpBotte3_Click(object sender, EventArgs e)
         {
-            GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bottes);
+            if (GestionCartes.CheckBotte(PaquetsDeCartes.Ctmp))
+            {
+                GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bottes);
+
+            }
+            else
+            {
+                MessageBox.Show("Cette carte ne se place ici.");
+            }
             Afficher();
         }
         private void pbJOpBotte4_Click(object sender, EventArgs e)
         {
-            GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bottes);
+            if (GestionCartes.CheckBotte(PaquetsDeCartes.Ctmp))
+            {
+                GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bottes);
+
+            }
+            else
+            {
+                MessageBox.Show("Cette carte ne se place ici.");
+            }
             Afficher();
         }
         private void pbJOpVitesse_Click(object sender, EventArgs e)
