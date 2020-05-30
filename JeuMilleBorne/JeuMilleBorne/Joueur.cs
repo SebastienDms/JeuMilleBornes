@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace JeuMilleBorne
 {
+    [Serializable]
+    [XmlRoot()]
     public class Joueur
     {
         #region Donnees

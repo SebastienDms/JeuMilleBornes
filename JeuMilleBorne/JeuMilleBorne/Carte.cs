@@ -12,7 +12,7 @@ namespace JeuMilleBorne
 {
     [Serializable]
     [XmlRoot()]
-    class Carte
+    public class Carte
     {
         #region Donnees
         private string nom;

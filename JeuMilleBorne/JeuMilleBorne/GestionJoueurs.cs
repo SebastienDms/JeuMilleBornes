@@ -33,6 +33,5 @@ namespace JeuMilleBorne
                              PaquetsDeCartes.J2Bornes100.Count * 100 + PaquetsDeCartes.J2Bornes200.Count * 200;
             return Joueur2.Points;
         }
-
     }
 }

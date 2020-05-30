@@ -910,5 +910,10 @@ namespace JeuMilleBorne
             // Fin affichage plateau Joueur2
         }
         #endregion
+
+        private void sauverPartieToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GestionSauvegarde.sauver();
+        }
     }
 }

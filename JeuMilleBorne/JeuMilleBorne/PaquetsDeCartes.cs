@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JeuMilleBorne
 {
-    static class PaquetsDeCartes
+    class PaquetsDeCartes
     {
         #region Paquets
         public static List<Carte> PaquetJeu = new List<Carte>();
@@ -33,5 +33,6 @@ namespace JeuMilleBorne
         public static List<Carte> J2Bornes100 = new List<Carte>();
         public static List<Carte> J2Bornes200 = new List<Carte>();
         #endregion
+
     }
 }
