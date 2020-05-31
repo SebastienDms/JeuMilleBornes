@@ -27,5 +27,11 @@ namespace JeuMilleBorne
             GestionJoueurs.Joueur2.Points = 0;
             this.Close();
         }
+
+        private void btnChargerPartie_Click(object sender, EventArgs e)
+        {
+            GestionSauvegarde.Charger();
+            this.Close();
+        }
     }
 }

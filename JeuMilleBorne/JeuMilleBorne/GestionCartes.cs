@@ -174,7 +174,7 @@ namespace JeuMilleBorne
         public static void DefausserCarte(ref Carte cTmp, ref List<Carte> defausse)
         {
             defausse.Add(cTmp);
-            cTmp = null;
+            cTmp = new Carte();
         }
 
         public static void CarteJouee(ref List<Carte> mainJoueur, ref Carte cTmp, int i)
@@ -186,25 +186,25 @@ namespace JeuMilleBorne
         public static void JouerCartePiochee(ref Carte cartePiochee, ref Carte cTmp)
         {
             cTmp = cartePiochee;
-            cartePiochee = null;
+            cartePiochee = new Carte();
         }
 
         public static void Reverse(ref Carte cTmp, ref Carte cartePiochee)
         {
             cartePiochee = cTmp;
-            cTmp = null;
+            cTmp = new Carte();
         }
 
         public static void PlacerCarte(ref Carte cTmp, ref List<Carte> PileCartes)
         {
             PileCartes.Add(cTmp);
-            cTmp = null;
+            cTmp = new Carte();
         }
 
         public static void PlacerCartePiochee(ref List<Carte> mainJoueur, ref Carte cartePiochee)
         {
             mainJoueur.Add(cartePiochee);
-            cartePiochee = null;
+            cartePiochee = new Carte();
         }
 
         public static void LimVitesse(Carte cTmp, List<Carte> PileVitesse, string pile_du_joueur)
@@ -214,7 +214,7 @@ namespace JeuMilleBorne
                 if (GestionJoueurs.Tour == 0 && PileVitesse.Count != 0 && PileVitesse[PileVitesse.Count - 1].Nom == Carte.NomsCartes.Lim.ToString() && cTmp.Nom == Carte.NomsCartes.LimFin.ToString())
                 {
                     PileVitesse.Add(cTmp);
-                    cTmp = null;
+                    cTmp = new Carte();
                 }
                 else
                 {
@@ -223,7 +223,7 @@ namespace JeuMilleBorne
                         if (CheckBotteJ1())
                         {
                             PileVitesse.Add(cTmp);
-                            cTmp = null;
+                            cTmp = new Carte();
                         }
                         else
                         {
@@ -241,7 +241,7 @@ namespace JeuMilleBorne
                 if (GestionJoueurs.Tour == 1 && PileVitesse.Count != 0 && PileVitesse[PileVitesse.Count - 1].Nom == Carte.NomsCartes.Lim.ToString() && cTmp.Nom == Carte.NomsCartes.LimFin.ToString())
                 {
                     PileVitesse.Add(cTmp);
-                    cTmp = null;
+                    cTmp = new Carte();
                 }
                 else
                 {
@@ -250,7 +250,7 @@ namespace JeuMilleBorne
                         if (CheckBotteJ2())
                         {
                             PileVitesse.Add(cTmp);
-                            cTmp = null;
+                            cTmp = new Carte();
                         }
                         else
                         {
@@ -277,7 +277,7 @@ namespace JeuMilleBorne
                         if (PaquetsDeCartes.Ctmp.Type == Carte.TypesCartes.Roule.ToString())
                         {
                             PileBataille.Add(cTmp);
-                            cTmp = null;
+                            cTmp = new Carte();
                         }
                         else
                         {
@@ -291,7 +291,7 @@ namespace JeuMilleBorne
                             if (CheckBotteJ1())
                             {
                                 PileBataille.Add(cTmp);
-                                cTmp = null;
+                                cTmp = new Carte();
                             }
                             else
                             {
@@ -305,7 +305,7 @@ namespace JeuMilleBorne
                                 if (CheckBotteJ1())
                                 {
                                     PileBataille.Add(cTmp);
-                                    cTmp = null;
+                                    cTmp = new Carte();
                                 }
                                 else
                                 {
@@ -319,7 +319,7 @@ namespace JeuMilleBorne
                                     if (CheckBotteJ1())
                                     {
                                         PileBataille.Add(cTmp);
-                                        cTmp = null;
+                                        cTmp = new Carte();
                                     }
                                     else
                                     {
@@ -333,7 +333,7 @@ namespace JeuMilleBorne
                                         if (CheckBotteJ1())
                                         {
                                             PileBataille.Add(cTmp);
-                                            cTmp = null;
+                                            cTmp = new Carte();
                                         }
                                         else
                                         {
@@ -364,7 +364,7 @@ namespace JeuMilleBorne
                         if (PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count - 1].Type == Carte.TypesCartes.Roule.ToString() || PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count - 1].Type == Carte.TypesCartes.Defense.ToString())
                         {
                             PileBataille.Add(cTmp);
-                            cTmp = null;
+                            cTmp = new Carte();
                         }
                     }
                 }
@@ -378,7 +378,7 @@ namespace JeuMilleBorne
                         if (PaquetsDeCartes.Ctmp.Type == Carte.TypesCartes.Roule.ToString())
                         {
                             PileBataille.Add(cTmp);
-                            cTmp = null;
+                            cTmp = new Carte();
                         }
                         else
                         {
@@ -394,7 +394,7 @@ namespace JeuMilleBorne
                             if (CheckBotteJ2())
                             {
                                 PileBataille.Add(cTmp);
-                                cTmp = null;
+                                cTmp = new Carte();
                             }
                             else
                             {
@@ -410,7 +410,7 @@ namespace JeuMilleBorne
                                 if (CheckBotteJ2())
                                 {
                                     PileBataille.Add(cTmp);
-                                    cTmp = null;
+                                    cTmp = new Carte();
                                 }
                                 else
                                 {
@@ -426,7 +426,7 @@ namespace JeuMilleBorne
                                     if (CheckBotteJ2())
                                     {
                                         PileBataille.Add(cTmp);
-                                        cTmp = null;
+                                        cTmp = new Carte();
                                     }
                                     else
                                     {
@@ -442,7 +442,7 @@ namespace JeuMilleBorne
                                         if (CheckBotteJ2())
                                         {
                                             PileBataille.Add(cTmp);
-                                            cTmp = null;
+                                            cTmp = new Carte();
                                         }
                                         else
                                         {
@@ -471,7 +471,7 @@ namespace JeuMilleBorne
                             if (CheckBotteJ2())
                             {
                                 PileBataille.Add(cTmp);
-                                cTmp = null;
+                                cTmp = new Carte();
                             }
                             else
                             {

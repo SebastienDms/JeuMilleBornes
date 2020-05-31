@@ -7,12 +7,12 @@ using System.Drawing;
 using System.Xml;
 using System.Xml.Serialization;
 using System.IO;
+using System.Runtime.Serialization;
 
 namespace JeuMilleBorne
 {
     [Serializable]
-    [XmlRoot()]
-    public class Carte
+    public class Carte : ISerializable
     {
         #region Donnees
         private string nom;
@@ -46,7 +46,11 @@ namespace JeuMilleBorne
         #endregion
 
         #region Constructeur
-        public Carte() { }
+
+        public Carte()
+        {
+            Nom = "";
+        }
         public Carte(string nom, string type, Image imagecarte)
         {
             Nom = nom;
@@ -153,5 +157,21 @@ namespace JeuMilleBorne
             }
         }
         #endregion
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("Nom",nom,typeof(string));
+            info.AddValue("Type",type,typeof(string));
+            info.AddValue("Valeur",valeur,typeof(int));
+            info.AddValue("Image",imageCarte,typeof(Image));
+        }
+        public Carte(SerializationInfo info, StreamingContext context)
+        {
+            Nom = (string)info.GetValue("Nom", typeof(string));
+            Type = (string)info.GetValue("Type", typeof(string));
+            Valeur = (int)info.GetValue("Valeur", typeof(int));
+            ImageCarte = (Image)info.GetValue("Image", typeof(Image));
+        }
+
     }
 }

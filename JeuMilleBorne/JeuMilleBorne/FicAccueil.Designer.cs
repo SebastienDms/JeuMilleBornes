@@ -36,6 +36,7 @@
             this.tbAccueilJ1Pseudo = new System.Windows.Forms.TextBox();
             this.tbAccueilJ2Pseudo = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnChargerPartie = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblAccueilBienvenue
@@ -51,7 +52,7 @@
             // btnAccueilSuivant
             // 
             this.btnAccueilSuivant.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAccueilSuivant.Location = new System.Drawing.Point(319, 371);
+            this.btnAccueilSuivant.Location = new System.Drawing.Point(230, 373);
             this.btnAccueilSuivant.Name = "btnAccueilSuivant";
             this.btnAccueilSuivant.Size = new System.Drawing.Size(148, 34);
             this.btnAccueilSuivant.TabIndex = 1;
@@ -105,11 +106,23 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "Pseudo du joueur 2 :";
             // 
+            // btnChargerPartie
+            // 
+            this.btnChargerPartie.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChargerPartie.Location = new System.Drawing.Point(497, 358);
+            this.btnChargerPartie.Name = "btnChargerPartie";
+            this.btnChargerPartie.Size = new System.Drawing.Size(148, 65);
+            this.btnChargerPartie.TabIndex = 7;
+            this.btnChargerPartie.Text = "C H A R G E R  P A R T I E";
+            this.btnChargerPartie.UseVisualStyleBackColor = true;
+            this.btnChargerPartie.Click += new System.EventHandler(this.btnChargerPartie_Click);
+            // 
             // FicAccueil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnChargerPartie);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tbAccueilJ2Pseudo);
             this.Controls.Add(this.tbAccueilJ1Pseudo);
@@ -135,5 +148,6 @@
         private System.Windows.Forms.TextBox tbAccueilJ1Pseudo;
         private System.Windows.Forms.TextBox tbAccueilJ2Pseudo;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnChargerPartie;
     }
 }

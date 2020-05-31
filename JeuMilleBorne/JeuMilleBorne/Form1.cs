@@ -22,7 +22,7 @@ namespace JeuMilleBorne
             btnCarteSuivJ1.Visible = false;
             btnCarteSuivJ2.Visible = false;
             GestionSurfaceJeu.CreerPlateau();
-            PaquetsDeCartes.Carte_piochee = null;
+            //PaquetsDeCartes.Carte_piochee = null;
             lblJ1.Text = GestionJoueurs.Joueur1.Pseudo;
             lblJ2.Text = GestionJoueurs.Joueur2.Pseudo;
             lblScoreEnCoursJ1.Text = GestionJoueurs.Joueur1.Points.ToString();
@@ -709,7 +709,7 @@ namespace JeuMilleBorne
                 pbDefausse.BackColor = Color.LightGreen;
             }
             // Affache carte piochée
-            if (PaquetsDeCartes.Carte_piochee != null)
+            if (PaquetsDeCartes.Carte_piochee.Nom != "")
                 pbCartePiochee.Image = PaquetsDeCartes.Carte_piochee.ImageCarte;
             else
             {
@@ -913,7 +913,12 @@ namespace JeuMilleBorne
 
         private void sauverPartieToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            GestionSauvegarde.sauver();
+            GestionSauvegarde.Sauver();
+        }
+
+        private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Afficher();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
@@ -8,8 +9,7 @@ using System.Xml.Serialization;
 namespace JeuMilleBorne
 {
     [Serializable]
-    [XmlRoot()]
-    public class Joueur
+    public class Joueur : ISerializable
     {
         #region Donnees
         private string pseudo;
@@ -30,5 +30,19 @@ namespace JeuMilleBorne
             Num_joueur = numerojoueur;
         }
         #endregion
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("Pseudo",Pseudo,typeof(string));
+            info.AddValue("Points",Points,typeof(int));
+            info.AddValue("Numéro",Num_joueur,typeof(int));
+        }
+
+        public Joueur(SerializationInfo info, StreamingContext context)
+        {
+            Pseudo = (string)info.GetValue("Pseudo", typeof(string));
+            Points = (int)info.GetValue("Points", typeof(int));
+            Num_joueur = (int)info.GetValue("Numéro", typeof(int));
+        }
     }
 }

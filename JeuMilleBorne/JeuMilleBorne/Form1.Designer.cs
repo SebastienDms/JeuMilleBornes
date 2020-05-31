@@ -33,6 +33,7 @@
             this.msCreerPaquetDeJeu = new System.Windows.Forms.ToolStripMenuItem();
             this.msMelangerPaquet = new System.Windows.Forms.ToolStripMenuItem();
             this.msDistribuerCartes = new System.Windows.Forms.ToolStripMenuItem();
+            this.sauverPartieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnCarteSuivante = new System.Windows.Forms.Button();
             this.btnCarteSuivJ1 = new System.Windows.Forms.Button();
             this.btnCarteSuivJ2 = new System.Windows.Forms.Button();
@@ -102,7 +103,7 @@
             this.lblScoreEnCoursJ2 = new System.Windows.Forms.Label();
             this.lblScoreEnCoursJ1 = new System.Windows.Forms.Label();
             this.lblAQui = new System.Windows.Forms.Label();
-            this.sauverPartieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbJOpCarte6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbJOpCarte5)).BeginInit();
@@ -158,7 +159,8 @@
             this.msCreerPaquetDeJeu,
             this.msMelangerPaquet,
             this.msDistribuerCartes,
-            this.sauverPartieToolStripMenuItem});
+            this.sauverPartieToolStripMenuItem,
+            this.refreshToolStripMenuItem});
             this.msMenu.Location = new System.Drawing.Point(0, 0);
             this.msMenu.Name = "msMenu";
             this.msMenu.Size = new System.Drawing.Size(1635, 24);
@@ -186,6 +188,13 @@
             this.msDistribuerCartes.Size = new System.Drawing.Size(136, 20);
             this.msDistribuerCartes.Text = "Distribution des cartes";
             this.msDistribuerCartes.Click += new System.EventHandler(this.msDistribuerCartes_Click);
+            // 
+            // sauverPartieToolStripMenuItem
+            // 
+            this.sauverPartieToolStripMenuItem.Name = "sauverPartieToolStripMenuItem";
+            this.sauverPartieToolStripMenuItem.Size = new System.Drawing.Size(87, 20);
+            this.sauverPartieToolStripMenuItem.Text = "Sauver partie";
+            this.sauverPartieToolStripMenuItem.Click += new System.EventHandler(this.sauverPartieToolStripMenuItem_Click);
             // 
             // btnCarteSuivante
             // 
@@ -881,12 +890,12 @@
             this.lblAQui.TabIndex = 70;
             this.lblAQui.Text = "C\'est au tour du joueur :";
             // 
-            // sauverPartieToolStripMenuItem
+            // refreshToolStripMenuItem
             // 
-            this.sauverPartieToolStripMenuItem.Name = "sauverPartieToolStripMenuItem";
-            this.sauverPartieToolStripMenuItem.Size = new System.Drawing.Size(87, 20);
-            this.sauverPartieToolStripMenuItem.Text = "Sauver partie";
-            this.sauverPartieToolStripMenuItem.Click += new System.EventHandler(this.sauverPartieToolStripMenuItem_Click);
+            this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
+            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
+            this.refreshToolStripMenuItem.Text = "Refresh";
+            this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
             // 
             // FormPrincipal
             // 
@@ -1093,6 +1102,7 @@
         private System.Windows.Forms.Label lblScoreEnCoursJ1;
         private System.Windows.Forms.Label lblAQui;
         private System.Windows.Forms.ToolStripMenuItem sauverPartieToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem refreshToolStripMenuItem;
     }
 }
 
