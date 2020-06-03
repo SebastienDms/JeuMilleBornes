@@ -189,10 +189,10 @@ namespace JeuMilleBorne
             cartePiochee = new Carte();
         }
 
-        public static void Reverse(ref Carte cTmp, ref Carte cartePiochee)
+        public static void Reverse()
         {
-            cartePiochee = cTmp;
-            cTmp = new Carte();
+            PaquetsDeCartes.Carte_piochee = PaquetsDeCartes.Ctmp;
+            PaquetsDeCartes.Ctmp = new Carte();
         }
 
         public static void PlacerCarte(ref Carte cTmp, ref List<Carte> PileCartes)
@@ -211,14 +211,16 @@ namespace JeuMilleBorne
         {
             if (pile_du_joueur == "J1")
             {
-                if (GestionJoueurs.Tour == 0 && PileVitesse.Count != 0 && PileVitesse[PileVitesse.Count - 1].Nom == Carte.NomsCartes.Lim.ToString() && cTmp.Nom == Carte.NomsCartes.LimFin.ToString())
+                if (GestionJoueurs.Tour == 0 && PileVitesse.Count != 0 && PileVitesse[PileVitesse.Count - 1].Nom == "Limite de vitesse à 50" && 
+                    cTmp.Nom == "Fin de Limite de vitesse")
                 {
                     PileVitesse.Add(cTmp);
                     cTmp = new Carte();
                 }
                 else
                 {
-                    if (GestionJoueurs.Tour == 1 && (PileVitesse.Count == 0 || (PileVitesse[PileVitesse.Count - 1].Nom == Carte.NomsCartes.LimFin.ToString() && cTmp.Nom == Carte.NomsCartes.Lim.ToString())))
+                    if (GestionJoueurs.Tour == 1 && (PileVitesse.Count == 0 || (PileVitesse[PileVitesse.Count - 1].Nom == "Fin de Limite de vitesse" &&
+                                                                                cTmp.Nom == "Limite de vitesse à 50")))
                     {
                         if (CheckBotteJ1())
                         {
@@ -238,14 +240,16 @@ namespace JeuMilleBorne
             }
             else
             {
-                if (GestionJoueurs.Tour == 1 && PileVitesse.Count != 0 && PileVitesse[PileVitesse.Count - 1].Nom == Carte.NomsCartes.Lim.ToString() && cTmp.Nom == Carte.NomsCartes.LimFin.ToString())
+                if (GestionJoueurs.Tour == 1 && PileVitesse.Count != 0 && PileVitesse[PileVitesse.Count - 1].Nom == "Limite de vitesse à 50" &&
+                    cTmp.Nom == "Fin de Limite de vitesse")
                 {
                     PileVitesse.Add(cTmp);
                     cTmp = new Carte();
                 }
                 else
                 {
-                    if (GestionJoueurs.Tour == 0 && (PileVitesse.Count == 0 || (PileVitesse[PileVitesse.Count - 1].Nom == Carte.NomsCartes.LimFin.ToString() && cTmp.Nom == Carte.NomsCartes.Lim.ToString())))
+                    if (GestionJoueurs.Tour == 0 && (PileVitesse.Count == 0 || (PileVitesse[PileVitesse.Count - 1].Nom == "Fin de Limite de vitesse" &&
+                                                                                cTmp.Nom == "Limite de vitesse à 50")))
                     {
                         if (CheckBotteJ2())
                         {
@@ -266,8 +270,9 @@ namespace JeuMilleBorne
             }
         }
 
-        public static void Bataille(Carte cTmp, List<Carte> PileBataille, string pile_du_joueur)
+        public static bool Bataille(Carte cTmp, List<Carte> PileBataille, string pile_du_joueur)
         {
+            bool check = false;
             if (pile_du_joueur == "J1")
             {
                 if (GestionJoueurs.Tour == 0)
@@ -278,79 +283,101 @@ namespace JeuMilleBorne
                         {
                             PileBataille.Add(cTmp);
                             cTmp = new Carte();
+                            check = true;
                         }
                         else
                         {
                             MessageBox.Show("Vous ne pas ecnore jouer ici.");
+                            check = false;
                         }
                     }
                     else
                     {
-                        if (PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count - 1].Nom == Carte.NomsCartes.Accident.ToString() && PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Reparations.ToString())
+                        if (cTmp.Type == Carte.TypesCartes.Attaque.ToString())
                         {
-                            if (CheckBotteJ1())
-                            {
-                                PileBataille.Add(cTmp);
-                                cTmp = new Carte();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Le joueur est protégé par une botte");
-                            }
+                            MessageBox.Show("Vous ne pouvez pas vous attaquer !");
+                            check = false;
                         }
                         else
                         {
-                            if (PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count - 1].Nom == Carte.NomsCartes.Creve.ToString() && PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Roue.ToString())
+                            if (PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count - 1].Nom == "Accident..." &&
+                                PaquetsDeCartes.Ctmp.Nom == "Réparations")
                             {
                                 if (CheckBotteJ1())
                                 {
                                     PileBataille.Add(cTmp);
                                     cTmp = new Carte();
+                                    check = true;
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Le joueur est protégé par une botte");
+                                    MessageBox.Show("Vous êtes protégé par une botte");
+                                    check = false;
                                 }
                             }
                             else
                             {
-                                if (PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count - 1].Nom == Carte.NomsCartes.Panne.ToString() && PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Essence.ToString())
+                                if (PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count - 1].Nom == "Crevé !" &&
+                                    PaquetsDeCartes.Ctmp.Nom == "Roue de secours")
                                 {
                                     if (CheckBotteJ1())
                                     {
                                         PileBataille.Add(cTmp);
                                         cTmp = new Carte();
+                                        check = true;
                                     }
                                     else
                                     {
-                                        MessageBox.Show("Le joueur est protégé par une botte");
+                                        MessageBox.Show("Vous êtes protégé par une botte");
+                                        check = false;
                                     }
                                 }
                                 else
                                 {
-                                    if (PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count - 1].Nom == Carte.NomsCartes.Stop.ToString() && PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Roule.ToString())
+                                    if (PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count - 1].Nom ==
+                                        "Panne d'essence" && PaquetsDeCartes.Ctmp.Nom == "Essence")
                                     {
                                         if (CheckBotteJ1())
                                         {
                                             PileBataille.Add(cTmp);
                                             cTmp = new Carte();
+                                            check = true;
                                         }
                                         else
                                         {
-                                            MessageBox.Show("Le joueur est protégé par une botte");
+                                            MessageBox.Show("Vous êtes protégé par une botte");
+                                            check = false;
                                         }
                                     }
                                     else
                                     {
-                                        MessageBox.Show("Impossible de jouer cette carte.");
+                                        if (PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count - 1].Nom ==
+                                            "Feux rouge" && PaquetsDeCartes.Ctmp.Nom == "Feux vert")
+                                        {
+                                            if (CheckBotteJ1())
+                                            {
+                                                PileBataille.Add(cTmp);
+                                                cTmp = new Carte();
+                                                check = true;
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("Vous êtes protégé par une botte");
+                                                check = false;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Impossible de jouer cette carte.");
+                                            check = false;
+                                        }
+
                                     }
 
                                 }
 
                             }
-
                         }
-
                     }
                 }
                 else
@@ -361,10 +388,20 @@ namespace JeuMilleBorne
                     }
                     else
                     {
-                        if (PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count - 1].Type == Carte.TypesCartes.Roule.ToString() || PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count - 1].Type == Carte.TypesCartes.Defense.ToString())
+                        if (PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count - 1].Type == Carte.TypesCartes.Roule.ToString() ||
+                            PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count - 1].Type == Carte.TypesCartes.Defense.ToString())
                         {
-                            PileBataille.Add(cTmp);
-                            cTmp = new Carte();
+                            if (CheckBotteJ1())
+                            {
+                                PileBataille.Add(cTmp);
+                                cTmp = new Carte();
+                                check = true;
+                            }
+                            else
+                            {
+                                MessageBox.Show("Le joueur est protégé par une botte");
+                                check = false;
+                            }
                         }
                     }
                 }
@@ -379,79 +416,96 @@ namespace JeuMilleBorne
                         {
                             PileBataille.Add(cTmp);
                             cTmp = new Carte();
+                            check = true;
                         }
                         else
                         {
                             MessageBox.Show("Vous ne pas encore jouer ici.");
+                            check = false;
                         }
                     }
                     else
                     {
-                        if (PaquetsDeCartes.J2Bataille[PaquetsDeCartes.J2Bataille.Count - 1].Nom ==
-                                Carte.NomsCartes.Accident.ToString() &&
-                                PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Reparations.ToString())
+                        if (cTmp.Type == Carte.TypesCartes.Attaque.ToString())
                         {
-                            if (CheckBotteJ2())
-                            {
-                                PileBataille.Add(cTmp);
-                                cTmp = new Carte();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Le joueur est protégé par une botte");
-                            }
+                            MessageBox.Show("Vous ne pouvez pas vous attaquer !");
+                            check = false;
                         }
                         else
                         {
-                            if (PaquetsDeCartes.J2Bataille[PaquetsDeCartes.J2Bataille.Count - 1].Nom ==
-                                Carte.NomsCartes.Creve.ToString() &&
-                                PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Roue.ToString())
+                            if (PaquetsDeCartes.J2Bataille[PaquetsDeCartes.J2Bataille.Count - 1].Nom == "Accident..." &&
+                                PaquetsDeCartes.Ctmp.Nom == "Réparations")
                             {
                                 if (CheckBotteJ2())
                                 {
                                     PileBataille.Add(cTmp);
                                     cTmp = new Carte();
+                                    check = true;
                                 }
                                 else
                                 {
                                     MessageBox.Show("Le joueur est protégé par une botte");
+                                    check = false;
                                 }
                             }
                             else
                             {
-                                if (PaquetsDeCartes.J2Bataille[PaquetsDeCartes.J2Bataille.Count - 1].Nom ==
-                                    Carte.NomsCartes.Panne.ToString() &&
-                                    PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Essence.ToString())
+                                if (PaquetsDeCartes.J2Bataille[PaquetsDeCartes.J2Bataille.Count - 1].Nom == "Crevé !" &&
+                                    PaquetsDeCartes.Ctmp.Nom == "Roue de secours")
                                 {
                                     if (CheckBotteJ2())
                                     {
                                         PileBataille.Add(cTmp);
                                         cTmp = new Carte();
+                                        check = true;
                                     }
                                     else
                                     {
                                         MessageBox.Show("Le joueur est protégé par une botte");
+                                        check = false;
                                     }
                                 }
                                 else
                                 {
                                     if (PaquetsDeCartes.J2Bataille[PaquetsDeCartes.J2Bataille.Count - 1].Nom ==
-                                        Carte.NomsCartes.Stop.ToString() &&
-                                        PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Roule.ToString())
+                                        "Panne d'essence" &&
+                                        PaquetsDeCartes.Ctmp.Nom == "Essence")
                                     {
                                         if (CheckBotteJ2())
                                         {
                                             PileBataille.Add(cTmp);
                                             cTmp = new Carte();
+                                            check = true;
                                         }
                                         else
                                         {
                                             MessageBox.Show("Le joueur est protégé par une botte");
+                                            check = false;
                                         }
                                     }
                                     else
                                     {
-                                        MessageBox.Show("Impossible de jouer cette carte.");
+                                        if (PaquetsDeCartes.J2Bataille[PaquetsDeCartes.J2Bataille.Count - 1].Nom ==
+                                            "Feux rouge" &&
+                                            PaquetsDeCartes.Ctmp.Nom == "Feux vert")
+                                        {
+                                            if (CheckBotteJ2())
+                                            {
+                                                PileBataille.Add(cTmp);
+                                                cTmp = new Carte();
+                                                check = true;
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("Le joueur est protégé par une botte");
+                                                check = false;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Impossible de jouer cette carte.");
+                                            check = false;
+                                        }
                                     }
                                 }
                             }
@@ -463,24 +517,30 @@ namespace JeuMilleBorne
                     if (PaquetsDeCartes.J2Bataille.Count == 0)
                     {
                         MessageBox.Show("Vous ne pouvez pas encore attaquer.");
+                        check = false;
                     }
                     else
                     {
-                        if (PaquetsDeCartes.J2Bataille[PaquetsDeCartes.J2Bataille.Count - 1].Type == Carte.TypesCartes.Roule.ToString() || PaquetsDeCartes.J2Bataille[PaquetsDeCartes.J2Bataille.Count - 1].Type == Carte.TypesCartes.Defense.ToString())
+                        if (PaquetsDeCartes.J2Bataille[PaquetsDeCartes.J2Bataille.Count - 1].Type == Carte.TypesCartes.Roule.ToString() || 
+                            PaquetsDeCartes.J2Bataille[PaquetsDeCartes.J2Bataille.Count - 1].Type == Carte.TypesCartes.Defense.ToString())
                         {
                             if (CheckBotteJ2())
                             {
                                 PileBataille.Add(cTmp);
                                 cTmp = new Carte();
+                                check = true;
                             }
                             else
                             {
                                 MessageBox.Show("Le joueur est protégé par une botte");
+                                check = false;
                             }
                         }
                     }
                 }
             }
+
+            return check;
         }
 
         public static bool Check25(Carte cTmp)
@@ -553,10 +613,11 @@ namespace JeuMilleBorne
             }
         }
 
-        public static bool CheckBotte(Carte cTmp)
+        public static bool CheckPlacerBotte(Carte cTmp)
         {
             bool placer = false;
-            if (cTmp.Type == Carte.TypesCartes.Botte.ToString())
+
+            if (cTmp.Type == "Botte")
             {
                 placer = true;
             }
@@ -576,9 +637,10 @@ namespace JeuMilleBorne
             {
                 foreach (Carte c in ListeBotte)
                 {
-                    if (c.Nom == Carte.NomsCartes.Prioritaire.ToString())
+                    if (c.Nom == "Véhicule prioritaire (contre feux rouge et limite de vitesse)")
                     {
                         placer = true;
+                        break;
                     }
                     else
                     {
@@ -598,7 +660,7 @@ namespace JeuMilleBorne
         {
             bool placer = false;
 
-            if (PaquetsDeCartes.J1Bataille.Count == 0)
+            if (PaquetsDeCartes.J1Bottes.Count == 0)
             {
                 placer = true;
             }
@@ -606,33 +668,38 @@ namespace JeuMilleBorne
             {
                 foreach (Carte c in PaquetsDeCartes.J1Bottes)
                 {
-                    if (c.Nom == Carte.NomsCartes.Citerne.ToString() && PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Panne.ToString())
+                    if (c.Nom == "Citerne d'essence" && PaquetsDeCartes.Ctmp.Nom == "Panne d'essence")
                     {
                         placer = false;
+                        break;
                     }
                     else
                     {
-                        if (c.Nom == Carte.NomsCartes.AsVolant.ToString() && PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Accident.ToString())
+                        if (c.Nom == "As du volant" && PaquetsDeCartes.Ctmp.Nom == "Accident...")
                         {
                             placer = false;
+                            break;
                         }
                         else
                         {
-                            if (c.Nom == Carte.NomsCartes.Increvable.ToString() && PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Creve.ToString())
+                            if (c.Nom == "Increvable !" && PaquetsDeCartes.Ctmp.Nom == "Crevé !")
                             {
                                 placer = false;
+                                break;
                             }
                             else
                             {
-                                if (c.Nom == Carte.NomsCartes.Prioritaire.ToString() && PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Stop.ToString())
+                                if (c.Nom == "Véhicule prioritaire (contre feux rouge et limite de vitesse)" && PaquetsDeCartes.Ctmp.Nom == "Feux rouge")
                                 {
                                     placer = false;
+                                    break;
                                 }
                                 else
                                 {
-                                    if (c.Nom == Carte.NomsCartes.Prioritaire.ToString() && PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Lim.ToString())
+                                    if (c.Nom == "Véhicule prioritaire (contre feux rouge et limite de vitesse)" && PaquetsDeCartes.Ctmp.Nom == "Limite de vitesse à 50")
                                     {
                                         placer = false;
+                                        break;
                                     }
                                     else
                                     {
@@ -650,7 +717,7 @@ namespace JeuMilleBorne
         {
             bool placer = false;
 
-            if (PaquetsDeCartes.J2Bataille.Count == 0)
+            if (PaquetsDeCartes.J2Bottes.Count == 0)
             {
                 placer = true;
             }
@@ -658,33 +725,38 @@ namespace JeuMilleBorne
             {
                 foreach (Carte c in PaquetsDeCartes.J2Bottes)
                 {
-                    if (c.Nom == Carte.NomsCartes.Citerne.ToString() && PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Panne.ToString())
+                    if (c.Nom == "Citerne d'essence" && PaquetsDeCartes.Ctmp.Nom == "Panne d'essence")
                     {
                         placer = false;
+                        break;
                     }
                     else
                     {
-                        if (c.Nom == Carte.NomsCartes.AsVolant.ToString() && PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Accident.ToString())
+                        if (c.Nom == "As du volant" && PaquetsDeCartes.Ctmp.Nom == "Accident...")
                         {
                             placer = false;
+                            break;
                         }
                         else
                         {
-                            if (c.Nom == Carte.NomsCartes.Increvable.ToString() && PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Creve.ToString())
+                            if (c.Nom == "Increvable !" && PaquetsDeCartes.Ctmp.Nom == "Crevé !")
                             {
                                 placer = false;
+                                break;
                             }
                             else
                             {
-                                if (c.Nom == Carte.NomsCartes.Prioritaire.ToString() && PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Stop.ToString())
+                                if (c.Nom == "Véhicule prioritaire (contre feux rouge et limite de vitesse)" && PaquetsDeCartes.Ctmp.Nom == "Feux rouge")
                                 {
                                     placer = false;
+                                    break;
                                 }
                                 else
                                 {
-                                    if (c.Nom == Carte.NomsCartes.Prioritaire.ToString() && PaquetsDeCartes.Ctmp.Nom == Carte.NomsCartes.Lim.ToString())
+                                    if (c.Nom == "Véhicule prioritaire (contre feux rouge et limite de vitesse)" && PaquetsDeCartes.Ctmp.Nom == "Limite de vitesse à 50")
                                     {
                                         placer = false;
+                                        break;
                                     }
                                     else
                                     {

@@ -34,6 +34,7 @@
             this.msMelangerPaquet = new System.Windows.Forms.ToolStripMenuItem();
             this.msDistribuerCartes = new System.Windows.Forms.ToolStripMenuItem();
             this.sauverPartieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnCarteSuivante = new System.Windows.Forms.Button();
             this.btnCarteSuivJ1 = new System.Windows.Forms.Button();
             this.btnCarteSuivJ2 = new System.Windows.Forms.Button();
@@ -103,7 +104,6 @@
             this.lblScoreEnCoursJ2 = new System.Windows.Forms.Label();
             this.lblScoreEnCoursJ1 = new System.Windows.Forms.Label();
             this.lblAQui = new System.Windows.Forms.Label();
-            this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbJOpCarte6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbJOpCarte5)).BeginInit();
@@ -155,6 +155,7 @@
             // 
             // msMenu
             // 
+            this.msMenu.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.msMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.msCreerPaquetDeJeu,
             this.msMelangerPaquet,
@@ -163,21 +164,21 @@
             this.refreshToolStripMenuItem});
             this.msMenu.Location = new System.Drawing.Point(0, 0);
             this.msMenu.Name = "msMenu";
-            this.msMenu.Size = new System.Drawing.Size(1635, 24);
+            this.msMenu.Size = new System.Drawing.Size(1635, 27);
             this.msMenu.TabIndex = 2;
             this.msMenu.Text = "Menu";
             // 
             // msCreerPaquetDeJeu
             // 
             this.msCreerPaquetDeJeu.Name = "msCreerPaquetDeJeu";
-            this.msCreerPaquetDeJeu.Size = new System.Drawing.Size(122, 20);
+            this.msCreerPaquetDeJeu.Size = new System.Drawing.Size(142, 23);
             this.msCreerPaquetDeJeu.Text = "Créer Paquet de jeu";
             this.msCreerPaquetDeJeu.Click += new System.EventHandler(this.msCreerPaquetDeJeu_Click);
             // 
             // msMelangerPaquet
             // 
             this.msMelangerPaquet.Name = "msMelangerPaquet";
-            this.msMelangerPaquet.Size = new System.Drawing.Size(121, 20);
+            this.msMelangerPaquet.Size = new System.Drawing.Size(140, 23);
             this.msMelangerPaquet.Text = "Mélanger le paquet";
             this.msMelangerPaquet.Click += new System.EventHandler(this.msMelangerPaquet_Click);
             // 
@@ -186,19 +187,26 @@
             this.msDistribuerCartes.AutoSize = false;
             this.msDistribuerCartes.Name = "msDistribuerCartes";
             this.msDistribuerCartes.Size = new System.Drawing.Size(136, 20);
-            this.msDistribuerCartes.Text = "Distribution des cartes";
+            this.msDistribuerCartes.Text = "Distribuer cartes";
             this.msDistribuerCartes.Click += new System.EventHandler(this.msDistribuerCartes_Click);
             // 
             // sauverPartieToolStripMenuItem
             // 
             this.sauverPartieToolStripMenuItem.Name = "sauverPartieToolStripMenuItem";
-            this.sauverPartieToolStripMenuItem.Size = new System.Drawing.Size(87, 20);
+            this.sauverPartieToolStripMenuItem.Size = new System.Drawing.Size(101, 23);
             this.sauverPartieToolStripMenuItem.Text = "Sauver partie";
             this.sauverPartieToolStripMenuItem.Click += new System.EventHandler(this.sauverPartieToolStripMenuItem_Click);
             // 
+            // refreshToolStripMenuItem
+            // 
+            this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
+            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(66, 23);
+            this.refreshToolStripMenuItem.Text = "Refresh";
+            this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
+            // 
             // btnCarteSuivante
             // 
-            this.btnCarteSuivante.Location = new System.Drawing.Point(558, -2);
+            this.btnCarteSuivante.Location = new System.Drawing.Point(824, 0);
             this.btnCarteSuivante.Name = "btnCarteSuivante";
             this.btnCarteSuivante.Size = new System.Drawing.Size(109, 23);
             this.btnCarteSuivante.TabIndex = 3;
@@ -207,7 +215,7 @@
             // 
             // btnCarteSuivJ1
             // 
-            this.btnCarteSuivJ1.Location = new System.Drawing.Point(682, -2);
+            this.btnCarteSuivJ1.Location = new System.Drawing.Point(939, 0);
             this.btnCarteSuivJ1.Name = "btnCarteSuivJ1";
             this.btnCarteSuivJ1.Size = new System.Drawing.Size(133, 23);
             this.btnCarteSuivJ1.TabIndex = 4;
@@ -216,7 +224,7 @@
             // 
             // btnCarteSuivJ2
             // 
-            this.btnCarteSuivJ2.Location = new System.Drawing.Point(831, -2);
+            this.btnCarteSuivJ2.Location = new System.Drawing.Point(1078, 0);
             this.btnCarteSuivJ2.Name = "btnCarteSuivJ2";
             this.btnCarteSuivJ2.Size = new System.Drawing.Size(146, 23);
             this.btnCarteSuivJ2.TabIndex = 5;
@@ -254,7 +262,7 @@
             // 
             this.pbJOpCarte6.BackColor = System.Drawing.SystemColors.Control;
             this.pbJOpCarte6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbJOpCarte6.Location = new System.Drawing.Point(1496, 27);
+            this.pbJOpCarte6.Location = new System.Drawing.Point(1496, 30);
             this.pbJOpCarte6.Name = "pbJOpCarte6";
             this.pbJOpCarte6.Size = new System.Drawing.Size(127, 180);
             this.pbJOpCarte6.TabIndex = 1;
@@ -265,7 +273,7 @@
             // 
             this.pbJOpCarte5.BackColor = System.Drawing.SystemColors.Control;
             this.pbJOpCarte5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbJOpCarte5.Location = new System.Drawing.Point(1363, 27);
+            this.pbJOpCarte5.Location = new System.Drawing.Point(1363, 30);
             this.pbJOpCarte5.Name = "pbJOpCarte5";
             this.pbJOpCarte5.Size = new System.Drawing.Size(127, 180);
             this.pbJOpCarte5.TabIndex = 9;
@@ -276,7 +284,7 @@
             // 
             this.pbJOpCarte4.BackColor = System.Drawing.SystemColors.Control;
             this.pbJOpCarte4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbJOpCarte4.Location = new System.Drawing.Point(1230, 27);
+            this.pbJOpCarte4.Location = new System.Drawing.Point(1230, 30);
             this.pbJOpCarte4.Name = "pbJOpCarte4";
             this.pbJOpCarte4.Size = new System.Drawing.Size(127, 180);
             this.pbJOpCarte4.TabIndex = 10;
@@ -287,7 +295,7 @@
             // 
             this.pbJOpCarte3.BackColor = System.Drawing.SystemColors.Control;
             this.pbJOpCarte3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbJOpCarte3.Location = new System.Drawing.Point(1097, 27);
+            this.pbJOpCarte3.Location = new System.Drawing.Point(1097, 30);
             this.pbJOpCarte3.Name = "pbJOpCarte3";
             this.pbJOpCarte3.Size = new System.Drawing.Size(127, 180);
             this.pbJOpCarte3.TabIndex = 11;
@@ -298,7 +306,7 @@
             // 
             this.pbJOpCarte2.BackColor = System.Drawing.SystemColors.Control;
             this.pbJOpCarte2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbJOpCarte2.Location = new System.Drawing.Point(964, 27);
+            this.pbJOpCarte2.Location = new System.Drawing.Point(964, 30);
             this.pbJOpCarte2.Name = "pbJOpCarte2";
             this.pbJOpCarte2.Size = new System.Drawing.Size(127, 180);
             this.pbJOpCarte2.TabIndex = 12;
@@ -309,7 +317,7 @@
             // 
             this.pbJOpCarte1.BackColor = System.Drawing.SystemColors.Control;
             this.pbJOpCarte1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbJOpCarte1.Location = new System.Drawing.Point(831, 27);
+            this.pbJOpCarte1.Location = new System.Drawing.Point(831, 30);
             this.pbJOpCarte1.Name = "pbJOpCarte1";
             this.pbJOpCarte1.Size = new System.Drawing.Size(127, 180);
             this.pbJOpCarte1.TabIndex = 13;
@@ -441,7 +449,7 @@
             // 
             this.pbJOpVit25.BackColor = System.Drawing.SystemColors.Control;
             this.pbJOpVit25.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbJOpVit25.Location = new System.Drawing.Point(831, 213);
+            this.pbJOpVit25.Location = new System.Drawing.Point(831, 216);
             this.pbJOpVit25.Name = "pbJOpVit25";
             this.pbJOpVit25.Size = new System.Drawing.Size(127, 180);
             this.pbJOpVit25.TabIndex = 29;
@@ -452,7 +460,7 @@
             // 
             this.pbJOpVit50.BackColor = System.Drawing.SystemColors.Control;
             this.pbJOpVit50.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbJOpVit50.Location = new System.Drawing.Point(964, 213);
+            this.pbJOpVit50.Location = new System.Drawing.Point(964, 216);
             this.pbJOpVit50.Name = "pbJOpVit50";
             this.pbJOpVit50.Size = new System.Drawing.Size(127, 180);
             this.pbJOpVit50.TabIndex = 28;
@@ -463,7 +471,7 @@
             // 
             this.pbJOpVit75.BackColor = System.Drawing.SystemColors.Control;
             this.pbJOpVit75.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbJOpVit75.Location = new System.Drawing.Point(1097, 213);
+            this.pbJOpVit75.Location = new System.Drawing.Point(1097, 216);
             this.pbJOpVit75.Name = "pbJOpVit75";
             this.pbJOpVit75.Size = new System.Drawing.Size(127, 180);
             this.pbJOpVit75.TabIndex = 27;
@@ -474,7 +482,7 @@
             // 
             this.pbJOpVit100.BackColor = System.Drawing.SystemColors.Control;
             this.pbJOpVit100.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbJOpVit100.Location = new System.Drawing.Point(1230, 213);
+            this.pbJOpVit100.Location = new System.Drawing.Point(1230, 216);
             this.pbJOpVit100.Name = "pbJOpVit100";
             this.pbJOpVit100.Size = new System.Drawing.Size(127, 180);
             this.pbJOpVit100.TabIndex = 26;
@@ -485,7 +493,7 @@
             // 
             this.pbJOpVit200.BackColor = System.Drawing.SystemColors.Control;
             this.pbJOpVit200.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbJOpVit200.Location = new System.Drawing.Point(1363, 213);
+            this.pbJOpVit200.Location = new System.Drawing.Point(1363, 216);
             this.pbJOpVit200.Name = "pbJOpVit200";
             this.pbJOpVit200.Size = new System.Drawing.Size(127, 180);
             this.pbJOpVit200.TabIndex = 25;
@@ -496,7 +504,7 @@
             // 
             this.pbJOpVitesse.BackColor = System.Drawing.SystemColors.Control;
             this.pbJOpVitesse.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbJOpVitesse.Location = new System.Drawing.Point(416, 213);
+            this.pbJOpVitesse.Location = new System.Drawing.Point(416, 216);
             this.pbJOpVitesse.Name = "pbJOpVitesse";
             this.pbJOpVitesse.Size = new System.Drawing.Size(127, 180);
             this.pbJOpVitesse.TabIndex = 31;
@@ -507,7 +515,7 @@
             // 
             this.pbJOpBataille.BackColor = System.Drawing.SystemColors.Control;
             this.pbJOpBataille.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbJOpBataille.Location = new System.Drawing.Point(549, 213);
+            this.pbJOpBataille.Location = new System.Drawing.Point(549, 216);
             this.pbJOpBataille.Name = "pbJOpBataille";
             this.pbJOpBataille.Size = new System.Drawing.Size(127, 180);
             this.pbJOpBataille.TabIndex = 30;
@@ -518,7 +526,7 @@
             // 
             this.pbJOpBotte1.BackColor = System.Drawing.SystemColors.Control;
             this.pbJOpBotte1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbJOpBotte1.Location = new System.Drawing.Point(283, 27);
+            this.pbJOpBotte1.Location = new System.Drawing.Point(283, 30);
             this.pbJOpBotte1.Name = "pbJOpBotte1";
             this.pbJOpBotte1.Size = new System.Drawing.Size(127, 180);
             this.pbJOpBotte1.TabIndex = 35;
@@ -529,7 +537,7 @@
             // 
             this.pbJOpBotte2.BackColor = System.Drawing.SystemColors.Control;
             this.pbJOpBotte2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbJOpBotte2.Location = new System.Drawing.Point(416, 27);
+            this.pbJOpBotte2.Location = new System.Drawing.Point(416, 30);
             this.pbJOpBotte2.Name = "pbJOpBotte2";
             this.pbJOpBotte2.Size = new System.Drawing.Size(127, 180);
             this.pbJOpBotte2.TabIndex = 34;
@@ -540,7 +548,7 @@
             // 
             this.pbJOpBotte3.BackColor = System.Drawing.SystemColors.Control;
             this.pbJOpBotte3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbJOpBotte3.Location = new System.Drawing.Point(549, 27);
+            this.pbJOpBotte3.Location = new System.Drawing.Point(549, 30);
             this.pbJOpBotte3.Name = "pbJOpBotte3";
             this.pbJOpBotte3.Size = new System.Drawing.Size(127, 180);
             this.pbJOpBotte3.TabIndex = 33;
@@ -551,7 +559,7 @@
             // 
             this.pbJOpBotte4.BackColor = System.Drawing.SystemColors.Control;
             this.pbJOpBotte4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbJOpBotte4.Location = new System.Drawing.Point(682, 27);
+            this.pbJOpBotte4.Location = new System.Drawing.Point(682, 30);
             this.pbJOpBotte4.Name = "pbJOpBotte4";
             this.pbJOpBotte4.Size = new System.Drawing.Size(127, 180);
             this.pbJOpBotte4.TabIndex = 32;
@@ -822,7 +830,7 @@
             // lblCartePiochee
             // 
             this.lblCartePiochee.AutoSize = true;
-            this.lblCartePiochee.Location = new System.Drawing.Point(222, 372);
+            this.lblCartePiochee.Location = new System.Drawing.Point(222, 375);
             this.lblCartePiochee.Name = "lblCartePiochee";
             this.lblCartePiochee.Size = new System.Drawing.Size(73, 13);
             this.lblCartePiochee.TabIndex = 63;
@@ -840,7 +848,7 @@
             // lblJ2
             // 
             this.lblJ2.AutoSize = true;
-            this.lblJ2.Location = new System.Drawing.Point(1513, 213);
+            this.lblJ2.Location = new System.Drawing.Point(1513, 216);
             this.lblJ2.Name = "lblJ2";
             this.lblJ2.Size = new System.Drawing.Size(48, 13);
             this.lblJ2.TabIndex = 65;
@@ -849,7 +857,7 @@
             // lblScoreJ2
             // 
             this.lblScoreJ2.AutoSize = true;
-            this.lblScoreJ2.Location = new System.Drawing.Point(1513, 244);
+            this.lblScoreJ2.Location = new System.Drawing.Point(1513, 247);
             this.lblScoreJ2.Name = "lblScoreJ2";
             this.lblScoreJ2.Size = new System.Drawing.Size(41, 13);
             this.lblScoreJ2.TabIndex = 66;
@@ -867,7 +875,7 @@
             // lblScoreEnCoursJ2
             // 
             this.lblScoreEnCoursJ2.AutoSize = true;
-            this.lblScoreEnCoursJ2.Location = new System.Drawing.Point(1513, 274);
+            this.lblScoreEnCoursJ2.Location = new System.Drawing.Point(1513, 277);
             this.lblScoreEnCoursJ2.Name = "lblScoreEnCoursJ2";
             this.lblScoreEnCoursJ2.Size = new System.Drawing.Size(0, 13);
             this.lblScoreEnCoursJ2.TabIndex = 68;
@@ -890,19 +898,12 @@
             this.lblAQui.TabIndex = 70;
             this.lblAQui.Text = "C\'est au tour du joueur :";
             // 
-            // refreshToolStripMenuItem
-            // 
-            this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
-            this.refreshToolStripMenuItem.Text = "Refresh";
-            this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
-            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.ClientSize = new System.Drawing.Size(1635, 947);
+            this.ClientSize = new System.Drawing.Size(1635, 953);
             this.Controls.Add(this.lblAQui);
             this.Controls.Add(this.lblScoreEnCoursJ1);
             this.Controls.Add(this.lblScoreEnCoursJ2);
