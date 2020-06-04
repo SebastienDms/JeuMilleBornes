@@ -786,12 +786,24 @@ namespace JeuMilleBorne
             // Plateau coté Joueur 1
             try
             {
-                pbJECCarte1.BackgroundImage = PaquetsDeCartes.MainJoueur1[0].ImageCarte;
-                pbJECCarte2.BackgroundImage = PaquetsDeCartes.MainJoueur1[1].ImageCarte;
-                pbJECCarte3.BackgroundImage = PaquetsDeCartes.MainJoueur1[2].ImageCarte;
-                pbJECCarte4.BackgroundImage = PaquetsDeCartes.MainJoueur1[3].ImageCarte;
-                pbJECCarte5.BackgroundImage = PaquetsDeCartes.MainJoueur1[4].ImageCarte;
-                pbJECCarte6.BackgroundImage = PaquetsDeCartes.MainJoueur1[5].ImageCarte;
+                if (GestionJoueurs.Tour == 1)
+                {
+                    pbJECCarte1.BackgroundImage = Resource1.dos;
+                    pbJECCarte2.BackgroundImage = Resource1.dos;
+                    pbJECCarte3.BackgroundImage = Resource1.dos;
+                    pbJECCarte4.BackgroundImage = Resource1.dos;
+                    pbJECCarte5.BackgroundImage = Resource1.dos;
+                    pbJECCarte6.BackgroundImage = Resource1.dos;
+                }
+                else
+                {
+                    pbJECCarte1.BackgroundImage = PaquetsDeCartes.MainJoueur1[0].ImageCarte;
+                    pbJECCarte2.BackgroundImage = PaquetsDeCartes.MainJoueur1[1].ImageCarte;
+                    pbJECCarte3.BackgroundImage = PaquetsDeCartes.MainJoueur1[2].ImageCarte;
+                    pbJECCarte4.BackgroundImage = PaquetsDeCartes.MainJoueur1[3].ImageCarte;
+                    pbJECCarte5.BackgroundImage = PaquetsDeCartes.MainJoueur1[4].ImageCarte;
+                    pbJECCarte6.BackgroundImage = PaquetsDeCartes.MainJoueur1[5].ImageCarte;
+                }
             }
             catch (Exception e)
             {
@@ -882,12 +894,25 @@ namespace JeuMilleBorne
             // Affichage plateau coté Joueur2
             try
             {
-                pbJOpCarte1.Image = PaquetsDeCartes.MainJoueur2[0].ImageCarte;
-                pbJOpCarte2.Image = PaquetsDeCartes.MainJoueur2[1].ImageCarte;
-                pbJOpCarte3.Image = PaquetsDeCartes.MainJoueur2[2].ImageCarte;
-                pbJOpCarte4.Image = PaquetsDeCartes.MainJoueur2[3].ImageCarte;
-                pbJOpCarte5.Image = PaquetsDeCartes.MainJoueur2[4].ImageCarte;
-                pbJOpCarte6.Image = PaquetsDeCartes.MainJoueur2[5].ImageCarte;
+                if (GestionJoueurs.Tour == 0)
+                {
+                    pbJOpCarte1.Image = Resource1.dos;
+                    pbJOpCarte2.Image = Resource1.dos;
+                    pbJOpCarte3.Image = Resource1.dos;
+                    pbJOpCarte4.Image = Resource1.dos;
+                    pbJOpCarte5.Image = Resource1.dos;
+                    pbJOpCarte6.Image = Resource1.dos;
+
+                }
+                else
+                {
+                    pbJOpCarte1.Image = PaquetsDeCartes.MainJoueur2[0].ImageCarte;
+                    pbJOpCarte2.Image = PaquetsDeCartes.MainJoueur2[1].ImageCarte;
+                    pbJOpCarte3.Image = PaquetsDeCartes.MainJoueur2[2].ImageCarte;
+                    pbJOpCarte4.Image = PaquetsDeCartes.MainJoueur2[3].ImageCarte;
+                    pbJOpCarte5.Image = PaquetsDeCartes.MainJoueur2[4].ImageCarte;
+                    pbJOpCarte6.Image = PaquetsDeCartes.MainJoueur2[5].ImageCarte;
+                }
             }
             catch (Exception e)
             {
@@ -977,7 +1002,7 @@ namespace JeuMilleBorne
             // Fin affichage plateau Joueur2
         }
         #endregion
-
+        #region Options
         private void sauverPartieToolStripMenuItem_Click(object sender, EventArgs e)
         {
             GestionSauvegarde.Sauver();
@@ -987,5 +1012,15 @@ namespace JeuMilleBorne
         {
             Afficher();
         }
+
+        private void FormPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("Vous êtes sur le point de quitter le jeu.\nSouhaitez-vous sauver la partie?", "Attention",
+                MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+            {
+                GestionSauvegarde.Sauver();
+            }
+        }
+        #endregion
     }
 }

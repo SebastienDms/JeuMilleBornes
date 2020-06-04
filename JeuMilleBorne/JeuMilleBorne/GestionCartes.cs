@@ -388,8 +388,8 @@ namespace JeuMilleBorne
                     }
                     else
                     {
-                        if (PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count - 1].Type == Carte.TypesCartes.Roule.ToString() ||
-                            PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count - 1].Type == Carte.TypesCartes.Defense.ToString())
+                        if (PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count - 1].Type == "Roule" ||
+                            PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count - 1].Type == "Défense")
                         {
                             if (CheckBotteJ1())
                             {
@@ -412,7 +412,7 @@ namespace JeuMilleBorne
                 {
                     if (PaquetsDeCartes.J2Bataille.Count == 0)
                     {
-                        if (PaquetsDeCartes.Ctmp.Type == Carte.TypesCartes.Roule.ToString())
+                        if (PaquetsDeCartes.Ctmp.Type == "Roule")
                         {
                             PileBataille.Add(cTmp);
                             cTmp = new Carte();
@@ -521,8 +521,8 @@ namespace JeuMilleBorne
                     }
                     else
                     {
-                        if (PaquetsDeCartes.J2Bataille[PaquetsDeCartes.J2Bataille.Count - 1].Type == Carte.TypesCartes.Roule.ToString() || 
-                            PaquetsDeCartes.J2Bataille[PaquetsDeCartes.J2Bataille.Count - 1].Type == Carte.TypesCartes.Defense.ToString())
+                        if (PaquetsDeCartes.J2Bataille[PaquetsDeCartes.J2Bataille.Count - 1].Type == "Roule" || 
+                            PaquetsDeCartes.J2Bataille[PaquetsDeCartes.J2Bataille.Count - 1].Type == "Défense")
                         {
                             if (CheckBotteJ2())
                             {

@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace JeuMilleBorne
 {
@@ -29,12 +30,22 @@ namespace JeuMilleBorne
         {
             Joueur1.Points = PaquetsDeCartes.J1Bornes25.Count * 25 + PaquetsDeCartes.J1Bornes50.Count * 50 + PaquetsDeCartes.J1Bornes75.Count * 75 +
                              PaquetsDeCartes.J1Bornes100.Count * 100 + PaquetsDeCartes.J1Bornes200.Count * 200;
+            if (Joueur1.Points == 1000)
+            {
+                MessageBox.Show("Félicitations " + Joueur1.Pseudo + " vous avez gagné la partie!");
+            }
+
             return Joueur1.Points;
         }
         public static int PointsJ2()
         {
             Joueur2.Points = PaquetsDeCartes.J2Bornes25.Count * 25 + PaquetsDeCartes.J2Bornes50.Count * 50 + PaquetsDeCartes.J2Bornes75.Count * 75 +
                              PaquetsDeCartes.J2Bornes100.Count * 100 + PaquetsDeCartes.J2Bornes200.Count * 200;
+            if (Joueur2.Points == 1000)
+            {
+                MessageBox.Show("Félicitations " + Joueur2.Pseudo + " vous avez gagné la partie!");
+            }
+
             return Joueur2.Points;
         }
         public void GetObjectData(SerializationInfo info, StreamingContext context)
