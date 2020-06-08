@@ -134,6 +134,7 @@
             this.Name = "FicAccueil";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FicAccueil";
+            this.Load += new System.EventHandler(this.FicAccueil_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

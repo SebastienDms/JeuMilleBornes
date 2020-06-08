@@ -10,6 +10,9 @@ namespace JeuMilleBorne
 {
     static class GestionCartes
     {
+        #region Donnees
+        public static bool piocher = true;
+        #endregion
         public static void CreerPaquet(List<Carte> paquet)
         {
             int index = 1;
@@ -169,8 +172,25 @@ namespace JeuMilleBorne
         {
             ctmp = paquetmel[0];
             paquetmel.RemoveAt(0);
+            if (ctmp.Type == "Botte")
+                piocher = true;
+            else
+                piocher = false;
+
         }
 
+        public static void JoueurSuivant()
+        {
+            if (GestionJoueurs.Tour == 0)
+            {
+                GestionJoueurs.Tour = 1;
+            }
+            else
+            {
+                GestionJoueurs.Tour = 0;
+            }
+            piocher = true;
+        }
         public static void DefausserCarte(ref Carte cTmp, ref List<Carte> defausse)
         {
             defausse.Add(cTmp);
@@ -771,5 +791,61 @@ namespace JeuMilleBorne
             return placer;
         }
 
+        public static void TricheJ1()
+        {
+            string carte_triche = "";
+            if (PaquetsDeCartes.J1Bataille.Count == 0 && PaquetsDeCartes.J1Bottes.Count == 0)
+            {
+                carte_triche = "Feux vert";
+            }
+            else
+            {
+                if (PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count-1].Nom == "Panne d'essence")
+                {
+                    carte_triche = "Essence";
+                }
+                else
+                {
+                    if (PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count - 1].Nom == "Crevé !")
+                    {
+                        carte_triche = "Roue de secours";
+                    }
+                    else
+                    {
+                        if (PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count - 1].Nom == "Accident...")
+                        {
+                            carte_triche = "Réparations";
+                        }
+                        else
+                        {
+                            if (PaquetsDeCartes.J1Vitesse[PaquetsDeCartes.J1Vitesse.Count - 1].Nom == "Limite de vitesse à 50")
+                            {
+                                carte_triche = "Fin de Limite de vitesse";
+                            }
+                            else
+                            {
+                                if (PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count - 1].Nom == "Feux rouge")
+                                {
+                                    carte_triche = "Feux vert";
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            int i = 0;
+            foreach (Carte c in PaquetsDeCartes.PaquetMelange)
+            {
+                if (c.Nom == carte_triche)
+                {
+                    PaquetsDeCartes.Carte_piochee = c;
+                    break;
+                }
+
+                i++;
+            }
+            PaquetsDeCartes.PaquetMelange.RemoveAt(i);
+        }
     }
 }

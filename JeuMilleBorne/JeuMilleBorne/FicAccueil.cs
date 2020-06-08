@@ -33,5 +33,10 @@ namespace JeuMilleBorne
             GestionSauvegarde.Charger();
             this.Close();
         }
+
+        private void FicAccueil_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

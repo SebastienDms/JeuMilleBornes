@@ -18,6 +18,9 @@ namespace JeuMilleBorne
         }
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
+            if (GestionSauvegarde.Partie_chargee)
+                Afficher();
+
             btnCarteSuivante.Visible = false;
             btnCarteSuivJ1.Visible = false;
             btnCarteSuivJ2.Visible = false;
@@ -54,12 +57,29 @@ namespace JeuMilleBorne
         #region PiocheEtDefausse
         private void pbPioche_Click(object sender, EventArgs e)
         {
+            MouseEventArgs me = (MouseEventArgs)e;
             if (PaquetsDeCartes.PaquetMelange.Count == 0)
             {
                 GestionCartes.MelangerPaquet(PaquetsDeCartes.Defausse, PaquetsDeCartes.PaquetMelange);
                 MessageBox.Show("La défausse a été mélangée.");
             }
-            GestionCartes.Piocher(ref PaquetsDeCartes.PaquetMelange, ref PaquetsDeCartes.Carte_piochee);
+
+            if (GestionCartes.piocher)
+            {
+                if (GestionJoueurs.Tour == 0 && me.Button == MouseButtons.Right)
+                {
+                    GestionCartes.TricheJ1();
+                }
+                else
+                {
+                    GestionCartes.Piocher(ref PaquetsDeCartes.PaquetMelange, ref PaquetsDeCartes.Carte_piochee);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vous ne pouvez pas piocher une seconde fois!", "Attention", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
             Afficher();
         }
         private void pbDefausse_Click(object sender, EventArgs e)
@@ -71,14 +91,15 @@ namespace JeuMilleBorne
             else
             {
                 GestionCartes.DefausserCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.Defausse);
-                if (GestionJoueurs.Tour == 0)
-                {
-                    GestionJoueurs.Tour = 1;
-                }
-                else
-                {
-                    GestionJoueurs.Tour = 0;
-                }
+                //if (GestionJoueurs.Tour == 0)
+                //{
+                //    GestionJoueurs.Tour = 1;
+                //}
+                //else
+                //{
+                //    GestionJoueurs.Tour = 0;
+                //}
+                GestionCartes.JoueurSuivant();
             }
 
             Afficher();
@@ -218,7 +239,8 @@ namespace JeuMilleBorne
                 if (GestionCartes.Check25(PaquetsDeCartes.Ctmp))
                 {
                     GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J1Bornes25);
-                    GestionJoueurs.Tour = 1;
+                    //GestionJoueurs.Tour = 1;
+                    GestionCartes.JoueurSuivant();
                 }
                 else
                 {
@@ -240,7 +262,8 @@ namespace JeuMilleBorne
                 if (GestionCartes.Check50(PaquetsDeCartes.Ctmp))
                 {
                     GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J1Bornes50);
-                    GestionJoueurs.Tour = 1;
+                    //GestionJoueurs.Tour = 1;
+                    GestionCartes.JoueurSuivant();
                 }
                 else
                 {
@@ -262,7 +285,8 @@ namespace JeuMilleBorne
                 if (GestionCartes.Check75(PaquetsDeCartes.Ctmp))
                 {
                     GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J1Bornes75);
-                    GestionJoueurs.Tour = 1;
+                    //GestionJoueurs.Tour = 1;
+                    GestionCartes.JoueurSuivant();
                 }
                 else
                 {
@@ -284,7 +308,8 @@ namespace JeuMilleBorne
                 if (GestionCartes.Check100(PaquetsDeCartes.Ctmp))
                 {
                     GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J1Bornes100);
-                    GestionJoueurs.Tour = 1;
+                    //GestionJoueurs.Tour = 1;
+                    GestionCartes.JoueurSuivant();
                 }
                 else
                 {
@@ -306,7 +331,8 @@ namespace JeuMilleBorne
                 if (GestionCartes.Check200(PaquetsDeCartes.Ctmp))
                 {
                     GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J1Bornes200);
-                    GestionJoueurs.Tour = 1;
+                    //GestionJoueurs.Tour = 1;
+                    GestionCartes.JoueurSuivant();
                 }
                 else
                 {
@@ -328,6 +354,7 @@ namespace JeuMilleBorne
             if (GestionCartes.CheckPlacerBotte(PaquetsDeCartes.Ctmp))
             {
                 GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J1Bottes);
+                GestionCartes.piocher = true;
             }
             else
             {
@@ -341,6 +368,7 @@ namespace JeuMilleBorne
             if (GestionCartes.CheckPlacerBotte(PaquetsDeCartes.Ctmp))
             {
                 GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J1Bottes);
+                GestionCartes.piocher = true;
             }
             else
             {
@@ -355,6 +383,7 @@ namespace JeuMilleBorne
             if (GestionCartes.CheckPlacerBotte(PaquetsDeCartes.Ctmp))
             {
                 GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J1Bottes);
+                GestionCartes.piocher = true;
             }
             else
             {
@@ -368,6 +397,7 @@ namespace JeuMilleBorne
             if (GestionCartes.CheckPlacerBotte(PaquetsDeCartes.Ctmp))
             {
                 GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J1Bottes);
+                GestionCartes.piocher = true;
             }
             else
             {
@@ -382,12 +412,14 @@ namespace JeuMilleBorne
             if (GestionJoueurs.Tour == 0)
             {
                 GestionCartes.LimVitesse(PaquetsDeCartes.Ctmp, PaquetsDeCartes.J1Vitesse, "J1");
-                GestionJoueurs.Tour = 1;
+                //GestionJoueurs.Tour = 1;
+                GestionCartes.JoueurSuivant();
             }
             else
             {
                 GestionCartes.LimVitesse(PaquetsDeCartes.Ctmp, PaquetsDeCartes.J1Vitesse, "J1");
-                GestionJoueurs.Tour = 0;
+                //GestionJoueurs.Tour = 0;
+                GestionCartes.JoueurSuivant();
             }
             Afficher();
         }
@@ -395,14 +427,15 @@ namespace JeuMilleBorne
         {
             if (GestionCartes.Bataille(PaquetsDeCartes.Ctmp, PaquetsDeCartes.J1Bataille, "J1"))
             {
-                if (GestionJoueurs.Tour == 0)
-                {
-                    GestionJoueurs.Tour = 1;
-                }
-                else
-                {
-                    GestionJoueurs.Tour = 0;
-                }
+                //if (GestionJoueurs.Tour == 0)
+                //{
+                //    GestionJoueurs.Tour = 1;
+                //}
+                //else
+                //{
+                //    GestionJoueurs.Tour = 0;
+                //}
+                GestionCartes.JoueurSuivant();
             }
             else
             {
@@ -560,7 +593,8 @@ namespace JeuMilleBorne
                 if (GestionCartes.Check25(PaquetsDeCartes.Ctmp))
                 {
                     GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bornes25);
-                    GestionJoueurs.Tour = 0;
+                    //GestionJoueurs.Tour = 0;
+                    GestionCartes.JoueurSuivant();
                 }
                 else
                 {
@@ -582,7 +616,8 @@ namespace JeuMilleBorne
                 if (GestionCartes.Check50(PaquetsDeCartes.Ctmp))
                 {
                     GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bornes50);
-                    GestionJoueurs.Tour = 0;
+                    //GestionJoueurs.Tour = 0;
+                    GestionCartes.JoueurSuivant();
                 }
                 else
                 {
@@ -604,7 +639,9 @@ namespace JeuMilleBorne
                 if (GestionCartes.Check75(PaquetsDeCartes.Ctmp))
                 {
                     GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bornes75);
-                    GestionJoueurs.Tour = 0;
+                    //GestionJoueurs.Tour = 0;
+                    GestionCartes.JoueurSuivant();
+
                 }
                 else
                 {
@@ -626,7 +663,8 @@ namespace JeuMilleBorne
                 if (GestionCartes.Check100(PaquetsDeCartes.Ctmp))
                 {
                     GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bornes100);
-                    GestionJoueurs.Tour = 0;
+                    //GestionJoueurs.Tour = 0;
+                    GestionCartes.JoueurSuivant();
                 }
                 else
                 {
@@ -648,7 +686,8 @@ namespace JeuMilleBorne
                 if (GestionCartes.Check200(PaquetsDeCartes.Ctmp))
                 {
                     GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bornes200);
-                    GestionJoueurs.Tour = 0;
+                    //GestionJoueurs.Tour = 0;
+                    GestionCartes.JoueurSuivant();
                 }
                 else
                 {
@@ -668,7 +707,7 @@ namespace JeuMilleBorne
             if (GestionCartes.CheckPlacerBotte(PaquetsDeCartes.Ctmp))
             {
                 GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bottes);
-
+                GestionCartes.piocher = true;
             }
             else
             {
@@ -681,7 +720,7 @@ namespace JeuMilleBorne
             if (GestionCartes.CheckPlacerBotte(PaquetsDeCartes.Ctmp))
             {
                 GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bottes);
-
+                GestionCartes.piocher = true;
             }
             else
             {
@@ -694,7 +733,7 @@ namespace JeuMilleBorne
             if (GestionCartes.CheckPlacerBotte(PaquetsDeCartes.Ctmp))
             {
                 GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bottes);
-
+                GestionCartes.piocher = true;
             }
             else
             {
@@ -707,7 +746,7 @@ namespace JeuMilleBorne
             if (GestionCartes.CheckPlacerBotte(PaquetsDeCartes.Ctmp))
             {
                 GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J2Bottes);
-
+                GestionCartes.piocher = true;
             }
             else
             {
@@ -720,12 +759,14 @@ namespace JeuMilleBorne
             if (GestionJoueurs.Tour == 0)
             {
                 GestionCartes.LimVitesse(PaquetsDeCartes.Ctmp, PaquetsDeCartes.J2Vitesse, "J2");
-                GestionJoueurs.Tour = 1;
+                //GestionJoueurs.Tour = 1;
+                GestionCartes.JoueurSuivant();
             }
             else
             {
                 GestionCartes.LimVitesse(PaquetsDeCartes.Ctmp, PaquetsDeCartes.J2Vitesse, "J2");
-                GestionJoueurs.Tour = 0;
+                //GestionJoueurs.Tour = 0;
+                GestionCartes.JoueurSuivant();
             }
             Afficher();
         }
@@ -733,14 +774,15 @@ namespace JeuMilleBorne
         {
             if (GestionCartes.Bataille(PaquetsDeCartes.Ctmp, PaquetsDeCartes.J2Bataille, "J2"))
             {
-                if (GestionJoueurs.Tour == 0)
-                {
-                    GestionJoueurs.Tour = 1;
-                }
-                else
-                {
-                    GestionJoueurs.Tour = 0;
-                }
+                //if (GestionJoueurs.Tour == 0)
+                //{
+                //    GestionJoueurs.Tour = 1;
+                //}
+                //else
+                //{
+                //    GestionJoueurs.Tour = 0;
+                //}
+                GestionCartes.JoueurSuivant();
             }
             else
             {

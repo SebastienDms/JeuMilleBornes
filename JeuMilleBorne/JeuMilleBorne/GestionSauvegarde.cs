@@ -11,6 +11,9 @@ namespace JeuMilleBorne
 {
     static class GestionSauvegarde
     {
+        #region Donnees
+        public static bool Partie_chargee = false;
+        #endregion
         public static void Sauver()
         {
             try
@@ -28,6 +31,7 @@ namespace JeuMilleBorne
         {
             GestionJoueurs.ChargerJoueur();
             PaquetsDeCartes.ChargerPaquets();
+            Partie_chargee = true;
         }
 
         #region Divers
