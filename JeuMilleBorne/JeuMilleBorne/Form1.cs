@@ -52,6 +52,7 @@ namespace JeuMilleBorne
             if (GestionJoueurs.Tour == 1)
                 MessageBox.Show("C'est au joueur 2 de commencer la partie");
             Afficher();
+            EnvoieReseau();
         }
         #endregion
         #region PiocheEtDefausse
@@ -1063,6 +1064,28 @@ namespace JeuMilleBorne
                 GestionSauvegarde.Sauver();
             }
         }
+        #endregion
+
+        #region Réseau
+
+        private void EnvoieReseau()
+        {
+            var dataJ = GestionJoueurs.envoiePourReseau();
+            var separator = Encoding.Unicode.GetBytes("|");
+            var dataC = PaquetsDeCartes.EnvoiePourReseau();
+
+            //GestionConnexion._Buffer = dataJ;
+            Array.Copy(dataJ, GestionConnexion._Buffer,dataJ.Length);
+            Array.Copy(separator, 0, GestionConnexion._Buffer, GestionConnexion._Buffer.Length, dataJ.Length);
+            Array.Copy(dataC, 0, GestionConnexion._Buffer, GestionConnexion._Buffer.Length, dataC.Length);
+            //Array.
+
+            //GestionConnexion._Buffer = dataJ;
+
+            MessageBox.Show("Taille infos joueurs: " + dataJ.Length.ToString() + " ou " + dataJ.LongLength.ToString() +
+                            ". Taille infos cartes: " + dataC.Length.ToString() + " ou " + dataC.LongLength.ToString());
+        }
+
         #endregion
     }
 }

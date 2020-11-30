@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Sockets;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
@@ -15,6 +16,7 @@ namespace JeuMilleBorne
     {
         public static Joueur Joueur1 = new Joueur();
         public static Joueur Joueur2 = new Joueur();
+        private static byte[] DataBytes = new byte[1024];
         private static Random alea = new Random();
         private static int tour;
 
@@ -80,5 +82,34 @@ namespace JeuMilleBorne
             Joueur2 = (Joueur)formatter.Deserialize(FicSauvegarde);
             tour = (int)formatter.Deserialize(FicSauvegarde);
         }
+        /** Serialize les données afin de les envoyées sur le réseau **/
+        public static byte[] envoiePourReseau()
+        {
+            var streamDatas = new MemoryStream();
+
+            IFormatter formatter = new BinaryFormatter();
+            formatter.Serialize(streamDatas, Joueur1);
+            formatter.Serialize(streamDatas, Joueur2);
+            formatter.Serialize(streamDatas, Tour);
+
+            DataBytes = streamDatas.ToArray();
+
+            //GestionConnexion._Client.Send(DataBytes);
+            return DataBytes;
+        }
+
+        public static void receptionDuReseau()
+        {
+            var streamDatas = new MemoryStream();
+            IFormatter formatter = new BinaryFormatter();
+
+            streamDatas.Write(DataBytes, 0, DataBytes.Length);
+            streamDatas.Seek(0, SeekOrigin.Begin);
+
+            Joueur1 = (Joueur)formatter.Deserialize(streamDatas);
+            Joueur2 = (Joueur)formatter.Deserialize(streamDatas);
+            tour = (int)formatter.Deserialize(streamDatas);
+        }
+        /***************************************************************/
     }
 }

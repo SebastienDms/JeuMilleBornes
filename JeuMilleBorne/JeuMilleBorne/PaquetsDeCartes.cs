@@ -15,6 +15,7 @@ namespace JeuMilleBorne
     [Serializable]
     class PaquetsDeCartes
     {
+        private static byte[] DataBytes = new byte[1024];
         #region Paquets
         public static List<Carte> PaquetJeu = new List<Carte>();
         public static List<Carte> PaquetMelange = new List<Carte>();
@@ -102,5 +103,74 @@ namespace JeuMilleBorne
             J2Bornes100 = (List<Carte>)formatter.Deserialize(FicSauvegarde);
             J2Bornes200 = (List<Carte>)formatter.Deserialize(FicSauvegarde);
         }
+        /** Serialize les données afin de les envoyées sur le réseau **/
+        public static byte[] EnvoiePourReseau()
+        {
+            var streamDatas = new MemoryStream();
+
+            IFormatter formatter = new BinaryFormatter();
+            formatter.Serialize(streamDatas, PaquetJeu);
+            formatter.Serialize(streamDatas, PaquetMelange);
+            formatter.Serialize(streamDatas, Defausse);
+            formatter.Serialize(streamDatas, Carte_piochee);
+            formatter.Serialize(streamDatas, Ctmp);
+            formatter.Serialize(streamDatas, MainJoueur1);
+            formatter.Serialize(streamDatas, J1Bottes);
+            formatter.Serialize(streamDatas, J1Vitesse);
+            formatter.Serialize(streamDatas, J1Bataille);
+            formatter.Serialize(streamDatas, J1Bornes25);
+            formatter.Serialize(streamDatas, J1Bornes50);
+            formatter.Serialize(streamDatas, J1Bornes75);
+            formatter.Serialize(streamDatas, J1Bornes100);
+            formatter.Serialize(streamDatas, J1Bornes200);
+            formatter.Serialize(streamDatas, MainJoueur2);
+            formatter.Serialize(streamDatas, J2Bottes);
+            formatter.Serialize(streamDatas, J2Vitesse);
+            formatter.Serialize(streamDatas, J2Bataille);
+            formatter.Serialize(streamDatas, J2Bornes25);
+            formatter.Serialize(streamDatas, J2Bornes50);
+            formatter.Serialize(streamDatas, J2Bornes75);
+            formatter.Serialize(streamDatas, J2Bornes100);
+            formatter.Serialize(streamDatas, J2Bornes200);
+
+            DataBytes = streamDatas.ToArray();
+
+            //GestionConnexion._Client.Send(DataBytes);
+            return DataBytes;
+        }
+
+        public static void ReceptionDuReseau()
+        {
+            var streamDatas = new MemoryStream();
+            IFormatter formatter = new BinaryFormatter();
+
+            streamDatas.Write(DataBytes, 0, DataBytes.Length);
+            streamDatas.Seek(0, SeekOrigin.Begin);
+
+            PaquetJeu = (List<Carte>)formatter.Deserialize(streamDatas);
+            PaquetMelange = (List<Carte>)formatter.Deserialize(streamDatas);
+            Defausse = (List<Carte>)formatter.Deserialize(streamDatas);
+            Carte_piochee = (Carte)formatter.Deserialize(streamDatas);
+            Ctmp = (Carte)formatter.Deserialize(streamDatas);
+            MainJoueur1 = (List<Carte>)formatter.Deserialize(streamDatas);
+            J1Bottes = (List<Carte>)formatter.Deserialize(streamDatas);
+            J1Vitesse = (List<Carte>)formatter.Deserialize(streamDatas);
+            J1Bataille = (List<Carte>)formatter.Deserialize(streamDatas);
+            J1Bornes25 = (List<Carte>)formatter.Deserialize(streamDatas);
+            J1Bornes50 = (List<Carte>)formatter.Deserialize(streamDatas);
+            J1Bornes75 = (List<Carte>)formatter.Deserialize(streamDatas);
+            J1Bornes100 = (List<Carte>)formatter.Deserialize(streamDatas);
+            J1Bornes200 = (List<Carte>)formatter.Deserialize(streamDatas);
+            MainJoueur2 = (List<Carte>)formatter.Deserialize(streamDatas);
+            J2Bottes = (List<Carte>)formatter.Deserialize(streamDatas);
+            J2Vitesse = (List<Carte>)formatter.Deserialize(streamDatas);
+            J2Bataille = (List<Carte>)formatter.Deserialize(streamDatas);
+            J2Bornes25 = (List<Carte>)formatter.Deserialize(streamDatas);
+            J2Bornes50 = (List<Carte>)formatter.Deserialize(streamDatas);
+            J2Bornes75 = (List<Carte>)formatter.Deserialize(streamDatas);
+            J2Bornes100 = (List<Carte>)formatter.Deserialize(streamDatas);
+            J2Bornes200 = (List<Carte>)formatter.Deserialize(streamDatas);
+        }
+        /*****************************************************************/
     }
 }

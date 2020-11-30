@@ -60,6 +60,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="GestionCartes.cs" />
+    <Compile Include="GestionConnexion.cs" />
     <Compile Include="GestionJoueurs.cs" />
     <Compile Include="GestionSauvegarde.cs" />
     <Compile Include="GestionSurfaceJeu.cs" />
