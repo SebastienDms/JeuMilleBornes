@@ -12,6 +12,7 @@ namespace JeuMilleBorne
     {
         #region Donnees
         public static bool piocher = true;
+        public static bool FlagNetwork { get; set; } = false;
         #endregion
         public static void CreerPaquet(List<Carte> paquet)
         {

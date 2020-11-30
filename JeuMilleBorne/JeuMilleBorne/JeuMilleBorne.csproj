@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Carte.cs" />
+    <Compile Include="DataNetwork.cs" />
     <Compile Include="FicAccueil.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +74,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource1.resx</DependentUpon>
     </Compile>
+    <Compile Include="SerializeDataNetwork.cs" />
     <Compile Include="SurfaceJeu.cs" />
     <EmbeddedResource Include="FicAccueil.resx">
       <DependentUpon>FicAccueil.cs</DependentUpon>

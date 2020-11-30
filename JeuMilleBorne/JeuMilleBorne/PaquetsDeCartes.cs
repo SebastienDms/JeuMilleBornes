@@ -5,7 +5,6 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
 
@@ -13,9 +12,8 @@ using System.Xml.Serialization;
 namespace JeuMilleBorne
 {
     [Serializable]
-    class PaquetsDeCartes
+    public class PaquetsDeCartes
     {
-        private static byte[] DataBytes = new byte[1024];
         #region Paquets
         public static List<Carte> PaquetJeu = new List<Carte>();
         public static List<Carte> PaquetMelange = new List<Carte>();
@@ -103,7 +101,7 @@ namespace JeuMilleBorne
             J2Bornes100 = (List<Carte>)formatter.Deserialize(FicSauvegarde);
             J2Bornes200 = (List<Carte>)formatter.Deserialize(FicSauvegarde);
         }
-        /** Serialize les données afin de les envoyées sur le réseau **/
+        /** Serialize les données afin de les envoyées sur le réseau 
         public static byte[] EnvoiePourReseau()
         {
             var streamDatas = new MemoryStream();
@@ -133,7 +131,6 @@ namespace JeuMilleBorne
             formatter.Serialize(streamDatas, J2Bornes100);
             formatter.Serialize(streamDatas, J2Bornes200);
 
-            DataBytes = streamDatas.ToArray();
 
             //GestionConnexion._Client.Send(DataBytes);
             return DataBytes;

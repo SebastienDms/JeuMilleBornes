@@ -49,7 +49,7 @@ namespace JeuMilleBorne
 
         public Carte()
         {
-            Nom = "";
+            Nom = "a";
         }
         public Carte(string nom, string type, Image imagecarte)
         {

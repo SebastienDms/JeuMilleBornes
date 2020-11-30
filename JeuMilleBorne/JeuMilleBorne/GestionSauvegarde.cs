@@ -22,7 +22,7 @@ namespace JeuMilleBorne
                 PaquetsDeCartes.SauverPaquets();
                 MessageBox.Show("Partie sauvegardée!");
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 MessageBox.Show("Problème lors de la sauvegarde");
             }

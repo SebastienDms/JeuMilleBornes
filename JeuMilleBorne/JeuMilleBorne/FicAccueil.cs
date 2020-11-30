@@ -15,6 +15,7 @@ namespace JeuMilleBorne
     public partial class FicAccueil : Form
     {
         private int tentatives = 0;
+        private GestionConnexion connexion = new GestionConnexion();
 
         public FicAccueil()
         {
@@ -98,21 +99,23 @@ namespace JeuMilleBorne
         }
         #endregion
 
-        private void btnCreerServer_Click(object sender, EventArgs e)
+        private async void btnCreerServer_Click(object sender, EventArgs e)
         {
-            GestionConnexion.SocketEcouter();
+            SerializeDataNetwork.GetFieldValues(new PaquetsDeCartes());
+
+            await connexion.Server();
             gbJoueurClient.Enabled = false;
             gbJouer.Enabled = true;
             btnSuivantLanGame.Enabled = false;
         }
 
-        private void btnCreerClient_Click(object sender, EventArgs e)
+        private async void btnCreerClient_Click(object sender, EventArgs e)
         {
             try
             {
-                GestionConnexion.Connecter(cbServers.SelectedItem.ToString());
+                await connexion.Client(cbServers.SelectedItem.ToString());
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 MessageBox.Show("Veuillez choisir un serveur dans la liste!", "Attention", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -122,24 +125,26 @@ namespace JeuMilleBorne
             btnSuivantLanGame.Enabled = false;
         }
 
-        private void btnSuivantLanGame_Click(object sender, EventArgs e)
+        private async void btnSuivantLanGame_Click(object sender, EventArgs e)
         {
             GestionJoueurs.Joueur1.Pseudo = tb1.Text;
             GestionJoueurs.Joueur1.Num_joueur = 0;
             GestionJoueurs.Joueur1.Points = 0;
-            GestionJoueurs.Joueur2.Pseudo = Encoding.Unicode.GetString(GestionConnexion._DatasBytes);
+            //GestionJoueurs.Joueur2.Pseudo = Encoding.Unicode.GetString(GestionConnexion._DatasBytes);
             GestionJoueurs.Joueur2.Num_joueur = 1;
             GestionJoueurs.Joueur2.Points = 0;
-
+            GestionCartes.FlagNetwork = true;
+            PaquetsDeCartes paquetsDeCartes = new PaquetsDeCartes();
+            await connexion.SendData(paquetsDeCartes);
             this.Close();
         }
 
-        private void btnEnvoyerPseudo_Click(object sender, EventArgs e)
+        private async void btnEnvoyerPseudo_Click(object sender, EventArgs e)
         {
             if (tb1.Text != string.Empty)
             {
-                GestionConnexion._Client.Send(Encoding.Unicode.GetBytes(tb1.Text));
-                btnSuivantLanGame.Enabled = true;
+                await connexion.SendData(tb1.Text);
+                //btnSuivantLanGame.Enabled = true;
             }
             else
             {

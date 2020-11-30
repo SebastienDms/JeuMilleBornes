@@ -51,8 +51,9 @@ namespace JeuMilleBorne
                 MessageBox.Show("C'est au joueur 1 de commencer la partie");
             if (GestionJoueurs.Tour == 1)
                 MessageBox.Show("C'est au joueur 2 de commencer la partie");
+
             Afficher();
-            EnvoieReseau();
+
         }
         #endregion
         #region PiocheEtDefausse
@@ -848,7 +849,7 @@ namespace JeuMilleBorne
                     pbJECCarte6.BackgroundImage = PaquetsDeCartes.MainJoueur1[5].ImageCarte;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 MessageBox.Show("Vous devez d'abord piocher une carte!", "Attention", MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
@@ -957,7 +958,7 @@ namespace JeuMilleBorne
                     pbJOpCarte6.Image = PaquetsDeCartes.MainJoueur2[5].ImageCarte;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 MessageBox.Show("Vous devez d'abord piocher une carte!", "Attention", MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
@@ -1068,23 +1069,25 @@ namespace JeuMilleBorne
 
         #region Réseau
 
-        private void EnvoieReseau()
-        {
-            var dataJ = GestionJoueurs.envoiePourReseau();
-            var separator = Encoding.Unicode.GetBytes("|");
-            var dataC = PaquetsDeCartes.EnvoiePourReseau();
+        //private void EnvoieReseau()
+        //{
+        //    //byte[] bufferBytes=byte.TryParse("");
+        //    var dataJ = GestionJoueurs.envoiePourReseau();
+        //    var separator = Encoding.Unicode.GetBytes("|");
+        //    //var dataC = PaquetsDeCartes.EnvoiePourReseau();
 
-            //GestionConnexion._Buffer = dataJ;
-            Array.Copy(dataJ, GestionConnexion._Buffer,dataJ.Length);
-            Array.Copy(separator, 0, GestionConnexion._Buffer, GestionConnexion._Buffer.Length, dataJ.Length);
-            Array.Copy(dataC, 0, GestionConnexion._Buffer, GestionConnexion._Buffer.Length, dataC.Length);
-            //Array.
+        //    //GestionConnexion._Buffer = dataJ;
+        //    Array.Copy(dataJ, GestionConnexion._Buffer, dataJ.Length);
+        //    Array.Copy(separator, 0, GestionConnexion._Buffer, GestionConnexion._Buffer.Length, dataJ.Length);
+        //    //Array.Copy(dataC, 0, GestionConnexion._Buffer, GestionConnexion._Buffer.Length, dataC.Length);
+        //    //Array.
 
-            //GestionConnexion._Buffer = dataJ;
+        //    //GestionConnexion._Buffer = dataJ;
 
-            MessageBox.Show("Taille infos joueurs: " + dataJ.Length.ToString() + " ou " + dataJ.LongLength.ToString() +
-                            ". Taille infos cartes: " + dataC.Length.ToString() + " ou " + dataC.LongLength.ToString());
-        }
+        //    MessageBox.Show("Taille infos joueurs: " + dataJ.Length.ToString() + " ou " + dataJ.LongLength.ToString() +
+        //                    ". Taille infos cartes: " + dataC.Length.ToString() + " ou " + dataC.LongLength.ToString());
+        //    //GestionConnexion.SendData();
+        //}
 
         #endregion
     }
