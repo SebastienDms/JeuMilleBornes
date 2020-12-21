@@ -41,7 +41,7 @@ namespace JeuMilleBorne
         {
             GestionCartes.MelangerPaquet(PaquetsDeCartes.PaquetJeu, PaquetsDeCartes.PaquetMelange);
         }
-        private void msDistribuerCartes_Click(object sender, EventArgs e)
+        private async void msDistribuerCartes_Click(object sender, EventArgs e)
         {
             GestionCartes.DistribuerCartes(PaquetsDeCartes.PaquetMelange, PaquetsDeCartes.MainJoueur1, PaquetsDeCartes.MainJoueur2);
             lblPaqMel.Text = PaquetsDeCartes.PaquetMelange.Count.ToString();
@@ -54,6 +54,11 @@ namespace JeuMilleBorne
                 MessageBox.Show("C'est au joueur 2 de commencer la partie");
 
             Afficher();
+            /* Envoie des données de jeux complètes */
+            
+            GestionDonneesJeux.GestionJoueurs = new GestionJoueurs();
+            GestionDonneesJeux.PaquetsDeCartes = new PaquetsDeCartes();
+            await connexion.SendData(new GestionDonneesJeux());
 
         }
         #endregion

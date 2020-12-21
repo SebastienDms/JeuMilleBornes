@@ -101,10 +101,18 @@ namespace JeuMilleBorne
 
         private async void btnCreerServer_Click(object sender, EventArgs e)
         {
-            SerializeDataNetwork.GetFieldValues(new PaquetsDeCartes());
+            //SerializeDataNetwork.GetFieldValues(new PaquetsDeCartes());
 
             await connexion.Server();
             gbJoueurClient.Enabled = false;
+            /* Attente de données provenant du client */
+            var test = await connexion.ReceiveData();
+            
+            if (true)
+            {
+                MessageBox.Show("Bien reçu!");
+            }
+
             //gbJouer.Enabled = true;
             //btnSuivantLanGame.Enabled = false;
         }
@@ -121,24 +129,13 @@ namespace JeuMilleBorne
                     MessageBoxIcon.Error);
             }
             gbJoueurClient.Enabled = false;
-            //gbJouer.Enabled = true;
-            //btnSuivantLanGame.Enabled = false;
         }
 
         private async void btnSuivantLanGame_Click(object sender, EventArgs e)
         {
+            GestionJoueurs.Joueur2.Pseudo = GestionJoueurs.Joueur1.Pseudo;
             GestionJoueurs.Joueur1.Pseudo = tb1.Text;
-            GestionJoueurs.Joueur1.Num_joueur = 0;
-            GestionJoueurs.Joueur1.Points = 0;
-            GestionJoueurs.Joueur2.Pseudo = "testJ2";
-            GestionJoueurs.Joueur2.Num_joueur = 1;
-            GestionJoueurs.Joueur2.Points = 0;
-            GestionCartes.FlagNetwork = true;
-            PaquetsDeCartes paquetsDeCartes = new PaquetsDeCartes();
-            GestionCartes.CreerPaquet(PaquetsDeCartes.PaquetJeu);
-            GestionDonneesJeux.GestionJoueurs = new GestionJoueurs();
-            GestionDonneesJeux.PaquetsDeCartes = paquetsDeCartes;
-            await connexion.SendData(GestionDonneesJeux.PaquetsDeCartes);
+
             this.Close();
         }
 
@@ -146,7 +143,18 @@ namespace JeuMilleBorne
         {
             if (tb1.Text != string.Empty)
             {
-                await connexion.SendData(tb1.Text);
+                GestionJoueurs.Joueur1.Pseudo = tb1.Text;
+                GestionJoueurs.Joueur1.Num_joueur = 0;
+                GestionJoueurs.Joueur1.Points = 0;
+                /*pseudo J2 en attente*/
+                GestionJoueurs.Joueur2.Num_joueur = 1;
+                GestionJoueurs.Joueur2.Points = 0;
+                GestionCartes.FlagNetwork = true;
+
+                GestionDonneesJeux.GestionJoueurs = new GestionJoueurs();
+                GestionDonneesJeux.PaquetsDeCartes = new PaquetsDeCartes();
+                var datasgame = new GestionDonneesJeux();
+                await connexion.SendData(datasgame);
                 //btnSuivantLanGame.Enabled = true;
             }
             else

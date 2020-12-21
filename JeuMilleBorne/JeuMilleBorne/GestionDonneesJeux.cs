@@ -14,7 +14,10 @@ namespace JeuMilleBorne
         {
             MSReceive.Seek(0, SeekOrigin.Begin);
 
-            PaquetsDeCartes.ReceptionDuReseau(MSReceive);
+            var pos = PaquetsDeCartes.ReceptionDuReseau(MSReceive);
+            
+            MSReceive.Seek(pos, SeekOrigin.Begin);
+
             GestionJoueurs.receptionDuReseau(MSReceive);
             
             return true;

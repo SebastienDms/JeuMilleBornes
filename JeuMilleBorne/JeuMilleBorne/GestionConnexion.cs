@@ -267,15 +267,18 @@ namespace JeuMilleBorne
                     // 1
                     long longueurTotale = 0; // longueur totale de tous les tableaux
                     List<object[]> tableauxListe = new List<object[]>();
-                    
+
+                    //var types = sendObject.GetType();
+                    //var fields2 = sendObject.GetType().GetFields();
+
                     // récupère les champs public & static du niveau 1
                     var fields = sendObject.GetType()
-                        .GetFields(BindingFlags.Public | BindingFlags.Static);
+                        .GetProperties(BindingFlags.Public | BindingFlags.Static);
 
                     // liste les attributs de chaque champ de niveau 2
                     foreach (var field in fields)
                     {
-                        var temp = SerializeDataNetwork.GetFieldValues(field);
+                        var temp = SerializeDataNetwork.GetFieldValues((dynamic)field.GetValue(null));
                         longueurTotale += temp.Length;
                         tableauxListe.Add(temp);
                     }
@@ -290,9 +293,7 @@ namespace JeuMilleBorne
                     }
 
                     // envoie sur le réseau le big tableau
-                    byte[] dataBytes = SerializeDataNetwork.SendData(
-                        tableauTotal
-                    );
+                    byte[] dataBytes = SerializeDataNetwork.SendData(tableauTotal);
 
                     binaryWriter.Write(dataBytes);
                 });

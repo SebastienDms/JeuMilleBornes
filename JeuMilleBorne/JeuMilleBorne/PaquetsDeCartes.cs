@@ -102,7 +102,7 @@ namespace JeuMilleBorne
             J2Bornes200 = (List<Carte>)formatter.Deserialize(FicSauvegarde);
         }
 
-        public static bool ReceptionDuReseau(MemoryStream MSReceive)
+        public static long ReceptionDuReseau(MemoryStream MSReceive)
         {
             //var streamDatas = new MemoryStream();
             IFormatter formatter = new BinaryFormatter();
@@ -133,8 +133,7 @@ namespace JeuMilleBorne
             J2Bornes75 = (List<Carte>)formatter.Deserialize(MSReceive);
             J2Bornes100 = (List<Carte>)formatter.Deserialize(MSReceive);
             J2Bornes200 = (List<Carte>)formatter.Deserialize(MSReceive);
-            
-            return true;
+            return MSReceive.Position;
         }
     }
 }
