@@ -130,13 +130,15 @@ namespace JeuMilleBorne
             GestionJoueurs.Joueur1.Pseudo = tb1.Text;
             GestionJoueurs.Joueur1.Num_joueur = 0;
             GestionJoueurs.Joueur1.Points = 0;
-            //GestionJoueurs.Joueur2.Pseudo = Encoding.Unicode.GetString(GestionConnexion._DatasBytes);
+            GestionJoueurs.Joueur2.Pseudo = "testJ2";
             GestionJoueurs.Joueur2.Num_joueur = 1;
             GestionJoueurs.Joueur2.Points = 0;
             GestionCartes.FlagNetwork = true;
             PaquetsDeCartes paquetsDeCartes = new PaquetsDeCartes();
             GestionCartes.CreerPaquet(PaquetsDeCartes.PaquetJeu);
-            await connexion.SendData(paquetsDeCartes);
+            GestionDonneesJeux.GestionJoueurs = new GestionJoueurs();
+            GestionDonneesJeux.PaquetsDeCartes = paquetsDeCartes;
+            await connexion.SendData(GestionDonneesJeux.PaquetsDeCartes);
             this.Close();
         }
 

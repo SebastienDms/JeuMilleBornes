@@ -257,6 +257,8 @@ namespace JeuMilleBorne
                 {
                     BinaryWriter binaryWriter = new BinaryWriter(fluxNetworkStream);
 
+                    var list = SerializeDataNetwork.GetFieldValues(sendObject.)
+                    
                     byte[] dataBytes = SerializeDataNetwork.SendData(SerializeDataNetwork.GetFieldValues(sendObject));
 
                     binaryWriter.Write(dataBytes);
@@ -276,7 +278,7 @@ namespace JeuMilleBorne
             {
                 await Task.Run(() =>
                 {
-                    var data = SerializeDataNetwork.ReceiveData<PaquetsDeCartes>(fluxNetworkStream);
+                    var data = SerializeDataNetwork.ReceiveData<GestionDonneesJeux>(fluxNetworkStream);
 
                 });
                 

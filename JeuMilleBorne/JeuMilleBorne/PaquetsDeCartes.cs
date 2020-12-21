@@ -107,8 +107,8 @@ namespace JeuMilleBorne
             //var streamDatas = new MemoryStream();
             IFormatter formatter = new BinaryFormatter();
 
-            MSReceive.Write(MSReceive.ToArray(), 0, MSReceive.ToArray().Length);
-            MSReceive.Seek(0, SeekOrigin.Begin);
+            //MSReceive.Write(MSReceive.ToArray(), 0, MSReceive.ToArray().Length);
+            //MSReceive.Seek(0, SeekOrigin.Begin);
 
             PaquetJeu = (List<Carte>)formatter.Deserialize(MSReceive);
             PaquetMelange = (List<Carte>)formatter.Deserialize(MSReceive);
