@@ -66,7 +66,7 @@ namespace JeuMilleBorne
             /*stream.Write(arrBytes, 0, arrBytes.Length);*/
             stream.Seek(0, SeekOrigin.Begin);
             //var obj = binForm.Deserialize(stream);
-            var obj = PaquetsDeCartes.ReceptionDuReseau(stream);
+            var obj = GestionDonneesJeux.ReceptionDuReseauGeneral(stream);
 
             return obj;
 

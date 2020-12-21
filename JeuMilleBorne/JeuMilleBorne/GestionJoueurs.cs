@@ -17,7 +17,6 @@ namespace JeuMilleBorne
         #region Joueurs
         public static Joueur Joueur1 = new Joueur();
         public static Joueur Joueur2 = new Joueur();
-        private static byte[] DataBytes = new byte[1024];
         private static Random alea = new Random();
         private static int tour;
         #endregion
@@ -84,34 +83,17 @@ namespace JeuMilleBorne
             Joueur2 = (Joueur)formatter.Deserialize(FicSauvegarde);
             tour = (int)formatter.Deserialize(FicSauvegarde);
         }
-        /** Serialize les données afin de les envoyées sur le réseau **/
-        public static byte[] envoiePourReseau()
+
+        public static void receptionDuReseau(MemoryStream memoryStream)
         {
-            var streamDatas = new MemoryStream();
-
-            IFormatter formatter = new BinaryFormatter();
-            formatter.Serialize(streamDatas, Joueur1);
-            formatter.Serialize(streamDatas, Joueur2);
-            formatter.Serialize(streamDatas, Tour);
-
-            DataBytes = streamDatas.ToArray();
-
-            //GestionConnexion._Client.Send(DataBytes);
-            return DataBytes;
-        }
-
-        public static void receptionDuReseau()
-        {
-            var streamDatas = new MemoryStream();
             IFormatter formatter = new BinaryFormatter();
 
-            streamDatas.Write(DataBytes, 0, DataBytes.Length);
-            streamDatas.Seek(0, SeekOrigin.Begin);
+            memoryStream.Write(memoryStream.ToArray(), 0, memoryStream.ToArray().Length);
+            memoryStream.Seek(0, SeekOrigin.Begin);
 
-            Joueur1 = (Joueur)formatter.Deserialize(streamDatas);
-            Joueur2 = (Joueur)formatter.Deserialize(streamDatas);
-            tour = (int)formatter.Deserialize(streamDatas);
+            Joueur1 = (Joueur)formatter.Deserialize(memoryStream);
+            Joueur2 = (Joueur)formatter.Deserialize(memoryStream);
+            tour = (int)formatter.Deserialize(memoryStream);
         }
-        /***************************************************************/
     }
 }

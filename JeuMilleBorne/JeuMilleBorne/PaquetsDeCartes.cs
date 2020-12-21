@@ -101,40 +101,6 @@ namespace JeuMilleBorne
             J2Bornes100 = (List<Carte>)formatter.Deserialize(FicSauvegarde);
             J2Bornes200 = (List<Carte>)formatter.Deserialize(FicSauvegarde);
         }
-        /*Serialize les données afin de les envoyées sur le réseau 
-        public static byte[] EnvoiePourReseau()
-        {
-            var streamDatas = new MemoryStream();
-
-            IFormatter formatter = new BinaryFormatter();
-            formatter.Serialize(streamDatas, PaquetJeu);
-            formatter.Serialize(streamDatas, PaquetMelange);
-            formatter.Serialize(streamDatas, Defausse);
-            formatter.Serialize(streamDatas, Carte_piochee);
-            formatter.Serialize(streamDatas, Ctmp);
-            formatter.Serialize(streamDatas, MainJoueur1);
-            formatter.Serialize(streamDatas, J1Bottes);
-            formatter.Serialize(streamDatas, J1Vitesse);
-            formatter.Serialize(streamDatas, J1Bataille);
-            formatter.Serialize(streamDatas, J1Bornes25);
-            formatter.Serialize(streamDatas, J1Bornes50);
-            formatter.Serialize(streamDatas, J1Bornes75);
-            formatter.Serialize(streamDatas, J1Bornes100);
-            formatter.Serialize(streamDatas, J1Bornes200);
-            formatter.Serialize(streamDatas, MainJoueur2);
-            formatter.Serialize(streamDatas, J2Bottes);
-            formatter.Serialize(streamDatas, J2Vitesse);
-            formatter.Serialize(streamDatas, J2Bataille);
-            formatter.Serialize(streamDatas, J2Bornes25);
-            formatter.Serialize(streamDatas, J2Bornes50);
-            formatter.Serialize(streamDatas, J2Bornes75);
-            formatter.Serialize(streamDatas, J2Bornes100);
-            formatter.Serialize(streamDatas, J2Bornes200);
-
-
-            //GestionConnexion._Client.Send(DataBytes);
-            return DataBytes;
-        }*/
 
         public static bool ReceptionDuReseau(MemoryStream MSReceive)
         {
@@ -170,6 +136,5 @@ namespace JeuMilleBorne
             
             return true;
         }
-        /*****************************************************************/
     }
 }
