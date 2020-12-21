@@ -101,7 +101,7 @@ namespace JeuMilleBorne
             J2Bornes100 = (List<Carte>)formatter.Deserialize(FicSauvegarde);
             J2Bornes200 = (List<Carte>)formatter.Deserialize(FicSauvegarde);
         }
-        /** Serialize les données afin de les envoyées sur le réseau 
+        /*Serialize les données afin de les envoyées sur le réseau 
         public static byte[] EnvoiePourReseau()
         {
             var streamDatas = new MemoryStream();
@@ -134,39 +134,41 @@ namespace JeuMilleBorne
 
             //GestionConnexion._Client.Send(DataBytes);
             return DataBytes;
-        }
+        }*/
 
-        public static void ReceptionDuReseau()
+        public static bool ReceptionDuReseau(MemoryStream MSReceive)
         {
-            var streamDatas = new MemoryStream();
+            //var streamDatas = new MemoryStream();
             IFormatter formatter = new BinaryFormatter();
 
-            streamDatas.Write(DataBytes, 0, DataBytes.Length);
-            streamDatas.Seek(0, SeekOrigin.Begin);
+            MSReceive.Write(MSReceive.ToArray(), 0, MSReceive.ToArray().Length);
+            MSReceive.Seek(0, SeekOrigin.Begin);
 
-            PaquetJeu = (List<Carte>)formatter.Deserialize(streamDatas);
-            PaquetMelange = (List<Carte>)formatter.Deserialize(streamDatas);
-            Defausse = (List<Carte>)formatter.Deserialize(streamDatas);
-            Carte_piochee = (Carte)formatter.Deserialize(streamDatas);
-            Ctmp = (Carte)formatter.Deserialize(streamDatas);
-            MainJoueur1 = (List<Carte>)formatter.Deserialize(streamDatas);
-            J1Bottes = (List<Carte>)formatter.Deserialize(streamDatas);
-            J1Vitesse = (List<Carte>)formatter.Deserialize(streamDatas);
-            J1Bataille = (List<Carte>)formatter.Deserialize(streamDatas);
-            J1Bornes25 = (List<Carte>)formatter.Deserialize(streamDatas);
-            J1Bornes50 = (List<Carte>)formatter.Deserialize(streamDatas);
-            J1Bornes75 = (List<Carte>)formatter.Deserialize(streamDatas);
-            J1Bornes100 = (List<Carte>)formatter.Deserialize(streamDatas);
-            J1Bornes200 = (List<Carte>)formatter.Deserialize(streamDatas);
-            MainJoueur2 = (List<Carte>)formatter.Deserialize(streamDatas);
-            J2Bottes = (List<Carte>)formatter.Deserialize(streamDatas);
-            J2Vitesse = (List<Carte>)formatter.Deserialize(streamDatas);
-            J2Bataille = (List<Carte>)formatter.Deserialize(streamDatas);
-            J2Bornes25 = (List<Carte>)formatter.Deserialize(streamDatas);
-            J2Bornes50 = (List<Carte>)formatter.Deserialize(streamDatas);
-            J2Bornes75 = (List<Carte>)formatter.Deserialize(streamDatas);
-            J2Bornes100 = (List<Carte>)formatter.Deserialize(streamDatas);
-            J2Bornes200 = (List<Carte>)formatter.Deserialize(streamDatas);
+            PaquetJeu = (List<Carte>)formatter.Deserialize(MSReceive);
+            PaquetMelange = (List<Carte>)formatter.Deserialize(MSReceive);
+            Defausse = (List<Carte>)formatter.Deserialize(MSReceive);
+            Carte_piochee = (Carte)formatter.Deserialize(MSReceive);
+            Ctmp = (Carte)formatter.Deserialize(MSReceive);
+            MainJoueur1 = (List<Carte>)formatter.Deserialize(MSReceive);
+            J1Bottes = (List<Carte>)formatter.Deserialize(MSReceive);
+            J1Vitesse = (List<Carte>)formatter.Deserialize(MSReceive);
+            J1Bataille = (List<Carte>)formatter.Deserialize(MSReceive);
+            J1Bornes25 = (List<Carte>)formatter.Deserialize(MSReceive);
+            J1Bornes50 = (List<Carte>)formatter.Deserialize(MSReceive);
+            J1Bornes75 = (List<Carte>)formatter.Deserialize(MSReceive);
+            J1Bornes100 = (List<Carte>)formatter.Deserialize(MSReceive);
+            J1Bornes200 = (List<Carte>)formatter.Deserialize(MSReceive);
+            MainJoueur2 = (List<Carte>)formatter.Deserialize(MSReceive);
+            J2Bottes = (List<Carte>)formatter.Deserialize(MSReceive);
+            J2Vitesse = (List<Carte>)formatter.Deserialize(MSReceive);
+            J2Bataille = (List<Carte>)formatter.Deserialize(MSReceive);
+            J2Bornes25 = (List<Carte>)formatter.Deserialize(MSReceive);
+            J2Bornes50 = (List<Carte>)formatter.Deserialize(MSReceive);
+            J2Bornes75 = (List<Carte>)formatter.Deserialize(MSReceive);
+            J2Bornes100 = (List<Carte>)formatter.Deserialize(MSReceive);
+            J2Bornes200 = (List<Carte>)formatter.Deserialize(MSReceive);
+            
+            return true;
         }
         /*****************************************************************/
     }

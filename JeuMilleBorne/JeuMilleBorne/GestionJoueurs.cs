@@ -14,11 +14,13 @@ namespace JeuMilleBorne
     [Serializable]
     public class GestionJoueurs : ISerializable
     {
+        #region Joueurs
         public static Joueur Joueur1 = new Joueur();
         public static Joueur Joueur2 = new Joueur();
         private static byte[] DataBytes = new byte[1024];
         private static Random alea = new Random();
         private static int tour;
+        #endregion
 
         public static Random Alea { get => alea; set => alea = value; }
         public static int Tour { get => tour; set => tour = value; }

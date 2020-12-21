@@ -12,6 +12,7 @@ namespace JeuMilleBorne
 {
     public partial class FormPrincipal : Form
     {
+        private GestionConnexion connexion = new GestionConnexion();
         public FormPrincipal()
         {
             InitializeComponent();
@@ -1090,5 +1091,10 @@ namespace JeuMilleBorne
         //}
 
         #endregion
+
+        private async void recevoirDonnéesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var test = await connexion.ReceiveData();
+        }
     }
 }

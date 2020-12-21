@@ -14,13 +14,13 @@ namespace JeuMilleBorne
 {
     public partial class FicAccueil : Form
     {
-        private int tentatives = 0;
+        //private int tentatives = 0;
         private GestionConnexion connexion = new GestionConnexion();
 
         public FicAccueil()
         {
             InitializeComponent();
-            gbJouer.Enabled = false;
+            //gbJouer.Enabled = false;
         }
 
         private void btnAccueilSuivant_Click(object sender, EventArgs e)
@@ -105,8 +105,8 @@ namespace JeuMilleBorne
 
             await connexion.Server();
             gbJoueurClient.Enabled = false;
-            gbJouer.Enabled = true;
-            btnSuivantLanGame.Enabled = false;
+            //gbJouer.Enabled = true;
+            //btnSuivantLanGame.Enabled = false;
         }
 
         private async void btnCreerClient_Click(object sender, EventArgs e)
@@ -121,8 +121,8 @@ namespace JeuMilleBorne
                     MessageBoxIcon.Error);
             }
             gbJoueurClient.Enabled = false;
-            gbJouer.Enabled = true;
-            btnSuivantLanGame.Enabled = false;
+            //gbJouer.Enabled = true;
+            //btnSuivantLanGame.Enabled = false;
         }
 
         private async void btnSuivantLanGame_Click(object sender, EventArgs e)
@@ -135,6 +135,7 @@ namespace JeuMilleBorne
             GestionJoueurs.Joueur2.Points = 0;
             GestionCartes.FlagNetwork = true;
             PaquetsDeCartes paquetsDeCartes = new PaquetsDeCartes();
+            GestionCartes.CreerPaquet(PaquetsDeCartes.PaquetJeu);
             await connexion.SendData(paquetsDeCartes);
             this.Close();
         }

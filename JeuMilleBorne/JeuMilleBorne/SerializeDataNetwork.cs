@@ -36,10 +36,10 @@ namespace JeuMilleBorne
 
             return test;
         }
-
-        public static void ReceiveData(NetworkStream fluxNetworkStream)
+        /* return T changé en bool /!\ */
+        public static bool ReceiveData<T>(NetworkStream fluxNetworkStream) where T : class
         {
-            //T data = null;
+            //T data = default(T);
 
             byte[] buffer = new byte[1024];
             using (MemoryStream ms = new MemoryStream())
@@ -54,18 +54,21 @@ namespace JeuMilleBorne
                     numBytesRead = 0;
                 }
 
-                //data = MemoryStreamToObject<T>(ms); // converti les octets en un model demandé
+                /* ms contient toutes les données du flux réseau */
+                var data = MemoryStreamToObject<T>(ms); // converti les octets en un model demandé
+                return data;
             }
         }
-        public static T MemoryStreamToObject<T>(MemoryStream stream) where T : class
+        public static bool MemoryStreamToObject<T>(MemoryStream stream) where T : class
         {
             var binForm = new BinaryFormatter();
 
             /*stream.Write(arrBytes, 0, arrBytes.Length);*/
             stream.Seek(0, SeekOrigin.Begin);
-            var obj = binForm.Deserialize(stream);
+            //var obj = binForm.Deserialize(stream);
+            var obj = PaquetsDeCartes.ReceptionDuReseau(stream);
 
-            return obj as T;
+            return obj;
 
         }
     }

@@ -105,6 +105,7 @@
             this.lblScoreEnCoursJ2 = new System.Windows.Forms.Label();
             this.lblScoreEnCoursJ1 = new System.Windows.Forms.Label();
             this.lblAQui = new System.Windows.Forms.Label();
+            this.recevoirDonnéesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbJOpCarte6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbJOpCarte5)).BeginInit();
@@ -162,7 +163,8 @@
             this.msMelangerPaquet,
             this.msDistribuerCartes,
             this.sauverPartieToolStripMenuItem,
-            this.refreshToolStripMenuItem});
+            this.refreshToolStripMenuItem,
+            this.recevoirDonnéesToolStripMenuItem});
             this.msMenu.Location = new System.Drawing.Point(0, 0);
             this.msMenu.Name = "msMenu";
             this.msMenu.Size = new System.Drawing.Size(1635, 27);
@@ -899,6 +901,13 @@
             this.lblAQui.TabIndex = 70;
             this.lblAQui.Text = "C\'est au tour du joueur :";
             // 
+            // recevoirDonnéesToolStripMenuItem
+            // 
+            this.recevoirDonnéesToolStripMenuItem.Name = "recevoirDonnéesToolStripMenuItem";
+            this.recevoirDonnéesToolStripMenuItem.Size = new System.Drawing.Size(125, 23);
+            this.recevoirDonnéesToolStripMenuItem.Text = "recevoir données";
+            this.recevoirDonnéesToolStripMenuItem.Click += new System.EventHandler(this.recevoirDonnéesToolStripMenuItem_Click);
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1107,6 +1116,7 @@
         private System.Windows.Forms.Label lblAQui;
         private System.Windows.Forms.ToolStripMenuItem sauverPartieToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem refreshToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem recevoirDonnéesToolStripMenuItem;
     }
 }
 

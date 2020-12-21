@@ -17,10 +17,8 @@ namespace JeuMilleBorne
         private static int _port = 8000;
         public static TcpListener tlServer;
         public static TcpClient TcpClient;
-        public static BinaryReader br;
-        public static BinaryWriter bw;
 
-        private static IPAddress adresseValidee(string nPC)
+        private static IPAddress AdresseValidee(string nPC)
         {
             IPAddress ipReponse = null;
 
@@ -215,7 +213,7 @@ namespace JeuMilleBorne
                 /* () méthode anonyme */
                 await Task.Run(() =>
                 {
-                    IPAddress ipServer = adresseValidee(Dns.GetHostName());
+                    IPAddress ipServer = AdresseValidee(Dns.GetHostName());
                     tlServer = new TcpListener(ipServer, _port);
                     tlServer.Start();
                     TcpClient = tlServer.AcceptTcpClient();
@@ -237,7 +235,7 @@ namespace JeuMilleBorne
                 /* () méthode anonyme */
                 await Task.Run(() =>
                 {
-                    IPAddress ipServer = adresseValidee(serverHostName);
+                    IPAddress ipServer = AdresseValidee(serverHostName);
                     TcpClient = new TcpClient();
                     TcpClient.Connect(ipServer, _port);
                     fluxNetworkStream = TcpClient.GetStream();
@@ -271,6 +269,25 @@ namespace JeuMilleBorne
                 return false;
             }
         }
+
+        public async Task<bool> ReceiveData()
+        {
+            try
+            {
+                await Task.Run(() =>
+                {
+                    var data = SerializeDataNetwork.ReceiveData<PaquetsDeCartes>(fluxNetworkStream);
+
+                });
+                
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
         public void CloseClient()
         {
             TcpClient.Close();
@@ -284,7 +301,7 @@ namespace JeuMilleBorne
 
         #region Ping
 
-        public async Task<string[]> fPing()
+        public async Task<string[]> FPing()
         {
             List<Task<string>> tasks = new List<Task<string>>();
 
