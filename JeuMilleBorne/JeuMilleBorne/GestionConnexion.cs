@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -257,9 +259,40 @@ namespace JeuMilleBorne
                 {
                     BinaryWriter binaryWriter = new BinaryWriter(fluxNetworkStream);
 
-                    var list = SerializeDataNetwork.GetFieldValues(sendObject.)
+                    /**
+                     * 1 - lister les attributs de T
+                     * 2 - un mega tableau de bytes où on va concaténer chacun des tableaux créé par GetFieldValues
+                     */
+
+                    // 1
+                    long longueurTotale = 0; // longueur totale de tous les tableaux
+                    List<object[]> tableauxListe = new List<object[]>();
                     
-                    byte[] dataBytes = SerializeDataNetwork.SendData(SerializeDataNetwork.GetFieldValues(sendObject));
+                    // récupère les champs public & static du niveau 1
+                    var fields = sendObject.GetType()
+                        .GetFields(BindingFlags.Public | BindingFlags.Static);
+
+                    // liste les attributs de chaque champ de niveau 2
+                    foreach (var field in fields)
+                    {
+                        var temp = SerializeDataNetwork.GetFieldValues(field);
+                        longueurTotale += temp.Length;
+                        tableauxListe.Add(temp);
+                    }
+
+                    // 2
+                    long indexCourant = 0;
+                    object[] tableauTotal = new object[longueurTotale];
+                    foreach (var element in tableauxListe) // concatene tous les sous-tableaux en un seul big tableau
+                    {
+                        element.CopyTo(tableauTotal, indexCourant);
+                        indexCourant += element.Length;
+                    }
+
+                    // envoie sur le réseau le big tableau
+                    byte[] dataBytes = SerializeDataNetwork.SendData(
+                        tableauTotal
+                    );
 
                     binaryWriter.Write(dataBytes);
                 });
@@ -270,6 +303,8 @@ namespace JeuMilleBorne
                 Console.WriteLine(e.Message);
                 return false;
             }
+            
+            
         }
 
         public async Task<bool> ReceiveData()
