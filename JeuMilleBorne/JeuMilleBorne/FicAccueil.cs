@@ -47,6 +47,8 @@ namespace JeuMilleBorne
         private void btnLoadServers_Click(object sender, EventArgs e)
         {
             btnCreerServer.Enabled = false;
+            btnAccueilSuivant.Enabled = false;
+            btnChargerPartie.Enabled = false;
             fPing();
         }
 
@@ -56,7 +58,7 @@ namespace JeuMilleBorne
         {
             List<Task<string>> tasks = new List<Task<string>>();
 
-            for (int i = 1; i < 255; i++)
+            for (int i = 1; i <= 2; i++)
             {
                 string ip = "192.168.1." + i.ToString();
                 //PingReply pingReponse = await ;
@@ -84,7 +86,15 @@ namespace JeuMilleBorne
 
                 if (task.Result.Status == IPStatus.Success)
                 {
-                    repEntry = Dns.GetHostEntry(task.Result.Address);
+                    try
+                    {
+                        repEntry = Dns.GetHostEntry(task.Result.Address);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                        throw;
+                    }
                 }
                 //? permet de renvoyer null ou le hostname \\
                 return repEntry?.HostName.ToString();
@@ -101,20 +111,27 @@ namespace JeuMilleBorne
 
         private async void btnCreerServer_Click(object sender, EventArgs e)
         {
+            gbJoueurClient.Enabled = false;
+            btnAccueilSuivant.Enabled = false;
+            btnChargerPartie.Enabled = false;
+            btnCreerServer.Enabled = false;
+            btnEnvoyerPseudo.Enabled = false;
+
             //SerializeDataNetwork.GetFieldValues(new PaquetsDeCartes());
 
             await connexion.Server();
-            gbJoueurClient.Enabled = false;
+            /* Set des différents flags */
+            GestionCartes.FlagNetwork = true;
+            GestionCartes.FlagServer = true;
+            GestionCartes.FlagClient = false;
+
             /* Attente de données provenant du client */
             var test = await connexion.ReceiveData();
             
             if (true)
             {
-                MessageBox.Show("Bien reçu!");
+                MessageBox.Show("Bien reçu! (Serveur)");
             }
-
-            //gbJouer.Enabled = true;
-            //btnSuivantLanGame.Enabled = false;
         }
 
         private async void btnCreerClient_Click(object sender, EventArgs e)
@@ -129,16 +146,11 @@ namespace JeuMilleBorne
                     MessageBoxIcon.Error);
             }
             gbJoueurClient.Enabled = false;
+            GestionCartes.FlagNetwork = true;
+            GestionCartes.FlagClient = true;
+            GestionCartes.FlagServer = false;
+            btnCreerClient.Enabled = false;
         }
-
-        private async void btnSuivantLanGame_Click(object sender, EventArgs e)
-        {
-            GestionJoueurs.Joueur2.Pseudo = GestionJoueurs.Joueur1.Pseudo;
-            GestionJoueurs.Joueur1.Pseudo = tb1.Text;
-
-            this.Close();
-        }
-
         private async void btnEnvoyerPseudo_Click(object sender, EventArgs e)
         {
             if (tb1.Text != string.Empty)
@@ -149,7 +161,6 @@ namespace JeuMilleBorne
                 /*pseudo J2 en attente*/
                 GestionJoueurs.Joueur2.Num_joueur = 1;
                 GestionJoueurs.Joueur2.Points = 0;
-                GestionCartes.FlagNetwork = true;
 
                 GestionDonneesJeux.GestionJoueurs = new GestionJoueurs();
                 GestionDonneesJeux.PaquetsDeCartes = new PaquetsDeCartes();
@@ -162,5 +173,21 @@ namespace JeuMilleBorne
                 MessageBox.Show("Merci de saisir votre pseudo!");
             }
         }
+
+        private async void btnSuivantLanGame_Click(object sender, EventArgs e)
+        {
+            if (GestionCartes.FlagServer)
+            {
+                GestionJoueurs.Joueur2.Pseudo = GestionJoueurs.Joueur1.Pseudo;
+                GestionJoueurs.Joueur1.Pseudo = tb1.Text;
+            }
+            else
+            {
+                await connexion.ReceiveData();
+            }
+
+            this.Close();
+        }
+
     }
 }

@@ -17,7 +17,7 @@ namespace JeuMilleBorne
         {
             InitializeComponent();
         }
-        private void FormPrincipal_Load(object sender, EventArgs e)
+        private async void FormPrincipal_Load(object sender, EventArgs e)
         {
             if (GestionSauvegarde.Partie_chargee)
                 Afficher();
@@ -31,6 +31,18 @@ namespace JeuMilleBorne
             lblJ2.Text = GestionJoueurs.Joueur2.Pseudo;
             lblScoreEnCoursJ1.Text = GestionJoueurs.Joueur1.Points.ToString();
             lblScoreEnCoursJ2.Text = GestionJoueurs.Joueur2.Points.ToString();
+            if (GestionCartes.FlagClient)
+            {
+                GestionCartes.ReverseDatas();
+                //Afficher();
+                AfficherReseau();
+                if (GestionJoueurs.Tour == 1)
+                {
+                    await connexion.ReceiveData();
+                    GestionCartes.ReverseDatas();
+                    AfficherReseau();
+                }
+            }
         }
         #region CreationPaquetDeJeu
         private void msCreerPaquetDeJeu_Click(object sender, EventArgs e)
@@ -44,22 +56,34 @@ namespace JeuMilleBorne
         private async void msDistribuerCartes_Click(object sender, EventArgs e)
         {
             GestionCartes.DistribuerCartes(PaquetsDeCartes.PaquetMelange, PaquetsDeCartes.MainJoueur1, PaquetsDeCartes.MainJoueur2);
-            lblPaqMel.Text = PaquetsDeCartes.PaquetMelange.Count.ToString();
-            lblMainJ1.Text = GestionJoueurs.Tour.ToString();
-            lblMainJ2.Text = "";/*PaquetsDeCartes.MainJoueur2.Count.ToString();*/
-            GestionJoueurs.Tour = GestionJoueurs.TourAlea();
+            //lblPaqMel.Text = PaquetsDeCartes.PaquetMelange.Count.ToString();
+            //lblMainJ1.Text = GestionJoueurs.Tour.ToString();
+            //lblMainJ2.Text = "";/*PaquetsDeCartes.MainJoueur2.Count.ToString();*/
+            GestionJoueurs.Tour = 0; //GestionJoueurs.TourAlea();
             if (GestionJoueurs.Tour == 0)
                 MessageBox.Show("C'est au joueur 1 de commencer la partie");
             if (GestionJoueurs.Tour == 1)
                 MessageBox.Show("C'est au joueur 2 de commencer la partie");
 
-            Afficher();
-            /* Envoie des données de jeux complètes */
-            
-            GestionDonneesJeux.GestionJoueurs = new GestionJoueurs();
-            GestionDonneesJeux.PaquetsDeCartes = new PaquetsDeCartes();
-            await connexion.SendData(new GestionDonneesJeux());
+            if (GestionCartes.FlagNetwork)
+            {
+                AfficherReseau();
+                /* Envoie des données de jeux complètes */
+                GestionDonneesJeux.GestionJoueurs = new GestionJoueurs();
+                GestionDonneesJeux.PaquetsDeCartes = new PaquetsDeCartes();
+                await connexion.SendData(new GestionDonneesJeux());
+                if (GestionJoueurs.Tour == 1)
+                {
+                    await connexion.ReceiveData();
+                    GestionCartes.ReverseDatas();
+                    AfficherReseau();
+                }
+            }
+            else
+            {
+                Afficher();
 
+            }
         }
         #endregion
         #region PiocheEtDefausse
@@ -88,9 +112,17 @@ namespace JeuMilleBorne
                 MessageBox.Show("Vous ne pouvez pas piocher une seconde fois!", "Attention", MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
             }
-            Afficher();
+
+            if (GestionCartes.FlagNetwork)
+            {
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
-        private void pbDefausse_Click(object sender, EventArgs e)
+        private async void pbDefausse_Click(object sender, EventArgs e)
         {
             if (PaquetsDeCartes.Ctmp.Nom == "")
             {
@@ -108,9 +140,28 @@ namespace JeuMilleBorne
                 //    GestionJoueurs.Tour = 0;
                 //}
                 GestionCartes.JoueurSuivant();
+                if (GestionCartes.FlagNetwork)
+                {
+                    /* Envoie des données de jeux complètes sur le réseau */
+                    GestionDonneesJeux.GestionJoueurs = new GestionJoueurs();
+                    GestionDonneesJeux.PaquetsDeCartes = new PaquetsDeCartes();
+                    await connexion.SendData(new GestionDonneesJeux());
+                    AfficherReseau();
+                }
             }
 
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                /* Passe en état de réception */
+                await connexion.ReceiveData();
+                GestionCartes.ReverseDatas();
+
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
         #endregion
         #region ZoneJoueur1
@@ -133,7 +184,14 @@ namespace JeuMilleBorne
                     MessageBox.Show("Ce n'est pas ta zone de jeu !");
                 }
             }
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
         private void pbJECCarte2_Click(object sender, EventArgs e)
         {
@@ -154,7 +212,14 @@ namespace JeuMilleBorne
                     MessageBox.Show("Ce n'est pas ta zone de jeu !");
                 }
             }
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
         private void pbJECCarte3_Click(object sender, EventArgs e)
         {
@@ -175,7 +240,14 @@ namespace JeuMilleBorne
                     MessageBox.Show("Ce n'est pas ta zone de jeu !");
                 }
             }
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
         private void pbJECCarte4_Click(object sender, EventArgs e)
         {
@@ -196,7 +268,14 @@ namespace JeuMilleBorne
                     MessageBox.Show("Ce n'est pas ta zone de jeu !");
                 }
             }
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
         private void pbJECCarte5_Click(object sender, EventArgs e)
         {
@@ -217,7 +296,14 @@ namespace JeuMilleBorne
                     MessageBox.Show("Ce n'est pas ta zone de jeu !");
                 }
             }
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
         private void pbJECCarte6_Click(object sender, EventArgs e)
         {
@@ -238,9 +324,16 @@ namespace JeuMilleBorne
                     MessageBox.Show("Ce n'est pas ta zone de jeu !");
                 }
             }
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
-        private void pbJECVit25_Click(object sender, EventArgs e)
+        private async void pbJECVit25_Click(object sender, EventArgs e)
         {
             if (GestionCartes.AuthorisationAvancer(PaquetsDeCartes.J1Bataille, PaquetsDeCartes.J1Bottes, PaquetsDeCartes.Ctmp))
             {
@@ -249,6 +342,14 @@ namespace JeuMilleBorne
                     GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J1Bornes25);
                     //GestionJoueurs.Tour = 1;
                     GestionCartes.JoueurSuivant();
+                    if (GestionCartes.FlagNetwork)
+                    {
+                        /* Envoie des données de jeux complètes sur le réseau */
+                        GestionDonneesJeux.GestionJoueurs = new GestionJoueurs();
+                        GestionDonneesJeux.PaquetsDeCartes = new PaquetsDeCartes();
+                        await connexion.SendData(new GestionDonneesJeux());
+                        AfficherReseau();
+                    }
                 }
                 else
                 {
@@ -261,9 +362,20 @@ namespace JeuMilleBorne
                 MessageBox.Show("Vous devez placer une carte feu vert pour pouvoir avancer.");
                 GestionCartes.Reverse();
             }
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                /* Passe en état de réception */
+                await connexion.ReceiveData();
+                GestionCartes.ReverseDatas();
+
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
-        private void pbJECVit50_Click(object sender, EventArgs e)
+        private async void pbJECVit50_Click(object sender, EventArgs e)
         {
             if (GestionCartes.AuthorisationAvancer(PaquetsDeCartes.J1Bataille, PaquetsDeCartes.J1Bottes, PaquetsDeCartes.Ctmp))
             {
@@ -272,6 +384,14 @@ namespace JeuMilleBorne
                     GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J1Bornes50);
                     //GestionJoueurs.Tour = 1;
                     GestionCartes.JoueurSuivant();
+                    if (GestionCartes.FlagNetwork)
+                    {
+                        /* Envoie des données de jeux complètes sur le réseau */
+                        GestionDonneesJeux.GestionJoueurs = new GestionJoueurs();
+                        GestionDonneesJeux.PaquetsDeCartes = new PaquetsDeCartes();
+                        await connexion.SendData(new GestionDonneesJeux());
+                        AfficherReseau();
+                    }
                 }
                 else
                 {
@@ -284,9 +404,20 @@ namespace JeuMilleBorne
                 MessageBox.Show("Vous devez placer une carte feu vert pour pouvoir avancer.");
                 GestionCartes.Reverse();
             }
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                /* Passe en état de réception */
+                await connexion.ReceiveData();
+                GestionCartes.ReverseDatas();
+
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
-        private void pbJECVit75_Click(object sender, EventArgs e)
+        private async void pbJECVit75_Click(object sender, EventArgs e)
         {
             if (GestionCartes.AuthorisationAvancer(PaquetsDeCartes.J1Bataille, PaquetsDeCartes.J1Bottes, PaquetsDeCartes.Ctmp))
             {
@@ -295,6 +426,14 @@ namespace JeuMilleBorne
                     GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J1Bornes75);
                     //GestionJoueurs.Tour = 1;
                     GestionCartes.JoueurSuivant();
+                    if (GestionCartes.FlagNetwork)
+                    {
+                        /* Envoie des données de jeux complètes sur le réseau */
+                        GestionDonneesJeux.GestionJoueurs = new GestionJoueurs();
+                        GestionDonneesJeux.PaquetsDeCartes = new PaquetsDeCartes();
+                        await connexion.SendData(new GestionDonneesJeux());
+                        AfficherReseau();
+                    }
                 }
                 else
                 {
@@ -307,9 +446,20 @@ namespace JeuMilleBorne
                 MessageBox.Show("Vous devez placer une carte feu vert pour pouvoir avancer.");
                 GestionCartes.Reverse();
             }
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                /* Passe en état de réception */
+                await connexion.ReceiveData();
+                GestionCartes.ReverseDatas();
+
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
-        private void pbJECVit100_Click(object sender, EventArgs e)
+        private async void pbJECVit100_Click(object sender, EventArgs e)
         {
             if (GestionCartes.AuthorisationAvancer(PaquetsDeCartes.J1Bataille, PaquetsDeCartes.J1Bottes, PaquetsDeCartes.Ctmp))
             {
@@ -318,6 +468,14 @@ namespace JeuMilleBorne
                     GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J1Bornes100);
                     //GestionJoueurs.Tour = 1;
                     GestionCartes.JoueurSuivant();
+                    if (GestionCartes.FlagNetwork)
+                    {
+                        /* Envoie des données de jeux complètes sur le réseau */
+                        GestionDonneesJeux.GestionJoueurs = new GestionJoueurs();
+                        GestionDonneesJeux.PaquetsDeCartes = new PaquetsDeCartes();
+                        await connexion.SendData(new GestionDonneesJeux());
+                        AfficherReseau();
+                    }
                 }
                 else
                 {
@@ -330,9 +488,20 @@ namespace JeuMilleBorne
                 MessageBox.Show("Vous devez placer une carte feu vert pour pouvoir avancer.");
                 GestionCartes.Reverse();
             }
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                /* Passe en état de réception */
+                await connexion.ReceiveData();
+                GestionCartes.ReverseDatas();
+
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
-        private void pbJECVit200_Click(object sender, EventArgs e)
+        private async void pbJECVit200_Click(object sender, EventArgs e)
         {
             if (GestionCartes.AuthorisationAvancer(PaquetsDeCartes.J1Bataille, PaquetsDeCartes.J1Bottes, PaquetsDeCartes.Ctmp))
             {
@@ -341,6 +510,14 @@ namespace JeuMilleBorne
                     GestionCartes.PlacerCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.J1Bornes200);
                     //GestionJoueurs.Tour = 1;
                     GestionCartes.JoueurSuivant();
+                    if (GestionCartes.FlagNetwork)
+                    {
+                        /* Envoie des données de jeux complètes sur le réseau */
+                        GestionDonneesJeux.GestionJoueurs = new GestionJoueurs();
+                        GestionDonneesJeux.PaquetsDeCartes = new PaquetsDeCartes();
+                        await connexion.SendData(new GestionDonneesJeux());
+                        AfficherReseau();
+                    }
                 }
                 else
                 {
@@ -353,7 +530,18 @@ namespace JeuMilleBorne
                 MessageBox.Show("Vous devez placer une carte feu vert pour pouvoir avancer.");
                 GestionCartes.Reverse();
             }
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                /* Passe en état de réception */
+                await connexion.ReceiveData();
+                GestionCartes.ReverseDatas();
+
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
 
         #region ZoneBotte
@@ -369,7 +557,14 @@ namespace JeuMilleBorne
                 MessageBox.Show("Cette carte ne se place ici.");
                 GestionCartes.Reverse();
             }
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
         private void pbJECBotte2_Click(object sender, EventArgs e)
         {
@@ -383,8 +578,14 @@ namespace JeuMilleBorne
                 MessageBox.Show("Cette carte ne se place ici.");
                 GestionCartes.Reverse();
             }
-
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
         private void pbJECBotte3_Click(object sender, EventArgs e)
         {
@@ -398,7 +599,14 @@ namespace JeuMilleBorne
                 MessageBox.Show("Cette carte ne se place ici.");
                 GestionCartes.Reverse();
             }
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
         private void pbJECBotte4_Click(object sender, EventArgs e)
         {
@@ -412,44 +620,92 @@ namespace JeuMilleBorne
                 MessageBox.Show("Cette carte ne se place ici.");
                 GestionCartes.Reverse();
             }
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
         #endregion
-        private void pbJECVitesse_Click(object sender, EventArgs e)
+        private async void pbJECVitesse_Click(object sender, EventArgs e)
         {
             if (GestionJoueurs.Tour == 0)
             {
                 GestionCartes.LimVitesse(PaquetsDeCartes.Ctmp, PaquetsDeCartes.J1Vitesse, "J1");
                 //GestionJoueurs.Tour = 1;
                 GestionCartes.JoueurSuivant();
+                if (GestionCartes.FlagNetwork)
+                {
+                    /* Envoie des données de jeux complètes sur le réseau */
+                    GestionDonneesJeux.GestionJoueurs = new GestionJoueurs();
+                    GestionDonneesJeux.PaquetsDeCartes = new PaquetsDeCartes();
+                    await connexion.SendData(new GestionDonneesJeux());
+                    AfficherReseau();
+                }
             }
             else
             {
                 GestionCartes.LimVitesse(PaquetsDeCartes.Ctmp, PaquetsDeCartes.J1Vitesse, "J1");
                 //GestionJoueurs.Tour = 0;
                 GestionCartes.JoueurSuivant();
+                if (GestionCartes.FlagNetwork)
+                {
+                    /* Envoie des données de jeux complètes sur le réseau */
+                    GestionDonneesJeux.GestionJoueurs = new GestionJoueurs();
+                    GestionDonneesJeux.PaquetsDeCartes = new PaquetsDeCartes();
+                    await connexion.SendData(new GestionDonneesJeux());
+                    /* Passe en état de réception */
+                    await connexion.ReceiveData();
+                    GestionCartes.ReverseDatas();
+                    //AfficherReseau();
+                }
             }
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                /* Passe en état de réception */
+                await connexion.ReceiveData();
+                GestionCartes.ReverseDatas();
+
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
-        private void pbJECBataille_Click(object sender, EventArgs e)
+        private async void pbJECBataille_Click(object sender, EventArgs e)
         {
             if (GestionCartes.Bataille(PaquetsDeCartes.Ctmp, PaquetsDeCartes.J1Bataille, "J1"))
             {
-                //if (GestionJoueurs.Tour == 0)
-                //{
-                //    GestionJoueurs.Tour = 1;
-                //}
-                //else
-                //{
-                //    GestionJoueurs.Tour = 0;
-                //}
                 GestionCartes.JoueurSuivant();
+                if (GestionCartes.FlagNetwork)
+                {
+                    /* Envoie des données de jeux complètes sur le réseau */
+                    GestionDonneesJeux.GestionJoueurs = new GestionJoueurs();
+                    GestionDonneesJeux.PaquetsDeCartes = new PaquetsDeCartes();
+                    await connexion.SendData(new GestionDonneesJeux());
+                    AfficherReseau();
+                }
             }
             else
             {
                 GestionCartes.Reverse();
             }
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                /* Passe en état de réception */
+                await connexion.ReceiveData();
+                GestionCartes.ReverseDatas();
+
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
         #endregion
         #region CartePiochee
@@ -464,7 +720,14 @@ namespace JeuMilleBorne
                 GestionCartes.JouerCartePiochee(ref PaquetsDeCartes.Carte_piochee, ref PaquetsDeCartes.Ctmp);
 
             }
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
         #endregion
         #region ZoneJoueur2
@@ -487,7 +750,14 @@ namespace JeuMilleBorne
                     MessageBox.Show("Ce n'est pas ta zone de jeu !");
                 }
             }
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
         private void pbJOpCarte2_Click(object sender, EventArgs e)
         {
@@ -508,7 +778,14 @@ namespace JeuMilleBorne
                     MessageBox.Show("Ce n'est pas ta zone de jeu !");
                 }
             }
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
         private void pbJOpCarte3_Click(object sender, EventArgs e)
         {
@@ -529,7 +806,14 @@ namespace JeuMilleBorne
                     MessageBox.Show("Ce n'est pas ta zone de jeu !");
                 }
             }
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
         private void pbJOpCarte4_Click(object sender, EventArgs e)
         {
@@ -550,7 +834,14 @@ namespace JeuMilleBorne
                     MessageBox.Show("Ce n'est pas ta zone de jeu !");
                 }
             }
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
         private void pbJOpCarte5_Click(object sender, EventArgs e)
         {
@@ -571,7 +862,14 @@ namespace JeuMilleBorne
                     MessageBox.Show("Ce n'est pas ta zone de jeu !");
                 }
             }
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
         private void pbJOpCarte6_Click(object sender, EventArgs e)
         {
@@ -592,7 +890,14 @@ namespace JeuMilleBorne
                     MessageBox.Show("Ce n'est pas ta zone de jeu !");
                 }
             }
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
         private void pbJOpVit25_Click(object sender, EventArgs e)
         {
@@ -615,7 +920,14 @@ namespace JeuMilleBorne
                 MessageBox.Show("Vous devez placer une carte feu vert pour pouvoir avancer.");
                 GestionCartes.Reverse();
             }
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
         private void pbJOpVit50_Click(object sender, EventArgs e)
         {
@@ -638,7 +950,14 @@ namespace JeuMilleBorne
                 MessageBox.Show("Vous devez placer une carte feu vert pour pouvoir avancer.");
                 GestionCartes.Reverse();
             }
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
         private void pbJOpVit75_Click(object sender, EventArgs e)
         {
@@ -662,7 +981,14 @@ namespace JeuMilleBorne
                 MessageBox.Show("Vous devez placer une carte feu vert pour pouvoir avancer.");
                 GestionCartes.Reverse();
             }
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
         private void pbJOpVit100_Click(object sender, EventArgs e)
         {
@@ -685,7 +1011,14 @@ namespace JeuMilleBorne
                 MessageBox.Show("Vous devez placer une carte feu vert pour pouvoir avancer.");
                 GestionCartes.Reverse();
             }
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
         private void pbJOpVit200_Click(object sender, EventArgs e)
         {
@@ -708,7 +1041,14 @@ namespace JeuMilleBorne
                 MessageBox.Show("Vous devez placer une carte feu vert pour pouvoir avancer.");
                 GestionCartes.Reverse();
             }
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
         private void pbJOpBotte1_Click(object sender, EventArgs e)
         {
@@ -721,7 +1061,14 @@ namespace JeuMilleBorne
             {
                 MessageBox.Show("Cette carte ne se place ici.");
             }
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
         private void pbJOpBotte2_Click(object sender, EventArgs e)
         {
@@ -734,7 +1081,14 @@ namespace JeuMilleBorne
             {
                 MessageBox.Show("Cette carte ne se place ici.");
             }
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
         private void pbJOpBotte3_Click(object sender, EventArgs e)
         {
@@ -747,7 +1101,14 @@ namespace JeuMilleBorne
             {
                 MessageBox.Show("Cette carte ne se place ici.");
             }
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
         private void pbJOpBotte4_Click(object sender, EventArgs e)
         {
@@ -760,50 +1121,95 @@ namespace JeuMilleBorne
             {
                 MessageBox.Show("Cette carte ne se place ici.");
             }
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
-        private void pbJOpVitesse_Click(object sender, EventArgs e)
+        private async void pbJOpVitesse_Click(object sender, EventArgs e)
         {
             if (GestionJoueurs.Tour == 0)
             {
                 GestionCartes.LimVitesse(PaquetsDeCartes.Ctmp, PaquetsDeCartes.J2Vitesse, "J2");
                 //GestionJoueurs.Tour = 1;
                 GestionCartes.JoueurSuivant();
+                if (GestionCartes.FlagNetwork)
+                {
+                    /* Envoie des données de jeux complètes sur le réseau */
+                    GestionDonneesJeux.GestionJoueurs = new GestionJoueurs();
+                    GestionDonneesJeux.PaquetsDeCartes = new PaquetsDeCartes();
+                    await connexion.SendData(new GestionDonneesJeux());
+                    AfficherReseau();
+                }
             }
             else
             {
                 GestionCartes.LimVitesse(PaquetsDeCartes.Ctmp, PaquetsDeCartes.J2Vitesse, "J2");
                 //GestionJoueurs.Tour = 0;
                 GestionCartes.JoueurSuivant();
+                if (GestionCartes.FlagNetwork)
+                {
+                    /* Envoie des données de jeux complètes sur le réseau */
+                    GestionDonneesJeux.GestionJoueurs = new GestionJoueurs();
+                    GestionDonneesJeux.PaquetsDeCartes = new PaquetsDeCartes();
+                    await connexion.SendData(new GestionDonneesJeux());
+                    AfficherReseau();
+                }
             }
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                /* Passe en état de réception */
+                await connexion.ReceiveData();
+                GestionCartes.ReverseDatas();
+
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
-        private void pbJOpBataille_Click(object sender, EventArgs e)
+        private async void pbJOpBataille_Click(object sender, EventArgs e)
         {
             if (GestionCartes.Bataille(PaquetsDeCartes.Ctmp, PaquetsDeCartes.J2Bataille, "J2"))
             {
-                //if (GestionJoueurs.Tour == 0)
-                //{
-                //    GestionJoueurs.Tour = 1;
-                //}
-                //else
-                //{
-                //    GestionJoueurs.Tour = 0;
-                //}
                 GestionCartes.JoueurSuivant();
+                if (GestionCartes.FlagNetwork)
+                {
+                    /* Envoie des données de jeux complètes sur le réseau */
+                    GestionDonneesJeux.GestionJoueurs = new GestionJoueurs();
+                    GestionDonneesJeux.PaquetsDeCartes = new PaquetsDeCartes();
+                    await connexion.SendData(new GestionDonneesJeux());
+                    AfficherReseau();
+                }
             }
             else
             {
                 GestionCartes.Reverse();
             }
-            Afficher();
+            if (GestionCartes.FlagNetwork)
+            {
+                /* Passe en état de réception */
+                await connexion.ReceiveData();
+                GestionCartes.ReverseDatas();
+
+                AfficherReseau();
+            }
+            else
+            {
+                Afficher();
+            }
         }
 
         #endregion
         #region Afficher
         private void Afficher()
         {
-            lblMainJ1.Text = GestionJoueurs.Tour.ToString();
+            //lblMainJ1.Text = GestionJoueurs.Tour.ToString();
             // Affiche c'est au tour de ...
             if (GestionJoueurs.Tour == 0)
             {
@@ -1051,6 +1457,233 @@ namespace JeuMilleBorne
             lblScoreEnCoursJ2.Text = GestionJoueurs.PointsJ2().ToString();
             // Fin affichage plateau Joueur2
         }
+
+        private void AfficherReseau()
+        {
+            /* Infos Joueurs */
+            lblJ1.Text = GestionJoueurs.Joueur1.Pseudo;
+            lblJ2.Text = GestionJoueurs.Joueur2.Pseudo;
+            lblScoreEnCoursJ1.Text = GestionJoueurs.Joueur1.Points.ToString();
+            lblScoreEnCoursJ2.Text = GestionJoueurs.Joueur2.Points.ToString();
+
+            // Affiche c'est au tour de ...
+            if (GestionJoueurs.Tour == 0)
+            {
+                lblAQui.Text = "C'est au Joueur 1 de jouer";
+            }
+            else
+            {
+                lblAQui.Text = "C'est au Joueur 2 de jouer";
+            }
+
+            // Affiche la pioche
+            pbPioche.Image = Resource1.dos;
+            // Afficher la pile de cartes défaussées
+            if (PaquetsDeCartes.Defausse.Count != 0)
+                pbDefausse.Image = PaquetsDeCartes.Defausse[PaquetsDeCartes.Defausse.Count - 1].ImageCarte;
+            else
+            {
+                pbDefausse.Image = null;
+                pbDefausse.BackColor = Color.LightGreen;
+            }
+            // Affache carte piochée
+            if (PaquetsDeCartes.Carte_piochee.Nom != "")
+                pbCartePiochee.Image = PaquetsDeCartes.Carte_piochee.ImageCarte;
+            else
+            {
+                pbCartePiochee.Image = null;
+                pbCartePiochee.BackColor = Color.LightGreen;
+            }
+            // Plateau coté Joueur en cours
+            try
+            {
+                //if (GestionJoueurs.Tour == 1)
+                //{
+                pbJOpCarte1.Image = Resource1.dos;
+                pbJOpCarte2.Image = Resource1.dos;
+                pbJOpCarte3.Image = Resource1.dos;
+                pbJOpCarte4.Image = Resource1.dos;
+                pbJOpCarte5.Image = Resource1.dos;
+                pbJOpCarte6.Image = Resource1.dos;
+                //}
+                //else
+                //{
+                pbJECCarte1.BackgroundImage = PaquetsDeCartes.MainJoueur1[0].ImageCarte;
+                pbJECCarte2.BackgroundImage = PaquetsDeCartes.MainJoueur1[1].ImageCarte;
+                pbJECCarte3.BackgroundImage = PaquetsDeCartes.MainJoueur1[2].ImageCarte;
+                pbJECCarte4.BackgroundImage = PaquetsDeCartes.MainJoueur1[3].ImageCarte;
+                pbJECCarte5.BackgroundImage = PaquetsDeCartes.MainJoueur1[4].ImageCarte;
+                pbJECCarte6.BackgroundImage = PaquetsDeCartes.MainJoueur1[5].ImageCarte;
+                //}
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Vous devez d'abord piocher une carte!", "Attention", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
+            if (PaquetsDeCartes.J1Bornes25.Count != 0)
+                pbJECVit25.BackgroundImage = PaquetsDeCartes.J1Bornes25[PaquetsDeCartes.J1Bornes25.Count - 1].ImageCarte;
+            else
+            {
+                pbJECVit25.Image = null;
+                pbJECVit25.BackColor = Color.LightGreen;
+            }
+            if (PaquetsDeCartes.J1Bornes50.Count != 0)
+                pbJECVit50.BackgroundImage = PaquetsDeCartes.J1Bornes50[PaquetsDeCartes.J1Bornes50.Count - 1].ImageCarte;
+            else
+            {
+                pbJECVit50.Image = null;
+                pbJECVit50.BackColor = Color.LightGreen;
+            }
+            if (PaquetsDeCartes.J1Bornes75.Count != 0)
+                pbJECVit75.BackgroundImage = PaquetsDeCartes.J1Bornes75[PaquetsDeCartes.J1Bornes75.Count - 1].ImageCarte;
+            else
+            {
+                pbJECVit75.Image = null;
+                pbJECVit75.BackColor = Color.LightGreen;
+            }
+            if (PaquetsDeCartes.J1Bornes100.Count != 0)
+                pbJECVit100.BackgroundImage = PaquetsDeCartes.J1Bornes100[PaquetsDeCartes.J1Bornes100.Count - 1].ImageCarte;
+            else
+            {
+                pbJECVit100.Image = null;
+                pbJECVit100.BackColor = Color.LightGreen;
+            }
+            if (PaquetsDeCartes.J1Bornes200.Count != 0)
+                pbJECVit200.BackgroundImage = PaquetsDeCartes.J1Bornes200[PaquetsDeCartes.J1Bornes200.Count - 1].ImageCarte;
+            else
+            {
+                pbJECVit200.Image = null;
+                pbJECVit200.BackColor = Color.LightGreen;
+            }
+
+            if (PaquetsDeCartes.J1Bottes.Count >= 1)
+                pbJECBotte1.Image = PaquetsDeCartes.J1Bottes[0].ImageCarte;
+            else
+            {
+                pbJECBotte1.Image = null;
+                pbJECBotte1.BackColor = Color.LightGreen;
+            }
+            if (PaquetsDeCartes.J1Bottes.Count >= 2)
+                pbJECBotte2.Image = PaquetsDeCartes.J1Bottes[1].ImageCarte;
+            else
+            {
+                pbJECBotte2.Image = null;
+                pbJECBotte2.BackColor = Color.LightGreen;
+            }
+            if (PaquetsDeCartes.J1Bottes.Count >= 3)
+                pbJECBotte3.Image = PaquetsDeCartes.J1Bottes[2].ImageCarte;
+            else
+            {
+                pbJECBotte3.Image = null;
+                pbJECBotte3.BackColor = Color.LightGreen;
+            }
+            if (PaquetsDeCartes.J1Bottes.Count >= 4)
+                pbJECBotte4.Image = PaquetsDeCartes.J1Bottes[3].ImageCarte;
+            else
+            {
+                pbJECBotte4.Image = null;
+                pbJECBotte4.BackColor = Color.LightGreen;
+            }
+            if (PaquetsDeCartes.J1Vitesse.Count != 0)
+                pbJECVitesse.Image = PaquetsDeCartes.J1Vitesse[PaquetsDeCartes.J1Vitesse.Count - 1].ImageCarte;
+            else
+            {
+                pbJECVitesse.Image = null;
+                pbJECVitesse.BackColor = Color.LightGreen;
+            }
+            if (PaquetsDeCartes.J1Bataille.Count != 0)
+                pbJECBataille.Image = PaquetsDeCartes.J1Bataille[PaquetsDeCartes.J1Bataille.Count - 1].ImageCarte;
+            else
+            {
+                pbJECBataille.Image = null;
+                pbJECBataille.BackColor = Color.LightGreen;
+            }
+            /* Affiche les cartes de l'adversaire*/
+            if (PaquetsDeCartes.J2Bornes25.Count != 0)
+                pbJOpVit25.BackgroundImage = PaquetsDeCartes.J2Bornes25[PaquetsDeCartes.J2Bornes25.Count - 1].ImageCarte;
+            else
+            {
+                pbJOpVit25.Image = null;
+                pbJOpVit25.BackColor = Color.LightGreen;
+            }
+            if (PaquetsDeCartes.J2Bornes50.Count != 0)
+                pbJOpVit50.BackgroundImage = PaquetsDeCartes.J2Bornes50[PaquetsDeCartes.J2Bornes50.Count - 1].ImageCarte;
+            else
+            {
+                pbJOpVit50.Image = null;
+                pbJOpVit50.BackColor = Color.LightGreen;
+            }
+            if (PaquetsDeCartes.J2Bornes75.Count != 0)
+                pbJOpVit75.BackgroundImage = PaquetsDeCartes.J2Bornes75[PaquetsDeCartes.J2Bornes75.Count - 1].ImageCarte;
+            else
+            {
+                pbJOpVit75.Image = null;
+                pbJOpVit75.BackColor = Color.LightGreen;
+            }
+            if (PaquetsDeCartes.J2Bornes100.Count != 0)
+                pbJOpVit100.BackgroundImage = PaquetsDeCartes.J2Bornes100[PaquetsDeCartes.J2Bornes100.Count - 1].ImageCarte;
+            else
+            {
+                pbJOpVit100.Image = null;
+                pbJOpVit100.BackColor = Color.LightGreen;
+            }
+            if (PaquetsDeCartes.J2Bornes200.Count != 0)
+                pbJOpVit200.BackgroundImage = PaquetsDeCartes.J2Bornes200[PaquetsDeCartes.J2Bornes200.Count - 1].ImageCarte;
+            else
+            {
+                pbJOpVit200.Image = null;
+                pbJOpVit200.BackColor = Color.LightGreen;
+            }
+
+            if (PaquetsDeCartes.J2Bottes.Count >= 1)
+                pbJOpBotte1.Image = PaquetsDeCartes.J2Bottes[0].ImageCarte;
+            else
+            {
+                pbJOpBotte1.Image = null;
+                pbJOpBotte1.BackColor = Color.LightGreen;
+            }
+            if (PaquetsDeCartes.J2Bottes.Count >= 2)
+                pbJOpBotte2.Image = PaquetsDeCartes.J2Bottes[1].ImageCarte;
+            else
+            {
+                pbJOpBotte2.Image = null;
+                pbJOpBotte2.BackColor = Color.LightGreen;
+            }
+            if (PaquetsDeCartes.J2Bottes.Count >= 3)
+                pbJOpBotte3.Image = PaquetsDeCartes.J2Bottes[2].ImageCarte;
+            else
+            {
+                pbJOpBotte3.Image = null;
+                pbJOpBotte3.BackColor = Color.LightGreen;
+            }
+            if (PaquetsDeCartes.J2Bottes.Count >= 4)
+                pbJOpBotte4.Image = PaquetsDeCartes.J2Bottes[3].ImageCarte;
+            else
+            {
+                pbJOpBotte4.Image = null;
+                pbJOpBotte4.BackColor = Color.LightGreen;
+            }
+            if (PaquetsDeCartes.J2Vitesse.Count != 0)
+                pbJOpVitesse.Image = PaquetsDeCartes.J2Vitesse[PaquetsDeCartes.J2Vitesse.Count - 1].ImageCarte;
+            else
+            {
+                pbJOpVitesse.Image = null;
+                pbJOpVitesse.BackColor = Color.LightGreen;
+            }
+            if (PaquetsDeCartes.J2Bataille.Count != 0)
+                pbJOpBataille.Image = PaquetsDeCartes.J2Bataille[PaquetsDeCartes.J2Bataille.Count - 1].ImageCarte;
+            else
+            {
+                pbJOpBataille.Image = null;
+                pbJOpBataille.BackColor = Color.LightGreen;
+            }
+
+            // Affichage des points du joueur 1
+            lblScoreEnCoursJ1.Text = GestionJoueurs.PointsJ1().ToString();
+            // Affichage des points du joueur 2
+            lblScoreEnCoursJ2.Text = GestionJoueurs.PointsJ2().ToString();
+        }
         #endregion
         #region Options
         private void sauverPartieToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1071,35 +1704,12 @@ namespace JeuMilleBorne
                 GestionSauvegarde.Sauver();
             }
         }
-        #endregion
-
-        #region Réseau
-
-        //private void EnvoieReseau()
-        //{
-        //    //byte[] bufferBytes=byte.TryParse("");
-        //    var dataJ = GestionJoueurs.envoiePourReseau();
-        //    var separator = Encoding.Unicode.GetBytes("|");
-        //    //var dataC = PaquetsDeCartes.EnvoiePourReseau();
-
-        //    //GestionConnexion._Buffer = dataJ;
-        //    Array.Copy(dataJ, GestionConnexion._Buffer, dataJ.Length);
-        //    Array.Copy(separator, 0, GestionConnexion._Buffer, GestionConnexion._Buffer.Length, dataJ.Length);
-        //    //Array.Copy(dataC, 0, GestionConnexion._Buffer, GestionConnexion._Buffer.Length, dataC.Length);
-        //    //Array.
-
-        //    //GestionConnexion._Buffer = dataJ;
-
-        //    MessageBox.Show("Taille infos joueurs: " + dataJ.Length.ToString() + " ou " + dataJ.LongLength.ToString() +
-        //                    ". Taille infos cartes: " + dataC.Length.ToString() + " ou " + dataC.LongLength.ToString());
-        //    //GestionConnexion.SendData();
-        //}
-
-        #endregion
 
         private async void recevoirDonnéesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var test = await connexion.ReceiveData();
+            Afficher();
         }
+        #endregion
     }
 }

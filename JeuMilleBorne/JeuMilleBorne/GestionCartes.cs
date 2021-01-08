@@ -13,6 +13,8 @@ namespace JeuMilleBorne
         #region Donnees
         public static bool piocher = true;
         public static bool FlagNetwork { get; set; } = false;
+        public static bool FlagServer { get; set; } = false;
+        public static bool FlagClient { get; set; } = false;
         #endregion
         public static void CreerPaquet(List<Carte> paquet)
         {
@@ -178,6 +180,51 @@ namespace JeuMilleBorne
             else
                 piocher = false;
 
+        }
+
+        public static void ReverseDatas()
+        {
+            var tmp1 = PaquetsDeCartes.MainJoueur1;
+            var tmp2 = PaquetsDeCartes.J1Bottes;
+            var tmp3 = PaquetsDeCartes.J1Vitesse;
+            var tmp4 = PaquetsDeCartes.J1Bataille;
+            var tmp5 = PaquetsDeCartes.J1Bornes25;
+            var tmp6 = PaquetsDeCartes.J1Bornes50;
+            var tmp7 = PaquetsDeCartes.J1Bornes75;
+            var tmp8 = PaquetsDeCartes.J1Bornes100;
+            var tmp9 = PaquetsDeCartes.J1Bornes200;
+
+            PaquetsDeCartes.MainJoueur1 = PaquetsDeCartes.MainJoueur2;
+            PaquetsDeCartes.J1Bottes = PaquetsDeCartes.J2Bottes;
+            PaquetsDeCartes.J1Vitesse = PaquetsDeCartes.J2Vitesse;
+            PaquetsDeCartes.J1Bataille = PaquetsDeCartes.J2Bataille;
+            PaquetsDeCartes.J1Bornes25 = PaquetsDeCartes.J2Bornes25;
+            PaquetsDeCartes.J1Bornes50 = PaquetsDeCartes.J2Bornes50;
+            PaquetsDeCartes.J1Bornes75 = PaquetsDeCartes.J2Bornes75;
+            PaquetsDeCartes.J1Bornes100 = PaquetsDeCartes.J2Bornes100;
+            PaquetsDeCartes.J1Bornes200 = PaquetsDeCartes.J2Bornes200;
+
+            PaquetsDeCartes.MainJoueur2 = tmp1;
+            PaquetsDeCartes.J2Bottes = tmp2;
+            PaquetsDeCartes.J2Vitesse = tmp3;
+            PaquetsDeCartes.J2Bataille = tmp4;
+            PaquetsDeCartes.J2Bornes25 = tmp5;
+            PaquetsDeCartes.J2Bornes50 = tmp6;
+            PaquetsDeCartes.J2Bornes75 = tmp7;
+            PaquetsDeCartes.J2Bornes100 = tmp8;
+            PaquetsDeCartes.J2Bornes200 = tmp9;
+
+            var jTmp1 = GestionJoueurs.Joueur1;
+            GestionJoueurs.Joueur1 = GestionJoueurs.Joueur2;
+            GestionJoueurs.Joueur2 = jTmp1;
+            if (GestionJoueurs.tour == 0)
+            {
+                GestionJoueurs.tour = 1;
+            }
+            else
+            {
+                GestionJoueurs.tour = 0;
+            }
         }
 
         public static void JoueurSuivant()

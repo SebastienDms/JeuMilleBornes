@@ -36,6 +36,7 @@
             this.msDistribuerCartes = new System.Windows.Forms.ToolStripMenuItem();
             this.sauverPartieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.recevoirDonnéesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnCarteSuivante = new System.Windows.Forms.Button();
             this.btnCarteSuivJ1 = new System.Windows.Forms.Button();
             this.btnCarteSuivJ2 = new System.Windows.Forms.Button();
@@ -105,7 +106,6 @@
             this.lblScoreEnCoursJ2 = new System.Windows.Forms.Label();
             this.lblScoreEnCoursJ1 = new System.Windows.Forms.Label();
             this.lblAQui = new System.Windows.Forms.Label();
-            this.recevoirDonnéesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbJOpCarte6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbJOpCarte5)).BeginInit();
@@ -206,6 +206,13 @@
             this.refreshToolStripMenuItem.Size = new System.Drawing.Size(66, 23);
             this.refreshToolStripMenuItem.Text = "Refresh";
             this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
+            // 
+            // recevoirDonnéesToolStripMenuItem
+            // 
+            this.recevoirDonnéesToolStripMenuItem.Name = "recevoirDonnéesToolStripMenuItem";
+            this.recevoirDonnéesToolStripMenuItem.Size = new System.Drawing.Size(125, 23);
+            this.recevoirDonnéesToolStripMenuItem.Text = "recevoir données";
+            this.recevoirDonnéesToolStripMenuItem.Click += new System.EventHandler(this.recevoirDonnéesToolStripMenuItem_Click);
             // 
             // btnCarteSuivante
             // 
@@ -900,13 +907,6 @@
             this.lblAQui.Size = new System.Drawing.Size(160, 17);
             this.lblAQui.TabIndex = 70;
             this.lblAQui.Text = "C\'est au tour du joueur :";
-            // 
-            // recevoirDonnéesToolStripMenuItem
-            // 
-            this.recevoirDonnéesToolStripMenuItem.Name = "recevoirDonnéesToolStripMenuItem";
-            this.recevoirDonnéesToolStripMenuItem.Size = new System.Drawing.Size(125, 23);
-            this.recevoirDonnéesToolStripMenuItem.Text = "recevoir données";
-            this.recevoirDonnéesToolStripMenuItem.Click += new System.EventHandler(this.recevoirDonnéesToolStripMenuItem_Click);
             // 
             // FormPrincipal
             // 
