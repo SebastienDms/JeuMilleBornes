@@ -219,6 +219,7 @@ namespace JeuMilleBorne
                     tlServer = new TcpListener(ipServer, _port);
                     tlServer.Start();
                     TcpClient = tlServer.AcceptTcpClient();
+                    MessageBox.Show("Client accepté...");
                     fluxNetworkStream = TcpClient.GetStream();
 
                 });
@@ -237,7 +238,7 @@ namespace JeuMilleBorne
                 /* () méthode anonyme */
                 await Task.Run(() =>
                 {
-                    IPAddress ipServer = AdresseValidee(serverHostName);
+                    IPAddress ipServer = AdresseValidee(serverHostName);//IPAddress.Parse("192.168.1.107"); //
                     TcpClient = new TcpClient();
                     TcpClient.Connect(ipServer, _port);
                     fluxNetworkStream = TcpClient.GetStream();

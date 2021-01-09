@@ -47,15 +47,21 @@ namespace JeuMilleBorne
             byte[] buffer = new byte[1024];
             using (MemoryStream ms = new MemoryStream())
             {
-                int numBytesRead = fluxNetworkStream.Read(buffer, 0, buffer.Length);
-                while (fluxNetworkStream.DataAvailable || numBytesRead > 0)
+                int i = 0;
+                do
                 {
-                    if (numBytesRead == 0)
-                        numBytesRead = fluxNetworkStream.Read(buffer, 0, buffer.Length);
+                    int numBytesRead = fluxNetworkStream.Read(buffer, 0, buffer.Length);
+                    while (fluxNetworkStream.DataAvailable || numBytesRead > 0)
+                    {
+                        if (numBytesRead == 0)
+                            numBytesRead = fluxNetworkStream.Read(buffer, 0, buffer.Length);
 
-                    ms.Write(buffer, 0, numBytesRead);
-                    numBytesRead = 0;
-                }
+                        ms.Write(buffer, 0, numBytesRead);
+                        numBytesRead = 0;
+                    }
+
+                    i++;
+                } while (ms.Length == (14600*i));
 
                 /*   ms contient toutes les données du flux réseau
                  *   converti les octets en un model demandé
