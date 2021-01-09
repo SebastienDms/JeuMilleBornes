@@ -1706,6 +1706,18 @@ namespace JeuMilleBorne
 
         private void FormPrincipal_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (GestionCartes.FlagNetwork)
+            {
+                if (GestionCartes.FlagServer)
+                {
+                    connexion.CloseConnection();
+                }
+
+                if (GestionCartes.FlagClient)
+                {
+                    connexion.CloseClient();
+                }
+            }
             if (MessageBox.Show("Vous êtes sur le point de quitter le jeu.\nSouhaitez-vous sauver la partie?", "Attention",
                 MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
             {
