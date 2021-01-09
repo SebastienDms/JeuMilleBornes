@@ -224,6 +224,7 @@ namespace JeuMilleBorne
             else
             {
                 GestionJoueurs.tour = 0;
+                piocher = true;
             }
         }
 
@@ -237,7 +238,15 @@ namespace JeuMilleBorne
             {
                 GestionJoueurs.Tour = 0;
             }
-            piocher = true;
+
+            if (FlagNetwork && GestionJoueurs.tour==1)
+            {
+                piocher = false;
+            }
+            else
+            {
+                piocher = true;
+            }
         }
         public static void DefausserCarte(ref Carte cTmp, ref List<Carte> defausse)
         {

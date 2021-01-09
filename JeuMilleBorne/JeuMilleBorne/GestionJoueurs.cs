@@ -92,9 +92,6 @@ namespace JeuMilleBorne
         {
             IFormatter formatter = new BinaryFormatter();
 
-            //memoryStream.Write(memoryStream.ToArray(), 0, memoryStream.ToArray().Length);
-            //memoryStream.Seek(0, SeekOrigin.Begin);
-
             Joueur1 = (Joueur)formatter.Deserialize(memoryStream);
             Joueur2 = (Joueur)formatter.Deserialize(memoryStream);
             tour = (int)formatter.Deserialize(memoryStream);

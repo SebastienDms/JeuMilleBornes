@@ -33,11 +33,13 @@ namespace JeuMilleBorne
             lblScoreEnCoursJ2.Text = GestionJoueurs.Joueur2.Points.ToString();
             if (GestionCartes.FlagClient)
             {
+                msCreerPaquetDeJeu.Enabled = msMelangerPaquet.Enabled = msDistribuerCartes.Enabled = false;
                 GestionCartes.ReverseDatas();
                 //Afficher();
                 AfficherReseau();
                 if (GestionJoueurs.Tour == 1)
                 {
+                    GestionCartes.piocher = false;
                     await connexion.ReceiveData();
                     GestionCartes.ReverseDatas();
                     AfficherReseau();
@@ -59,14 +61,22 @@ namespace JeuMilleBorne
             //lblPaqMel.Text = PaquetsDeCartes.PaquetMelange.Count.ToString();
             //lblMainJ1.Text = GestionJoueurs.Tour.ToString();
             //lblMainJ2.Text = "";/*PaquetsDeCartes.MainJoueur2.Count.ToString();*/
-            GestionJoueurs.Tour = 0; //GestionJoueurs.TourAlea();
-            if (GestionJoueurs.Tour == 0)
-                MessageBox.Show("C'est au joueur 1 de commencer la partie");
-            if (GestionJoueurs.Tour == 1)
-                MessageBox.Show("C'est au joueur 2 de commencer la partie");
+            GestionJoueurs.Tour = GestionJoueurs.TourAlea();
 
             if (GestionCartes.FlagNetwork)
             {
+                if (GestionJoueurs.Tour == 0)
+                {
+                    MessageBox.Show("C'est à toi de commencer la partie");
+                    GestionCartes.piocher=true;
+                }
+
+                if (GestionJoueurs.Tour == 1)
+                {
+                    MessageBox.Show("C'est à ton adversaire de commencer la partie");
+                    GestionCartes.piocher = false;
+                }
+
                 AfficherReseau();
                 /* Envoie des données de jeux complètes */
                 GestionDonneesJeux.GestionJoueurs = new GestionJoueurs();
@@ -80,9 +90,13 @@ namespace JeuMilleBorne
                 }
             }
             else
-            {
-                Afficher();
+            {            
+                if (GestionJoueurs.Tour == 0)
+                    MessageBox.Show("C'est au joueur 1 de commencer la partie");
+                if (GestionJoueurs.Tour == 1)
+                    MessageBox.Show("C'est au joueur 2 de commencer la partie");
 
+                Afficher();
             }
         }
         #endregion
@@ -131,15 +145,9 @@ namespace JeuMilleBorne
             else
             {
                 GestionCartes.DefausserCarte(ref PaquetsDeCartes.Ctmp, ref PaquetsDeCartes.Defausse);
-                //if (GestionJoueurs.Tour == 0)
-                //{
-                //    GestionJoueurs.Tour = 1;
-                //}
-                //else
-                //{
-                //    GestionJoueurs.Tour = 0;
-                //}
+
                 GestionCartes.JoueurSuivant();
+
                 if (GestionCartes.FlagNetwork)
                 {
                     /* Envoie des données de jeux complètes sur le réseau */

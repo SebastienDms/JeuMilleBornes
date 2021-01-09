@@ -39,6 +39,9 @@ namespace JeuMilleBorne
         public static List<Carte> J2Bornes100 = new List<Carte>();
         public static List<Carte> J2Bornes200 = new List<Carte>();
         #endregion
+
+        #region Sauvegarde locale
+
         public static void SauverPaquets()
         {
             FileStream FicSauvegarde;
@@ -101,14 +104,13 @@ namespace JeuMilleBorne
             J2Bornes100 = (List<Carte>)formatter.Deserialize(FicSauvegarde);
             J2Bornes200 = (List<Carte>)formatter.Deserialize(FicSauvegarde);
         }
+        #endregion
+
+        #region Gestion réseau
 
         public static long ReceptionDuReseau(MemoryStream MSReceive)
         {
-            //var streamDatas = new MemoryStream();
             IFormatter formatter = new BinaryFormatter();
-
-            //MSReceive.Write(MSReceive.ToArray(), 0, MSReceive.ToArray().Length);
-            //MSReceive.Seek(0, SeekOrigin.Begin);
 
             PaquetJeu = (List<Carte>)formatter.Deserialize(MSReceive);
             PaquetMelange = (List<Carte>)formatter.Deserialize(MSReceive);
@@ -135,5 +137,7 @@ namespace JeuMilleBorne
             J2Bornes200 = (List<Carte>)formatter.Deserialize(MSReceive);
             return MSReceive.Position;
         }
+
+        #endregion
     }
 }

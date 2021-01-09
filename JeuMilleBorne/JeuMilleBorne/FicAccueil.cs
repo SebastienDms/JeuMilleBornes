@@ -58,7 +58,7 @@ namespace JeuMilleBorne
         {
             List<Task<string>> tasks = new List<Task<string>>();
 
-            for (int i = 1; i <= 2; i++)
+            for (int i = 1; i <= 255; i++)
             {
                 string ip = "192.168.1." + i.ToString();
                 //PingReply pingReponse = await ;

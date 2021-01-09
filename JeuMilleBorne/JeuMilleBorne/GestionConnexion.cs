@@ -286,7 +286,7 @@ namespace JeuMilleBorne
                     // 2
                     long indexCourant = 0;
                     object[] tableauTotal = new object[longueurTotale];
-                    foreach (var element in tableauxListe) // concatene tous les sous-tableaux en un seul big tableau
+                    foreach (var element in tableauxListe) // concatène tous les sous-tableaux en un seul tableau
                     {
                         element.CopyTo(tableauTotal, indexCourant);
                         indexCourant += element.Length;

@@ -24,12 +24,17 @@ namespace JeuMilleBorne
 
             return memoryStream.ToArray();
         }
-        /* Récupère les attributs public et static en tableau de valeurs */
+        /*   Récupère les attributs public et static d'une classe
+         *   Récupère les différentes valeurs
+         *   Envoie les valeur sous forme d'un tableau
+         */
         public static object[] GetFieldValues<T>(T obj)
         {
+            /* Obtient les attributs de la classe */
             var fields = obj.GetType()
                 .GetFields(BindingFlags.Public | BindingFlags.Static);
 
+            /* Obtient les valeurs des attributs trouvés */
             var test = fields
                 .Select(field => field.GetValue(null))
                 .ToArray();
@@ -39,8 +44,6 @@ namespace JeuMilleBorne
         /* return T changé en bool /!\ */
         public static bool ReceiveData<T>(NetworkStream fluxNetworkStream) where T : class
         {
-            //T data = default(T);
-
             byte[] buffer = new byte[1024];
             using (MemoryStream ms = new MemoryStream())
             {
@@ -54,8 +57,10 @@ namespace JeuMilleBorne
                     numBytesRead = 0;
                 }
 
-                /* ms contient toutes les données du flux réseau */
-                var data = MemoryStreamToObject<T>(ms); // converti les octets en un model demandé
+                /*   ms contient toutes les données du flux réseau
+                 *   converti les octets en un model demandé
+                 */
+                var data = MemoryStreamToObject<T>(ms);
                 return data;
             }
         }
@@ -63,13 +68,11 @@ namespace JeuMilleBorne
         {
             var binForm = new BinaryFormatter();
 
-            /*stream.Write(arrBytes, 0, arrBytes.Length);*/
             stream.Seek(0, SeekOrigin.Begin);
-            //var obj = binForm.Deserialize(stream);
+
             var obj = GestionDonneesJeux.ReceptionDuReseauGeneral(stream);
 
             return obj;
-
         }
     }
 }
