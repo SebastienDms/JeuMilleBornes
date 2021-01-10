@@ -269,9 +269,6 @@ namespace JeuMilleBorne
                     long longueurTotale = 0; // longueur totale de tous les tableaux
                     List<object[]> tableauxListe = new List<object[]>();
 
-                    //var types = sendObject.GetType();
-                    //var fields2 = sendObject.GetType().GetFields();
-
                     // récupère les champs public & static du niveau 1
                     var fields = sendObject.GetType()
                         .GetProperties(BindingFlags.Public | BindingFlags.Static);

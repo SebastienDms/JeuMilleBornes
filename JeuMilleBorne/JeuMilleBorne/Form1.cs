@@ -34,6 +34,10 @@ namespace JeuMilleBorne
             if (GestionCartes.FlagClient)
             {
                 msCreerPaquetDeJeu.Enabled = msMelangerPaquet.Enabled = msDistribuerCartes.Enabled = false;
+                foreach (var carte in PaquetsDeCartes.PaquetMelange)
+                {
+                    GestionCartes.AssociateCarteImage(carte);
+                }
                 GestionCartes.ReverseDatas();
                 //Afficher();
                 AfficherReseau();
@@ -41,6 +45,10 @@ namespace JeuMilleBorne
                 {
                     GestionCartes.piocher = false;
                     await connexion.ReceiveData();
+                    foreach (var carte in PaquetsDeCartes.PaquetMelange)
+                    {
+                        GestionCartes.AssociateCarteImage(carte);
+                    }
                     GestionCartes.ReverseDatas();
                     AfficherReseau();
                 }
@@ -85,6 +93,14 @@ namespace JeuMilleBorne
                 if (GestionJoueurs.Tour == 1)
                 {
                     await connexion.ReceiveData();
+                    foreach (var carte in PaquetsDeCartes.PaquetMelange)
+                    {
+                        GestionCartes.AssociateCarteImage(carte);
+                    }
+                    foreach (var carte in PaquetsDeCartes.Defausse)
+                    {
+                        GestionCartes.AssociateCarteImage(carte);
+                    }
                     GestionCartes.ReverseDatas();
                     AfficherReseau();
                 }
@@ -162,6 +178,14 @@ namespace JeuMilleBorne
             {
                 /* Passe en état de réception */
                 await connexion.ReceiveData();
+                foreach (var carte in PaquetsDeCartes.PaquetMelange)
+                {
+                    GestionCartes.AssociateCarteImage(carte);
+                }
+                foreach (var carte in PaquetsDeCartes.Defausse)
+                {
+                    GestionCartes.AssociateCarteImage(carte);
+                }
                 GestionCartes.ReverseDatas();
 
                 AfficherReseau();
@@ -374,6 +398,14 @@ namespace JeuMilleBorne
             {
                 /* Passe en état de réception */
                 await connexion.ReceiveData();
+                foreach (var carte in PaquetsDeCartes.PaquetMelange)
+                {
+                    GestionCartes.AssociateCarteImage(carte);
+                }
+                foreach (var carte in PaquetsDeCartes.Defausse)
+                {
+                    GestionCartes.AssociateCarteImage(carte);
+                }
                 GestionCartes.ReverseDatas();
 
                 AfficherReseau();
@@ -416,6 +448,14 @@ namespace JeuMilleBorne
             {
                 /* Passe en état de réception */
                 await connexion.ReceiveData();
+                foreach (var carte in PaquetsDeCartes.PaquetMelange)
+                {
+                    GestionCartes.AssociateCarteImage(carte);
+                }
+                foreach (var carte in PaquetsDeCartes.Defausse)
+                {
+                    GestionCartes.AssociateCarteImage(carte);
+                }
                 GestionCartes.ReverseDatas();
 
                 AfficherReseau();
@@ -458,6 +498,14 @@ namespace JeuMilleBorne
             {
                 /* Passe en état de réception */
                 await connexion.ReceiveData();
+                foreach (var carte in PaquetsDeCartes.PaquetMelange)
+                {
+                    GestionCartes.AssociateCarteImage(carte);
+                }
+                foreach (var carte in PaquetsDeCartes.Defausse)
+                {
+                    GestionCartes.AssociateCarteImage(carte);
+                }
                 GestionCartes.ReverseDatas();
 
                 AfficherReseau();
@@ -500,6 +548,14 @@ namespace JeuMilleBorne
             {
                 /* Passe en état de réception */
                 await connexion.ReceiveData();
+                foreach (var carte in PaquetsDeCartes.PaquetMelange)
+                {
+                    GestionCartes.AssociateCarteImage(carte);
+                }
+                foreach (var carte in PaquetsDeCartes.Defausse)
+                {
+                    GestionCartes.AssociateCarteImage(carte);
+                }
                 GestionCartes.ReverseDatas();
 
                 AfficherReseau();
@@ -542,6 +598,14 @@ namespace JeuMilleBorne
             {
                 /* Passe en état de réception */
                 await connexion.ReceiveData();
+                foreach (var carte in PaquetsDeCartes.PaquetMelange)
+                {
+                    GestionCartes.AssociateCarteImage(carte);
+                }
+                foreach (var carte in PaquetsDeCartes.Defausse)
+                {
+                    GestionCartes.AssociateCarteImage(carte);
+                }
                 GestionCartes.ReverseDatas();
 
                 AfficherReseau();
@@ -667,6 +731,14 @@ namespace JeuMilleBorne
                     await connexion.SendData(new GestionDonneesJeux());
                     /* Passe en état de réception */
                     await connexion.ReceiveData();
+                    foreach (var carte in PaquetsDeCartes.PaquetMelange)
+                    {
+                        GestionCartes.AssociateCarteImage(carte);
+                    }
+                    foreach (var carte in PaquetsDeCartes.Defausse)
+                    {
+                        GestionCartes.AssociateCarteImage(carte);
+                    }
                     GestionCartes.ReverseDatas();
                     //AfficherReseau();
                 }
@@ -675,6 +747,14 @@ namespace JeuMilleBorne
             {
                 /* Passe en état de réception */
                 await connexion.ReceiveData();
+                foreach (var carte in PaquetsDeCartes.PaquetMelange)
+                {
+                    GestionCartes.AssociateCarteImage(carte);
+                }
+                foreach (var carte in PaquetsDeCartes.Defausse)
+                {
+                    GestionCartes.AssociateCarteImage(carte);
+                }
                 GestionCartes.ReverseDatas();
 
                 AfficherReseau();
@@ -706,6 +786,14 @@ namespace JeuMilleBorne
             {
                 /* Passe en état de réception */
                 await connexion.ReceiveData();
+                foreach (var carte in PaquetsDeCartes.PaquetMelange)
+                {
+                    GestionCartes.AssociateCarteImage(carte);
+                }
+                foreach (var carte in PaquetsDeCartes.Defausse)
+                {
+                    GestionCartes.AssociateCarteImage(carte);
+                }
                 GestionCartes.ReverseDatas();
 
                 AfficherReseau();
@@ -1172,6 +1260,14 @@ namespace JeuMilleBorne
             {
                 /* Passe en état de réception */
                 await connexion.ReceiveData();
+                foreach (var carte in PaquetsDeCartes.PaquetMelange)
+                {
+                    GestionCartes.AssociateCarteImage(carte);
+                }
+                foreach (var carte in PaquetsDeCartes.Defausse)
+                {
+                    GestionCartes.AssociateCarteImage(carte);
+                }
                 GestionCartes.ReverseDatas();
 
                 AfficherReseau();
@@ -1203,6 +1299,14 @@ namespace JeuMilleBorne
             {
                 /* Passe en état de réception */
                 await connexion.ReceiveData();
+                foreach (var carte in PaquetsDeCartes.PaquetMelange)
+                {
+                    GestionCartes.AssociateCarteImage(carte);
+                }
+                foreach (var carte in PaquetsDeCartes.Defausse)
+                {
+                    GestionCartes.AssociateCarteImage(carte);
+                }
                 GestionCartes.ReverseDatas();
 
                 AfficherReseau();

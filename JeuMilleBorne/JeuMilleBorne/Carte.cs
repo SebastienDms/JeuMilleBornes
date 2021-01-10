@@ -18,6 +18,7 @@ namespace JeuMilleBorne
         private string nom;
         private string type;
         private int valeur;
+        [NonSerialized]
         private Image imageCarte;
         #endregion
 
@@ -129,7 +130,7 @@ namespace JeuMilleBorne
                 case NomsCartes.Essence: return "Essence";
                 case NomsCartes.Roue: return "Roue de secours";
                 case NomsCartes.Reparations: return "Réparations";
-                case NomsCartes.Prioritaire: return "Véhicule prioritaire (contre feux rouge et limite de vitesse)";
+                case NomsCartes.Prioritaire: return "Véhicule prioritaire";
                 case NomsCartes.Citerne: return "Citerne d'essence";
                 case NomsCartes.Increvable: return "Increvable !";
                 case NomsCartes.AsVolant: return "As du volant";
@@ -163,14 +164,14 @@ namespace JeuMilleBorne
             info.AddValue("Nom",nom,typeof(string));
             info.AddValue("Type",type,typeof(string));
             info.AddValue("Valeur",valeur,typeof(int));
-            info.AddValue("Image",imageCarte,typeof(Image));
+            //info.AddValue("Image",imageCarte,typeof(Image));
         }
         public Carte(SerializationInfo info, StreamingContext context)
         {
             Nom = (string)info.GetValue("Nom", typeof(string));
             Type = (string)info.GetValue("Type", typeof(string));
             Valeur = (int)info.GetValue("Valeur", typeof(int));
-            ImageCarte = (Image)info.GetValue("Image", typeof(Image));
+            //ImageCarte = (Image)info.GetValue("Image", typeof(Image));
         }
 
     }

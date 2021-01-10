@@ -139,6 +139,47 @@ namespace JeuMilleBorne
             return carte;
         }
 
+        public static void AssociateCarteImage(Carte carteTodo)
+        {
+            if (carteTodo.Nom == "Véhicule prioritaire")
+                carteTodo.ImageCarte = (Image)Resource1.ResourceManager.GetObject("mb_1");
+            if (carteTodo.Nom == "Citerne d'essence")
+                carteTodo.ImageCarte = (Image)Resource1.ResourceManager.GetObject("mb_2");
+            if (carteTodo.Nom == "Increvable !")
+                carteTodo.ImageCarte = (Image)Resource1.ResourceManager.GetObject("mb_3");
+            if (carteTodo.Nom == "As du volant")
+                carteTodo.ImageCarte = (Image)Resource1.ResourceManager.GetObject("mb_4");
+            if (carteTodo.Nom == "Accident...")
+                carteTodo.ImageCarte = (Image)Resource1.ResourceManager.GetObject("mb_5");
+            if (carteTodo.Nom == "Crevé !")
+                carteTodo.ImageCarte = (Image)Resource1.ResourceManager.GetObject("mb_6");
+            if (carteTodo.Nom == "Limite de vitesse à 50")
+                carteTodo.ImageCarte = (Image)Resource1.ResourceManager.GetObject("mb_7");
+            if (carteTodo.Nom == "Panne d'essence")
+                carteTodo.ImageCarte = (Image)Resource1.ResourceManager.GetObject("mb_8");
+            if (carteTodo.Nom == "Feux rouge")
+                carteTodo.ImageCarte = (Image)Resource1.ResourceManager.GetObject("mb_9");
+            if (carteTodo.Nom == "Réparations")
+                carteTodo.ImageCarte = (Image)Resource1.ResourceManager.GetObject("mb_10");
+            if (carteTodo.Nom == "Roue de secours")
+                carteTodo.ImageCarte = (Image)Resource1.ResourceManager.GetObject("mb_11");
+            if (carteTodo.Nom == "Fin de Limite de vitesse")
+                carteTodo.ImageCarte = (Image)Resource1.ResourceManager.GetObject("mb_12");
+            if (carteTodo.Nom == "Essence")
+                carteTodo.ImageCarte = (Image)Resource1.ResourceManager.GetObject("mb_13");
+            if (carteTodo.Nom == "Feux vert")
+                carteTodo.ImageCarte = (Image)Resource1.ResourceManager.GetObject("mb_14");
+            if (carteTodo.Nom == "Vitesse 25")
+                carteTodo.ImageCarte = (Image)Resource1.ResourceManager.GetObject("mb_25");
+            if (carteTodo.Nom == "Vitesse 50")
+                carteTodo.ImageCarte = (Image)Resource1.ResourceManager.GetObject("mb_50");
+            if (carteTodo.Nom == "Vitesse 75")
+                carteTodo.ImageCarte = (Image)Resource1.ResourceManager.GetObject("mb_75");
+            if (carteTodo.Nom == "Vitesse 100")
+                carteTodo.ImageCarte = (Image)Resource1.ResourceManager.GetObject("mb_100");
+            if (carteTodo.Nom == "Vitesse 200")
+                carteTodo.ImageCarte = (Image)Resource1.ResourceManager.GetObject("mb_200");
+        }
         public static void MelangerPaquet(List<Carte> paquet, List<Carte> paquetmelange)
         {
             Random ran = new Random();
@@ -195,24 +236,96 @@ namespace JeuMilleBorne
             var tmp9 = PaquetsDeCartes.J1Bornes200;
 
             PaquetsDeCartes.MainJoueur1 = PaquetsDeCartes.MainJoueur2;
+            foreach (var carte in PaquetsDeCartes.MainJoueur1)
+            {
+                AssociateCarteImage(carte);
+            }
             PaquetsDeCartes.J1Bottes = PaquetsDeCartes.J2Bottes;
+            foreach (var carte in PaquetsDeCartes.J1Bottes)
+            {
+                AssociateCarteImage(carte);
+            }
             PaquetsDeCartes.J1Vitesse = PaquetsDeCartes.J2Vitesse;
+            foreach (var carte in PaquetsDeCartes.J1Vitesse)
+            {
+                AssociateCarteImage(carte);
+            }
             PaquetsDeCartes.J1Bataille = PaquetsDeCartes.J2Bataille;
+            foreach (var carte in PaquetsDeCartes.J1Bataille)
+            {
+                AssociateCarteImage(carte);
+            }
             PaquetsDeCartes.J1Bornes25 = PaquetsDeCartes.J2Bornes25;
+            foreach (var carte in PaquetsDeCartes.J1Bornes25)
+            {
+                AssociateCarteImage(carte);
+            }
             PaquetsDeCartes.J1Bornes50 = PaquetsDeCartes.J2Bornes50;
+            foreach (var carte in PaquetsDeCartes.J1Bornes50)
+            {
+                AssociateCarteImage(carte);
+            }
             PaquetsDeCartes.J1Bornes75 = PaquetsDeCartes.J2Bornes75;
-            PaquetsDeCartes.J1Bornes100 = PaquetsDeCartes.J2Bornes100;
-            PaquetsDeCartes.J1Bornes200 = PaquetsDeCartes.J2Bornes200;
+            foreach (var carte in PaquetsDeCartes.J1Bornes75)
+            {
+                AssociateCarteImage(carte);
+            }
 
+            PaquetsDeCartes.J1Bornes100 = PaquetsDeCartes.J2Bornes100;
+            foreach (var carte in PaquetsDeCartes.J1Bornes100)
+            {
+                AssociateCarteImage(carte);
+            }
+            PaquetsDeCartes.J1Bornes200 = PaquetsDeCartes.J2Bornes200;
+            foreach (var carte in PaquetsDeCartes.J1Bornes200)
+            {
+                AssociateCarteImage(carte);
+            }
             PaquetsDeCartes.MainJoueur2 = tmp1;
+            foreach (var carte in PaquetsDeCartes.MainJoueur2)
+            {
+                AssociateCarteImage(carte);
+            }
             PaquetsDeCartes.J2Bottes = tmp2;
+            foreach (var carte in PaquetsDeCartes.J2Bottes)
+            {
+                AssociateCarteImage(carte);
+            }
             PaquetsDeCartes.J2Vitesse = tmp3;
+            foreach (var carte in PaquetsDeCartes.J2Vitesse)
+            {
+                AssociateCarteImage(carte);
+            }
             PaquetsDeCartes.J2Bataille = tmp4;
+            foreach (var carte in PaquetsDeCartes.J2Bataille)
+            {
+                AssociateCarteImage(carte);
+            }
             PaquetsDeCartes.J2Bornes25 = tmp5;
+            foreach (var carte in PaquetsDeCartes.J2Bornes25)
+            {
+                AssociateCarteImage(carte);
+            }
             PaquetsDeCartes.J2Bornes50 = tmp6;
+            foreach (var carte in PaquetsDeCartes.J2Bornes50)
+            {
+                AssociateCarteImage(carte);
+            }
             PaquetsDeCartes.J2Bornes75 = tmp7;
+            foreach (var carte in PaquetsDeCartes.J2Bornes75)
+            {
+                AssociateCarteImage(carte);
+            }
             PaquetsDeCartes.J2Bornes100 = tmp8;
+            foreach (var carte in PaquetsDeCartes.J2Bornes100)
+            {
+                AssociateCarteImage(carte);
+            }
             PaquetsDeCartes.J2Bornes200 = tmp9;
+            foreach (var carte in PaquetsDeCartes.J2Bornes200)
+            {
+                AssociateCarteImage(carte);
+            }
 
             var jTmp1 = GestionJoueurs.Joueur1;
             GestionJoueurs.Joueur1 = GestionJoueurs.Joueur2;
@@ -714,7 +827,7 @@ namespace JeuMilleBorne
             {
                 foreach (Carte c in ListeBotte)
                 {
-                    if (c.Nom == "Véhicule prioritaire (contre feux rouge et limite de vitesse)")
+                    if (c.Nom == "Véhicule prioritaire")
                     {
                         placer = true;
                         break;
@@ -766,14 +879,14 @@ namespace JeuMilleBorne
                             }
                             else
                             {
-                                if (c.Nom == "Véhicule prioritaire (contre feux rouge et limite de vitesse)" && PaquetsDeCartes.Ctmp.Nom == "Feux rouge")
+                                if (c.Nom == "Véhicule prioritaire" && PaquetsDeCartes.Ctmp.Nom == "Feux rouge")
                                 {
                                     placer = false;
                                     break;
                                 }
                                 else
                                 {
-                                    if (c.Nom == "Véhicule prioritaire (contre feux rouge et limite de vitesse)" && PaquetsDeCartes.Ctmp.Nom == "Limite de vitesse à 50")
+                                    if (c.Nom == "Véhicule prioritaire" && PaquetsDeCartes.Ctmp.Nom == "Limite de vitesse à 50")
                                     {
                                         placer = false;
                                         break;
@@ -823,14 +936,14 @@ namespace JeuMilleBorne
                             }
                             else
                             {
-                                if (c.Nom == "Véhicule prioritaire (contre feux rouge et limite de vitesse)" && PaquetsDeCartes.Ctmp.Nom == "Feux rouge")
+                                if (c.Nom == "Véhicule prioritaire" && PaquetsDeCartes.Ctmp.Nom == "Feux rouge")
                                 {
                                     placer = false;
                                     break;
                                 }
                                 else
                                 {
-                                    if (c.Nom == "Véhicule prioritaire (contre feux rouge et limite de vitesse)" && PaquetsDeCartes.Ctmp.Nom == "Limite de vitesse à 50")
+                                    if (c.Nom == "Véhicule prioritaire" && PaquetsDeCartes.Ctmp.Nom == "Limite de vitesse à 50")
                                     {
                                         placer = false;
                                         break;
